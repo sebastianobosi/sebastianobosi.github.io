@@ -238,18 +238,19 @@ button.chip { cursor: pointer; min-height: 44px; }
 
 .placeholder { position: absolute; top: 18px; left: 18px; right: 18px; font-size: var(--fs-label-s); color: var(--text-2); }
 
-/* Movimento d'ingresso: un solo momento orchestrato, in apertura */
+/* Movimento d'ingresso: un solo momento orchestrato, in apertura.
+   Solo spostamento, niente opacità a zero: se l'animazione non parte, la pagina resta comunque leggibile. */
 @media (prefers-reduced-motion: no-preference) {
-  .intro > * { opacity: 0; transform: translateY(16px); animation: rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
-  .intro > *:nth-child(2) { animation-delay: .08s; }
-  .intro > *:nth-child(3) { animation-delay: .16s; }
-  .intro > *:nth-child(4) { animation-delay: .24s; }
-  .phones .phone { opacity: 0; animation: phone-in 1s cubic-bezier(.2,.7,.2,1) .25s forwards; }
-  .phones .phone:nth-child(2) { animation-delay: .35s; }
-  .phones .phone:nth-child(3) { animation-delay: .45s; }
+  .intro > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+  .intro > *:nth-child(2) { animation-delay: .06s; }
+  .intro > *:nth-child(3) { animation-delay: .12s; }
+  .intro > *:nth-child(4) { animation-delay: .18s; }
+  .phones .phone { animation: phone-in 1s cubic-bezier(.2,.7,.2,1) .2s both; }
+  .phones .phone:nth-child(2) { animation-delay: .3s; }
+  .phones .phone:nth-child(3) { animation-delay: .4s; }
 }
-@keyframes rise { to { opacity: 1; transform: none; } }
-@keyframes phone-in { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
+@keyframes rise { from { translate: 0 16px; } to { translate: 0 0; } }
+@keyframes phone-in { from { translate: 0 40px; } to { translate: 0 0; } }
 
 /* --------------------------------------------------------------------------
    Intestazioni di sezione
