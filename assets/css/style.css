@@ -143,7 +143,7 @@ main { position: relative; z-index: 1; }
 .btn--secondary:hover { background: var(--glass-strong); }
 .btn:active { transform: scale(0.98); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-@media (max-width: 599px) { .actions--stack-mobile { flex-direction: column; } .actions--stack-mobile .btn { width: 100%; } }
+@media (max-width: 599px) { .actions--stack-mobile { flex-direction: column; width: 100%; justify-self: stretch; align-self: stretch; } .actions--stack-mobile .btn { width: 100%; } }
 
 .chip {
   display: inline-flex; align-items: center; gap: 8px; min-height: 36px;
