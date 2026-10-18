@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UCI Cinemas, case study — Sebastiano Bosi</title>
+<meta name="description" content="Case study del redesign dell’app UCI Cinemas: 85 schermate, design system, assistente AI Iris e revisione di accessibilità WCAG 2.2.">
+<link rel="canonical" href="https://sebastianobosi.github.io/lavori/uci-cinemas/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="UCI Cinemas, case study — Sebastiano Bosi">
+<meta property="og:description" content="Case study del redesign dell’app UCI Cinemas: 85 schermate, design system, assistente AI Iris e revisione di accessibilità WCAG 2.2.">
+<meta property="og:url" content="https://sebastianobosi.github.io/lavori/uci-cinemas/">
+<meta property="og:image" content="https://sebastianobosi.github.io/assets/img/og.png">
+<meta name="theme-color" content="#07080f">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script src="../../assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-240px;width:62vw;height:620px;opacity:0.42"></div><div class="glow glow--lavender" style="left:55%;top:-160px;width:56vw;height:520px;opacity:0.3"></div><div class="glow glow--warm" style="left:60%;top:700px;width:28vw;height:320px;opacity:0.22"></div><div class="glow glow--lavender" style="left:-10%;top:2600px;width:50vw;height:600px;opacity:0.16"></div><div class="glow glow--blue" style="left:50%;top:4600px;width:50vw;height:600px;opacity:0.16"></div></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav glass" aria-label="Principale">
+      <a class="nav__logo" href="../../">Sebastiano Bosi</a>
+      <ul class="nav__links"><li><a href="../../lavori/">Lavori</a></li><li><a href="../../#metodo">Metodo</a></li><li><a href="../../chi-sono/">Chi sono</a></li></ul>
+      <a class="btn btn--primary nav__cta" href="../../contatti/">Contattami</a>
+      <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </nav>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="nav glass" style="width:auto;justify-content:space-between;padding-left:22px">
+    <a class="nav__logo" href="../../">Sebastiano Bosi</a>
+    <button class="nav__menu-btn" style="display:inline-flex" type="button" data-menu-close aria-label="Chiudi il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <ul class="menu__list"><li><a href="../../lavori/">Lavori<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../../#metodo">Metodo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../../chi-sono/">Chi sono<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../../contatti/">Contatti<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul>
+  <div class="actions">
+    <a class="btn btn--primary" href="../../contatti/">Contattami</a>
+    <a class="btn btn--secondary" href="../../assets/sebastiano-bosi-cv.pdf" download>Scarica il CV</a>
+  </div>
+</div>
+
+<main id="contenuto">
+
+<div class="wrap">
+  <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Tutti i lavori</a></p>
+  <section class="intro" style="display:grid;gap:clamp(20px,2vw,28px);justify-items:start;padding-top:16px" aria-labelledby="titolo">
+    <p class="chip chip--status">Case study · App mobile · 2026</p>
+    <h1 id="titolo" class="display">UCI Cinemas</h1>
+    <p class="lead">Il redesign dell’app per comprare biglietti, ordinare al bar e farsi consigliare da Iris, un’assistente AI.</p>
+    <dl class="meta">
+      <div><dt>Ruolo</dt><dd>Product designer · progetto personale</dd></div>
+      <div><dt>Anno</dt><dd>2026</dd></div>
+      <div><dt>Piattaforma</dt><dd>iOS e Android (Flutter)</dd></div>
+      <div><dt>Strumenti</dt><dd>Figma</dd></div>
+    </dl>
+  </section>
+  <div class="figure__frame glass" style="margin-top:32px;padding:clamp(24px,4vw,60px)">
+    <div class="phones" style="max-width:none;height:clamp(320px,44vw,600px)" role="img" aria-label="Schermate principali dell’app UCI Cinemas">
+      <div class="phone"><div class="phone__screen"><span class="placeholder">UCI · Home</span></div></div><div class="phone"><div class="phone__screen"><span class="placeholder">UCI · Iris</span></div></div><div class="phone"><div class="phone__screen"><span class="placeholder">UCI · Biglietto</span></div></div>
+    </div>
+  </div>
+
+  <section class="section split" aria-labelledby="progetto">
+    <h2 id="progetto" class="h3">Il progetto</h2>
+    <div class="stack">
+      <p class="lead lead--primary">Ho riprogettato da zero l’app UCI Cinemas come progetto personale, partendo da una brand identity nuova. L’obiettivo: rendere più semplice e veloce l’acquisto del biglietto e sostituire l’acquisto rapido con Iris, un’assistente AI che trova film, orari e posti.</p>
+      <aside class="callout glass"><p class="callout__label">Nota</p><p>Progetto non commissionato da UCI. Prezzi, titoli dei film e alcuni dati sono esempi plausibili, da verificare.</p></aside>
+    </div>
+  </section>
+
+  <section class="section grid grid--stats" style="margin-top:clamp(64px,6vw,96px)" aria-label="Il progetto in numeri">
+    <div class="card glass stat"><p class="stat__value">85</p><p class="muted">schermate, con percorsi principali e stati alternativi</p></div><div class="card glass stat"><p class="stat__value">9</p><p class="muted">aree, dal primo accesso al profilo e fedeltà</p></div><div class="card glass stat"><p class="stat__value">AA</p><p class="muted">contrasti WCAG 2.2 verificati in tema Blue e Dark</p></div><div class="card glass stat"><p class="stat__value">1</p><p class="muted">assistente AI, Iris, al posto dell’acquisto rapido</p></div>
+  </section>
+
+  <section class="section" aria-labelledby="processo">
+    <div class="section-head"><h2 id="processo" class="h2">Processo</h2><p class="label">Quattro fasi</p></div>
+    <ol class="grid grid--4"><li class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h3>1. Discovery</h3><p class="muted">Problema riformulato e assunzioni mappate prima di disegnare qualsiasi schermata.</p></li><li class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>2. Brand e design system</h3><p class="muted">Nuova identità, token e componenti con varianti, stati e changelog.</p></li><li class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div><h3>3. Flussi</h3><p class="muted">85 schermate: percorso principale, errori, vuoti, offline e caricamento per ogni area.</p></li><li class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4m0 0-3 6m3-6 3 6"/></svg></div><h3>4. Accessibilità</h3><p class="muted">Revisione WCAG 2.2 AA in Blue e Dark, con le correzioni registrate nel design system.</p></li></ol>
+  </section>
+
+  <section class="section split split--wide" aria-labelledby="iris">
+    <div class="stack">
+      <h2 id="iris" class="h2">Iris, l’assistente</h2>
+      <p class="lead">Al posto dell’acquisto rapido c’è Iris: un’ellisse gialla minimal con due occhi squadrati che ricordano i fori della pellicola. Si apre dalla Home e guida l’acquisto in conversazione: film, orari, posti, riepilogo.</p>
+      <aside class="callout glass"><p class="callout__label">Decisione</p><p>Il pagamento lo conferma sempre l’utente con Face ID: Iris non paga mai da sola.</p></aside>
+    </div>
+    <div class="phones" role="img" aria-label="Tre schermate della conversazione con Iris: benvenuto, proposte e riepilogo">
+      <div class="phone"><div class="phone__screen"><span class="placeholder">Iris · Benvenuto</span></div></div><div class="phone"><div class="phone__screen"><span class="placeholder">Iris · Proposte</span></div></div><div class="phone"><div class="phone__screen"><span class="placeholder">Iris · Riepilogo</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="aree">
+    <div class="section-head"><h2 id="aree" class="h2">Le 9 aree dell’app</h2><p class="label">85 schermate</p></div>
+    <ol class="areas"><li class="glass">Onboarding e accesso</li><li class="glass">Home</li><li class="glass">Acquisto classico</li><li class="glass">Acquisto con Iris</li><li class="glass">I miei biglietti</li><li class="glass">Ordina al bar</li><li class="glass">Film</li><li class="glass">Cinema</li><li class="glass">Profilo e fedeltà</li></ol>
+    <figure class="figure" style="margin-top:16px">
+      <div class="figure__frame glass"><div class="figure__media"><span class="placeholder">Mappa dei flussi</span></div></div>
+      <figcaption>Mappa dei flussi: tutte le aree e i collegamenti del prototipo completo.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section" aria-labelledby="ds">
+    <div class="section-head"><h2 id="ds" class="h2">Design system</h2><p class="label">v3.31</p></div>
+    <p class="lead" style="margin-bottom:24px">Ogni schermata usa componenti del design system: prima si riusa ciò che esiste, poi si crea il nuovo e lo si aggiunge alla libreria, con ogni modifica nel changelog.</p>
+    <div class="grid grid--3"><div class="callout callout--small glass"><p class="callout__label">Regola</p><p>Barre flottanti sopra il contenuto (Tab Bar, riepilogo, azioni), con sfumatura al bordo di scorrimento.</p></div><div class="callout callout--small glass"><p class="callout__label">Regola</p><p>Raggi annidati: raggio esterno = raggio interno + padding, con angoli smussati al 100%.</p></div><div class="callout callout--small glass"><p class="callout__label">Regola</p><p>Icone a tratto singolo; nei Bottom Sheet le azioni stanno sempre nel footer.</p></div></div>
+    <figure class="figure" style="margin-top:16px">
+      <div class="figure__frame glass"><div class="figure__media"><span class="placeholder">Componenti del design system</span></div></div>
+      <figcaption>Componenti principali: Tab Bar, Showtime Chip, Seat Map, Ticket Card, pulsante di Iris.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section" aria-labelledby="a11y">
+    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità</h2><p class="label">WCAG 2.2 AA</p></div>
+    <div class="grid grid--3"><div class="card glass stat"><p class="stat__value">2,10:1</p><p class="muted">Rosso su blu negli errori: illeggibile, prima della correzione</p></div><div class="card glass stat"><p class="stat__value">4,82:1</p><p class="muted">Dopo: in tema Blue gli errori usano red/300</p></div><div class="card glass stat"><p class="stat__value">44 pt</p><p class="muted">Altezza minima del selettore cinema, prima era 36</p></div></div>
+    <aside class="callout glass" style="margin-top:16px"><p class="callout__label">Per lo sviluppo</p><p>Testo dinamico fino al 200%, etichette per VoiceOver e TalkBack su ogni pulsante icona, rispetto di «Riduci movimento» e stati mai affidati al solo colore.</p></aside>
+  </section>
+
+  <section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2><p class="lead">[Due o tre lezioni dal progetto: una decisione che rifaresti, una che cambieresti, cosa ti ha sorpreso.]</p></div>
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">Test con utenti, versione Android, Google Pay e Wallet, immagini definitive e passaggio agli sviluppatori.</p></div>
+  </section>
+
+  <section class="section" aria-label="Prossimo progetto">
+    <div class="projects"><article class="project glass project--large" data-tags="web">
+  <div class="project__text">
+    <p class="label">Prossimo progetto · segnaposto</p>
+    <h2>Progetto due</h2>
+    <p class="lead">Una riga con il problema risolto e il risultato ottenuto.</p>
+    <span class="label">In arrivo</span>
+  </div>
+  <div class="project__media"><span class="placeholder">Immagine del progetto</span></div>
+  
+</article></div>
+  </section>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer">
+      <p class="muted">© 2026 Sebastiano Bosi</p>
+      <nav aria-label="Contatti"><ul>
+        <li><a href="https://www.linkedin.com/" rel="me noopener" target="_blank">LinkedIn</a></li>
+        <li><a href="mailto:nome@dominio.it">Email</a></li>
+        <li><a href="../../assets/sebastiano-bosi-cv.pdf" download>CV</a></li>
+      </ul></nav>
+      <a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
