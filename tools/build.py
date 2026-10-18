@@ -5,7 +5,7 @@ Uso:  python3 tools/build.py            (rigenera le pagine nella cartella del s
 Le pagine usano link relativi, quindi funzionano su GitHub Pages, in locale e in anteprima.
 Per cambiare email, LinkedIn o il servizio del modulo, modifica CONFIG qui sotto e rigenera.
 """
-import sys, os, shutil, html
+import sys, os, shutil, html, hashlib
 
 CONFIG = {
     "site_url": "https://sebastianobosi.github.io",
@@ -38,8 +38,17 @@ def icon(name, size=None):
 
 NAV = [("Lavori", "lavori/"), ("Metodo", "#metodo"), ("Chi sono", "chi-sono/")]
 
+def asset_version():
+    """Breve impronta di CSS e JS: cambia a ogni modifica, così il browser non usa la versione vecchia."""
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    h = hashlib.sha1()
+    for f in ("assets/css/style.css", "assets/js/main.js"):
+        h.update(open(os.path.join(root, f), "rb").read())
+    return h.hexdigest()[:8]
+
 def layout(page, depth, title, description, body, glows):
     r = "../" * depth
+    v = asset_version()
     def href(p):
         if p.startswith("#"):
             return (r or "./") + p if depth else p
@@ -76,8 +85,8 @@ def layout(page, depth, title, description, body, glows):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<link rel="stylesheet" href="{r}assets/css/style.css">
-<script src="{r}assets/js/main.js" defer></script>
+<link rel="stylesheet" href="{r}assets/css/style.css?v={v}">
+<script src="{r}assets/js/main.js?v={v}" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
