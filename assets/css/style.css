@@ -61,6 +61,7 @@ body {
   font-size: var(--fs-body);
   line-height: 1.5;
   overflow-x: hidden;
+  position: relative;   /* le luci coprono tutta la pagina, non solo il primo schermo */
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; height: auto; }
