@@ -201,6 +201,7 @@ button.chip { cursor: pointer; min-height: 44px; }
   -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur));
 }
 .menu[hidden] { display: none; }
+.menu .nav { width: 100%; }
 .menu__list { margin-top: 48px; flex: 1; }
 .menu__list a {
   display: flex; align-items: center; justify-content: space-between; min-height: 64px;
