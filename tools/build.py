@@ -305,7 +305,7 @@ def uci():
   <section class="intro" style="display:grid;gap:clamp(20px,2vw,28px);justify-items:start;padding-top:16px" aria-labelledby="titolo">
     <p class="chip chip--status">Case study · App mobile · 2026</p>
     <h1 id="titolo" class="display">UCI Cinemas</h1>
-    <p class="lead">Il redesign dell’app per comprare biglietti, ordinare al bar e farsi consigliare da Iris, un’assistente AI.</p>
+    <p class="lead" style="max-width:720px">Il redesign dell’app per comprare biglietti, ordinare al bar e farsi consigliare da Iris, un’assistente AI.</p>
     <dl class="meta">
       <div><dt>Ruolo</dt><dd>Product designer · progetto personale</dd></div>
       <div><dt>Anno</dt><dd>2026</dd></div>
@@ -313,9 +313,9 @@ def uci():
       <div><dt>Strumenti</dt><dd>Figma</dd></div>
     </dl>
   </section>
-  <div class="figure__frame glass" style="margin-top:32px;padding:clamp(24px,4vw,60px)">
-    <div class="phones" style="max-width:none;height:clamp(320px,44vw,600px)" role="img" aria-label="Schermate principali dell’app UCI Cinemas">
-      {phone("UCI · Home")}{phone("UCI · Iris")}{phone("UCI · Biglietto")}
+  <div class="figure__frame glass" style="margin-top:32px;padding:0">
+    <div class="phone-row" role="img" aria-label="Schermate principali dell’app UCI Cinemas: Home, Iris, scelta dei posti, biglietto e bar">
+      {phone("UCI · Home")}{phone("UCI · Iris")}{phone("UCI · Posti")}{phone("UCI · Biglietto")}{phone("UCI · Bar")}
     </div>
   </div>
 
@@ -342,7 +342,7 @@ def uci():
       <p class="lead">Al posto dell’acquisto rapido c’è Iris: un’ellisse gialla minimal con due occhi squadrati che ricordano i fori della pellicola. Si apre dalla Home e guida l’acquisto in conversazione: film, orari, posti, riepilogo.</p>
       <aside class="callout glass"><p class="callout__label">Decisione</p><p>Il pagamento lo conferma sempre l’utente con Face ID: Iris non paga mai da sola.</p></aside>
     </div>
-    <div class="phones" role="img" aria-label="Tre schermate della conversazione con Iris: benvenuto, proposte e riepilogo">
+    <div class="phones phones--compact" role="img" aria-label="Tre schermate della conversazione con Iris: benvenuto, proposte e riepilogo">
       {phone("Iris · Benvenuto")}{phone("Iris · Proposte")}{phone("Iris · Riepilogo")}
     </div>
   </section>
@@ -388,18 +388,18 @@ def uci():
 def chi_sono():
     body = f"""
 <div class="wrap">
-  <section class="split split--wide intro" style="padding-top:clamp(64px,8vw,120px);grid-template-columns:1fr" aria-labelledby="titolo">
-    <div class="stack" style="--gap:clamp(20px,2vw,28px)">
+  <section class="about-hero" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
+    <div class="stack intro" style="--gap:clamp(20px,2vw,28px)">
       <p class="chip chip--status" style="width:max-content">Product designer</p>
       <h1 id="titolo" class="display" style="max-width:10ch">Ciao, sono Sebastiano.</h1>
-      <p class="lead">[Racconta in tre o quattro righe chi sei: il percorso che ti ha portato al product design, cosa ti appassiona, in che tipo di team ti piace lavorare e cosa cerchi adesso.]</p>
+      <p class="lead" style="max-width:720px">[Racconta in tre o quattro righe chi sei: il percorso che ti ha portato al product design, cosa ti appassiona, in che tipo di team ti piace lavorare e cosa cerchi adesso.]</p>
       <div class="actions actions--stack-mobile">
         <a class="btn btn--primary" href="../{CONFIG['cv']}" download>Scarica il CV</a>
         <a class="btn btn--secondary" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
       </div>
     </div>
+    <div class="figure__frame glass portrait">{media("Il tuo ritratto, 4:5", "figure__media")}</div>
   </section>
-  <div class="figure__frame glass" style="margin-top:32px;max-width:520px">{media("Il tuo ritratto, 4:5", "figure__media")}</div>
 
   <section class="section" id="metodo" aria-labelledby="metodo-titolo">
     <div class="section-head"><h2 id="metodo-titolo" class="h2">Come lavoro</h2><p class="label">Dal problema al componente</p></div>
@@ -431,7 +431,7 @@ def chi_sono():
 def contatti():
     body = f"""
 <div class="wrap">
-  <div class="split split--wide" style="padding-top:clamp(64px,8vw,120px);align-items:start">
+  <div class="split split--contacts" style="padding-top:clamp(64px,8vw,120px)">
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
       <h1 id="titolo" class="display">Scrivimi.</h1>
       <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi.</p>

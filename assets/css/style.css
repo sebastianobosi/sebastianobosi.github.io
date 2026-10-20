@@ -107,7 +107,7 @@ main { position: relative; z-index: 1; }
 .h2 { font-size: var(--fs-h2); line-height: 1.05; letter-spacing: -0.02em; }
 .h3 { font-size: var(--fs-h3); line-height: 1.1; letter-spacing: -0.01em; }
 .h4 { font-size: var(--fs-h4); line-height: 1.2; letter-spacing: -0.005em; }
-.lead { font-size: var(--fs-body-l); color: var(--text-2); max-width: 36em; }
+.lead { font-size: var(--fs-body-l); color: var(--text-2); max-width: 560px; }
 .lead--primary { color: var(--text); }
 .muted { color: var(--text-2); }
 .label { font-size: var(--fs-label); font-weight: 500; color: var(--text-2); }
@@ -238,6 +238,28 @@ button.chip { cursor: pointer; min-height: 44px; }
 .phones .phone:nth-child(2) { left: 50%; top: 4%; transform: translateX(-50%); z-index: 2; }
 .phones .phone:nth-child(3) { right: 0; top: 14%; transform: rotate(8deg); }
 
+.phones--compact { height: clamp(320px, 36vw, 500px); max-width: 600px; }
+.phones--compact .phone { width: clamp(140px, 15vw, 214px); }
+
+/* Fila di telefoni dritti e sfalsati (case study) */
+.phone-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2.4vw, 32px); align-items: start; padding: clamp(24px, 4vw, 60px) clamp(16px, 2.4vw, 32px); }
+.phone-row .phone { position: relative; width: 100%; max-width: 224px; justify-self: center; }
+.phone-row .phone:nth-child(even) { margin-top: clamp(12px, 1.6vw, 21px); }
+@media (min-width: 768px) { .phone-row { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1100px) { .phone-row { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 767px) { .phone-row .phone:nth-child(n+4) { display: none; } }
+@media (max-width: 1099px) { .phone-row .phone:nth-child(5) { display: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .phone-row .phone { animation: phone-in 1s cubic-bezier(.2,.7,.2,1) both; }
+  .phone-row .phone:nth-child(2) { animation-delay: .08s; } .phone-row .phone:nth-child(3) { animation-delay: .16s; }
+  .phone-row .phone:nth-child(4) { animation-delay: .24s; } .phone-row .phone:nth-child(5) { animation-delay: .32s; }
+}
+
+/* Chi sono: testo e ritratto affiancati */
+.about-hero { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 1000px) { .about-hero { grid-template-columns: 1fr 482px; gap: 64px; } }
+.portrait .figure__media { aspect-ratio: 466 / 602; min-height: 0; }
+
 .placeholder { position: absolute; top: 18px; left: 18px; right: 18px; font-size: var(--fs-label-s); color: var(--text-2); }
 
 /* Movimento d'ingresso: un solo momento orchestrato, in apertura.
@@ -326,7 +348,7 @@ button.chip { cursor: pointer; min-height: 44px; }
 .figure figcaption { font-size: var(--fs-label-s); color: var(--text-2); }
 
 .split { display: grid; gap: clamp(20px, 4vw, 64px); }
-@media (min-width: 1000px) { .split { grid-template-columns: 400px 1fr; } .split--wide { grid-template-columns: 520px 1fr; align-items: center; } }
+@media (min-width: 1000px) { .split { grid-template-columns: 400px 1fr; } .split--wide { grid-template-columns: 520px 1fr; align-items: center; } .split--contacts { grid-template-columns: 520px 1fr; align-items: center !important; } }
 
 .areas { display: grid; gap: 16px; grid-template-columns: 1fr; counter-reset: area; }
 @media (min-width: 600px) { .areas { grid-template-columns: 1fr 1fr; } }
