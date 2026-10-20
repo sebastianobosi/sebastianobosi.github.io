@@ -43,7 +43,7 @@ def asset_version():
         h.update(open(os.path.join(root, f), "rb").read())
     return h.hexdigest()[:8]
 
-def layout(page, depth, title, description, body, glows):
+def layout(page, depth, title, description, body, glows, extra_head=""):
     r = "../" * depth
     v = asset_version()
     def href(p):
@@ -84,7 +84,7 @@ def layout(page, depth, title, description, body, glows):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
 <link rel="stylesheet" href="{r}assets/css/style.css?v={v}">
 <script src="{r}assets/js/main.js?v={v}" defer></script>
-</head>
+{extra_head}</head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 <div class="glows" aria-hidden="true">{glow_html}</div>
@@ -137,14 +137,15 @@ def phone(label, img=None, alt=""):
     inner = f'<img src="{img}" alt="{html.escape(alt)}" loading="lazy">' if img else f'<span class="placeholder">{label}</span>'
     return f'<div class="phone"><div class="phone__screen">{inner}</div></div>'
 
-def media(label, cls="project__media"):
-    # Per inserire l'immagine: sostituisci lo span con <img src="..." alt="...">
-    return f'<div class="{cls}"><span class="placeholder">{label}</span></div>'
+def media(label, cls="project__media", img=None, alt=""):
+    inner = f'<img src="{img}" alt="{html.escape(alt)}" loading="lazy">' if img else f'<span class="placeholder">{label}</span>'
+    return f'<div class="{cls}">{inner}</div>'
 
 PROJECTS = [
     dict(slug="lavori/uci-cinemas/", title="UCI Cinemas", eyebrow="Case study · App mobile · 2026",
          desc="Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te.",
-         media="Schermate UCI: Home, Iris, biglietto", tags="app design-system", large=True, cta="Leggi il case study"),
+         media="Schermate UCI: Home, Iris, biglietto", tags="app design-system", large=True, cta="Leggi il case study",
+         img="assets/img/uci-cover.webp", alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»"),
     dict(slug=None, title="Progetto due", eyebrow="Segnaposto · Categoria · Anno",
          desc="Una riga con il problema risolto e il risultato ottenuto.", media="Immagine del progetto",
          tags="web", large=False, cta="In arrivo"),
@@ -166,7 +167,7 @@ def project_card(p, r, heading="h3"):
     <p class="{'lead' if p['large'] else 'muted'}">{p['desc']}</p>
     {link if p['large'] else ''}
   </div>
-  {media(p['media'])}
+  {media(p['media'], img=(r + p['img']) if p.get('img') else None, alt=p.get('alt', ''))}
   {'' if p['large'] else link}
 </article>"""
 
@@ -211,7 +212,7 @@ def home():
       </div>
     </div>
     <div class="phones" role="img" aria-label="Tre schermate dell’app UCI Cinemas: Home, assistente Iris e biglietto">
-      {phone("UCI · Home")}{phone("UCI · Iris")}{phone("UCI · Biglietto")}
+      {phone("UCI · Home", "assets/img/uci-home.webp")}{phone("UCI · Iris", "assets/img/iris-benvenuto.webp")}{phone("UCI · Biglietto", "assets/img/uci-biglietto.webp")}
     </div>
   </section>
 
@@ -299,6 +300,18 @@ def uci():
              "Icone a tratto singolo; nei Bottom Sheet le azioni stanno sempre nel footer."]
     acc = [("2,10:1", "Rosso su blu negli errori: illeggibile, prima della correzione"), ("4,82:1", "Dopo: in tema Blue gli errori usano red/300"), ("44 pt", "Altezza minima del selettore cinema, prima era 36")]
     next_p = dict(PROJECTS[1]); next_p["large"] = True; next_p["eyebrow"] = "Prossimo progetto · segnaposto"
+    img = r + "assets/img/"
+    palette = [("#3433FF", "Brand", "Sfondo principale e tema Blue", "#FEFEFE"), ("#FFDA33", "Accento", "Ellisse, azioni principali, Iris", "#272727"),
+               ("#FEFEFE", "Superfici", "Testi e superfici chiare", "#3433FF"), ("#272727", "Inchiostro", "Testi su giallo e tema Dark", "#FFDA33"),
+               ("#010073", "Profondo", "Card e livelli in profondità", "#CCECFF"), ("#33B4FF", "Luce", "Informazioni e stati attivi", "#010073"),
+               ("#CCECFF", "Tenue", "Testi secondari su blu", "#3433FF")]
+    ucicons = [("ellisse", "L’ellisse che sbuca dal buco: il simbolo in movimento"), ("occhi", "Gli occhi: guardare il cinema meglio"),
+               ("popcorn", "Il popcorn a righe del bar"), ("cinepresa", "La cinepresa"), ("maschere", "Le maschere del teatro"), ("biglietto", "Il biglietto")]
+    film_scenes = ["Iris sbuca da un buco nero, salta fuori e si presenta.", "Il manifesto «Watching movies better» con gli occhi delle ucicons.",
+                   "Il logo e le sue varianti su bianco, nero e giallo, poi il simbolo da solo.", "La palette: sette colori con codice e ruolo.",
+                   "La tipografia: Rubik per i titoli, Outfit per i testi.", "Le sei ucicons animate.",
+                   "L’app in una serata: chiedi a Iris, lei cerca e trova il film, scegli i posti, confermi tu il pagamento, entri con il QR, ordini al bar senza fila e guadagni punti myUCI.",
+                   "Chiusura: Iris, il logo e «Il cinema, a modo tuo»."]
     body = f"""
 <div class="wrap">
   <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
@@ -315,9 +328,26 @@ def uci():
   </section>
   <div class="figure__frame glass" style="margin-top:32px;padding:0">
     <div class="phone-row" role="img" aria-label="Schermate principali dell’app UCI Cinemas: Home, Iris, scelta dei posti, biglietto e bar">
-      {phone("UCI · Home")}{phone("UCI · Iris")}{phone("UCI · Posti")}{phone("UCI · Biglietto")}{phone("UCI · Bar")}
+      {phone("UCI · Home", img + "uci-home.webp")}{phone("UCI · Iris", img + "iris-proposte.webp")}{phone("UCI · Posti", img + "uci-posti.webp")}{phone("UCI · Biglietto", img + "uci-biglietto.webp")}{phone("UCI · Bar", img + "uci-bar.webp")}
     </div>
   </div>
+
+  <section class="section" aria-labelledby="film">
+    <div class="section-head"><h2 id="film" class="h2">Il film del progetto</h2><p class="label">53 secondi · senza audio</p></div>
+    <figure class="figure">
+      <div class="figure__frame glass">
+        <video class="film" controls playsinline preload="none" width="1920" height="1080" poster="{img}uci-cover.webp" aria-describedby="film-descrizione">
+          <source src="{r}assets/video/uci-cinemas-brand-film.mp4" type="video/mp4">
+          <a href="{r}assets/video/uci-cinemas-brand-film.mp4">Scarica il video (MP4)</a>
+        </video>
+      </div>
+      <figcaption>Iris presenta la nuova brand identity e l’app. Motion design realizzato a partire dai file Figma del progetto.</figcaption>
+    </figure>
+    <details class="details glass" id="film-descrizione">
+      <summary>Descrizione del video</summary>
+      <ol>{"".join(f"<li>{t}</li>" for t in film_scenes)}</ol>
+    </details>
+  </section>
 
   <section class="section split" aria-labelledby="progetto">
     <h2 id="progetto" class="h3">Il progetto</h2>
@@ -336,6 +366,24 @@ def uci():
     <ol class="grid grid--4">{"".join(f'<li class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{n}. {t}</h3><p class="muted">{d}</p></li>' for n, (i, t, d) in enumerate(steps, 1))}</ol>
   </section>
 
+  <section class="section" aria-labelledby="brand">
+    <div class="section-head"><h2 id="brand" class="h2">Brand identity</h2><p class="label">Follow the yellow ellipse</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Una nuova identità costruita attorno a un solo segno: l’ellisse gialla. È il logo, il simbolo dell’app, il pulsante di Iris e il gesto che lega ogni animazione.</p>
+    <div class="brand-grid">
+      <div class="brand-tile brand-tile--logo"><img src="{img}brand/logo.svg" alt="Logo UCI Cinemas: ellisse gialla e scritta uci cinemas in bianco" width="323" height="60"></div>
+      <div class="brand-tile brand-tile--claim"><p class="brand-claim">Watching movies better.</p></div>
+    </div>
+    <h3 class="h4 brand-sub">Colore</h3>
+    <ul class="swatches">{"".join(f'<li class="swatch" style="background:{h};color:{fg}"><span class="swatch__hex">{h}</span><span class="swatch__name">{n}</span><span class="swatch__use">{u}</span></li>' for h, n, u, fg in palette)}</ul>
+    <h3 class="h4 brand-sub">Tipografia</h3>
+    <div class="grid grid--2">
+      <div class="type-card glass"><p class="type-card__sample type-card__sample--rubik">Aa</p><div><p class="type-card__name type-card__name--rubik">Rubik</p><p class="muted">Titoli, in Black e maiuscolo</p></div></div>
+      <div class="type-card glass"><p class="type-card__sample type-card__sample--outfit">Aa</p><div><p class="type-card__name type-card__name--outfit">Outfit</p><p class="muted">Testi ed etichette, da Regular a SemiBold</p></div></div>
+    </div>
+    <h3 class="h4 brand-sub">Ucicons</h3>
+    <ul class="ucicons">{"".join(f'<li class="ucicon glass"><div class="ucicon__art"><img src="{img}brand/{n}.svg" alt="" loading="lazy"></div><span>{d}</span></li>' for n, d in ucicons)}</ul>
+  </section>
+
   <section class="section split split--wide" aria-labelledby="iris">
     <div class="stack">
       <h2 id="iris" class="h2">Iris, l’assistente</h2>
@@ -343,7 +391,7 @@ def uci():
       <aside class="callout glass"><p class="callout__label">Decisione</p><p>Il pagamento lo conferma sempre l’utente con Face ID: Iris non paga mai da sola.</p></aside>
     </div>
     <div class="phones phones--compact" role="img" aria-label="Tre schermate della conversazione con Iris: benvenuto, proposte e riepilogo">
-      {phone("Iris · Benvenuto")}{phone("Iris · Proposte")}{phone("Iris · Riepilogo")}
+      {phone("Iris · Benvenuto", img + "iris-benvenuto.webp")}{phone("Iris · Proposte", img + "iris-proposte.webp")}{phone("Iris · Riepilogo", img + "iris-riepilogo.webp")}
     </div>
   </section>
 
@@ -351,7 +399,7 @@ def uci():
     <div class="section-head"><h2 id="aree" class="h2">Le 9 aree dell’app</h2><p class="label">85 schermate</p></div>
     <ol class="areas">{"".join(f'<li class="glass">{a}</li>' for a in areas)}</ol>
     <figure class="figure" style="margin-top:16px">
-      <div class="figure__frame glass">{media("Mappa dei flussi", "figure__media")}</div>
+      <div class="figure__frame glass">{media("Mappa dei flussi", "figure__media figure__media--fit", img + "uci-mappa-flussi.webp", "Mappa dei flussi: dall’onboarding alla Home, e dalla Home ad acquisto classico, acquisto con Iris, film, cinema, biglietti, profilo; dal biglietto al bar e al promemoria")}</div>
       <figcaption>Mappa dei flussi: tutte le aree e i collegamenti del prototipo completo.</figcaption>
     </figure>
   </section>
@@ -361,8 +409,8 @@ def uci():
     <p class="lead" style="margin-bottom:24px">Ogni schermata usa componenti del design system: prima si riusa ciò che esiste, poi si crea il nuovo e lo si aggiunge alla libreria, con ogni modifica nel changelog.</p>
     <div class="grid grid--3">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
     <figure class="figure" style="margin-top:16px">
-      <div class="figure__frame glass">{media("Componenti del design system", "figure__media")}</div>
-      <figcaption>Componenti principali: Tab Bar, Showtime Chip, Seat Map, Ticket Card, pulsante di Iris.</figcaption>
+      <div class="figure__frame glass">{media("Design system", "figure__media figure__media--fit", img + "uci-design-system.webp", "Copertina del design system UCI Cinemas per l’app mobile, con l’ellisse gialla")}</div>
+      <figcaption>80 componenti in 10 pagine, con fondamenta (colore, tipografia, spazi, movimento), brand e l’assistente Iris, nei temi Blue e Dark.</figcaption>
     </figure>
   </section>
 
@@ -383,7 +431,8 @@ def uci():
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
              ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
-    return layout("lavori/uci-cinemas/", 2, "UCI Cinemas, case study", "Case study del redesign dell’app UCI Cinemas: 85 schermate, design system, assistente AI Iris e revisione di accessibilità WCAG 2.2.", body, glows)
+    fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@900&family=Outfit:wght@400;600&display=swap">\n'
+    return layout("lavori/uci-cinemas/", 2, "UCI Cinemas, case study", "Case study del redesign dell’app UCI Cinemas: brand identity, 85 schermate, design system, assistente AI Iris e revisione di accessibilità WCAG 2.2.", body, glows, fonts)
 
 def chi_sono():
     body = f"""

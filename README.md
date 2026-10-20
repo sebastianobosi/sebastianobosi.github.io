@@ -19,16 +19,19 @@ python3 tools/build.py
 
 Un piccolo testo puoi cambiarlo anche direttamente nel file `.html` della pagina, ma alla prossima rigenerazione verrebbe sovrascritto: meglio cambiarlo in `tools/build.py`.
 
-## Immagini
+## Immagini e video
 
-Metti le immagini in `assets/img/` (meglio WebP, larghe al massimo 1600 px) e sostituisci i riquadri segnaposto `<span class="placeholder">…</span>` con `<img src="…" alt="descrizione">`.
+Le immagini stanno in `assets/img/` (WebP). Il case study UCI usa:
+- schermate dell’app (390 px di larghezza, esportate da Figma): `uci-home.webp`, `uci-posti.webp`, `uci-biglietto.webp`, `uci-bar.webp`, `iris-benvenuto.webp`, `iris-proposte.webp`, `iris-riepilogo.webp`
+- `uci-cover.webp` (card del progetto e copertina del video), `uci-mappa-flussi.webp`, `uci-design-system.webp`
+- `brand/`: logo, Iris e le sei ucicons in SVG
+- `og.png` (anteprima quando condividi il link)
 
-File previsti:
-- `uci-home.webp`, `uci-iris.webp`, `uci-biglietto.webp`: schermate per i telefoni (390 × 844)
-- `iris-benvenuto.webp`, `iris-proposte.webp`, `iris-riepilogo.webp`
-- `uci-cover.webp` (card del progetto), `uci-mappa-flussi.webp`, `uci-design-system.webp`
-- `ritratto.webp` (4:5), `og.png` (1200 × 630, anteprima quando condividi il link)
-- `sebastiano-bosi-cv.pdf` in `assets/`
+Il film del progetto è `assets/video/uci-cinemas-brand-film.mp4` (1080p, 60 fps, senza audio). Si carica solo quando lo avvii. Per sostituirlo, carica un nuovo file con lo stesso nome.
+
+Ancora da aggiungere: `ritratto.webp` (4:5) e il CV `sebastiano-bosi-cv.pdf` in `assets/`.
+
+Per un’immagine nuova usa `phone("Etichetta", "percorso.webp")` o `media("Etichetta", classe, "percorso.webp", "descrizione")` in `tools/build.py` e rigenera.
 
 ## Contatti
 
