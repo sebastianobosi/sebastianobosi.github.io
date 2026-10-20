@@ -3,7 +3,7 @@
 
 Uso:  python3 tools/build.py            (rigenera le pagine nella cartella del sito)
 Le pagine usano link relativi, quindi funzionano su GitHub Pages, in locale e in anteprima.
-Per cambiare email, LinkedIn o il servizio del modulo, modifica CONFIG qui sotto e rigenera.
+Per cambiare email, LinkedIn o CV, modifica CONFIG qui sotto e rigenera.
 """
 import sys, os, shutil, html, hashlib
 
@@ -13,7 +13,6 @@ CONFIG = {
     "email": "nome@dominio.it",                     # TODO: la tua email
     "linkedin": "https://www.linkedin.com/",        # TODO: il tuo profilo
     "cv": "assets/sebastiano-bosi-cv.pdf",          # TODO: carica il PDF con questo nome
-    "form_action": "https://formspree.io/f/TUO_ID", # TODO: endpoint Formspree (finché c'è TUO_ID si apre la posta)
 }
 
 ICONS = {
@@ -28,9 +27,7 @@ ICONS = {
     "accessibility": '<circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4m0 0-3 6m3-6 3 6"/>',
     "mail": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     "briefcase": '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
-    "alert": '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/>',
-    "check": '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
-}
+        }
 
 def icon(name, size=None):
     s = f' style="width:{size}px;height:{size}px"' if size else ""
@@ -437,54 +434,31 @@ def contatti():
   <div class="split split--wide" style="padding-top:clamp(64px,8vw,120px);align-items:start">
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
       <h1 id="titolo" class="display">Scrivimi.</h1>
-      <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri.</p>
-      <ul class="contacts">
-        <li><a class="glass" href="mailto:{CONFIG['email']}"><span class="service__icon">{icon("mail")}</span><span><span class="label-s">Email</span><strong>{CONFIG['email']}</strong></span></a></li>
-        <li><a class="glass" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank"><span class="service__icon">{icon("arrow-up-right")}</span><span><span class="label-s">LinkedIn</span><strong>Il mio profilo</strong></span></a></li>
-        <li><a class="glass" href="../{CONFIG['cv']}" download><span class="service__icon">{icon("briefcase")}</span><span><span class="label-s">Curriculum</span><strong>Scarica il PDF</strong></span></a></li>
-      </ul>
+      <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi.</p>
     </section>
 
-    <section aria-labelledby="modulo">
-      <form class="form glass" action="{CONFIG['form_action']}" method="POST" novalidate data-contact-form data-fallback-email="{CONFIG['email']}">
-        <h2 id="modulo" class="h4">Mandami un messaggio</h2>
-        <div class="error-summary" role="alert" tabindex="-1" hidden>
-          <strong>Il messaggio non è partito</strong>
-          <ul></ul>
-        </div>
-        <div class="form__row">
-          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" autocomplete="name" placeholder="Come ti chiami" aria-describedby="nome-help" required>
-            <p class="field__help" id="nome-help"><span>Basta il nome</span></p></div>
-          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="nome@dominio.it" aria-describedby="email-help" required>
-            <p class="field__help" id="email-help"><span>Ti rispondo a questo indirizzo</span></p></div>
-        </div>
-        <fieldset class="field">
-          <legend>Di cosa vuoi parlare?</legend>
-          <input type="hidden" name="motivo" value="Un progetto">
-          <div class="chips" data-motivo>
-            <button class="chip" type="button" aria-pressed="true">Un progetto</button>
-            <button class="chip" type="button" aria-pressed="false">Una posizione aperta</button>
-            <button class="chip" type="button" aria-pressed="false">Altro</button>
-          </div>
-        </fieldset>
-        <div class="field"><label for="messaggio">Messaggio</label><textarea id="messaggio" name="messaggio" placeholder="Raccontami il progetto o la posizione" aria-describedby="messaggio-help" required></textarea>
-          <p class="field__help" id="messaggio-help"><span>Qualche riga basta: i dettagli li vediamo dopo</span></p></div>
-        <div class="form__foot">
-          <p class="label-s">Uso i tuoi dati solo per risponderti.</p>
-          <button class="btn btn--primary" type="submit">Invia messaggio</button>
-        </div>
-      </form>
-      <div class="form glass success" data-contact-success hidden>
-        <div class="success__icon">{icon("check", 26)}</div>
-        <h2 class="h3" tabindex="-1">Messaggio inviato. Grazie!</h2>
-        <p class="lead">L’ho ricevuto e ti rispondo all’indirizzo che hai indicato. Intanto puoi dare un’occhiata ai lavori.</p>
-        <div class="actions actions--stack-mobile"><a class="btn btn--primary" href="../lavori/">Guarda i lavori</a><a class="btn btn--secondary" href="../">Torna alla home</a></div>
-      </div>
+    <section aria-label="Contatti diretti">
+      <ul class="contacts contacts--large">
+        <li class="contact glass">
+          <span class="service__icon">{icon("mail")}</span>
+          <span class="contact__text"><span class="label-s">Email</span><a class="contact__value" href="mailto:{CONFIG['email']}">{CONFIG['email']}</a></span>
+          <button class="btn btn--secondary contact__action" type="button" data-copy="{CONFIG['email']}">Copia</button>
+        </li>
+        <li class="contact glass">
+          <span class="service__icon">{icon("arrow-up-right")}</span>
+          <span class="contact__text"><span class="label-s">LinkedIn</span><a class="contact__value" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">Il mio profilo</a></span>
+        </li>
+        <li class="contact glass">
+          <span class="service__icon">{icon("briefcase")}</span>
+          <span class="contact__text"><span class="label-s">Curriculum</span><a class="contact__value" href="../{CONFIG['cv']}" download>Scarica il PDF</a></span>
+        </li>
+      </ul>
+      <p class="visually-hidden" aria-live="polite" data-copy-status></p>
     </section>
   </div>
 </div>"""
-    glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-120px", "56vw", "560px", .3), ("warm", "62%", "600px", "30vw", "320px", .18)]
-    return layout("contatti/", 1, "Contatti", "Contatta Sebastiano Bosi per un progetto o una posizione aperta.", body, glows)
+    glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-120px", "56vw", "560px", .3), ("warm", "62%", "500px", "30vw", "320px", .18)]
+    return layout("contatti/", 1, "Contatti", "Contatta Sebastiano Bosi per un progetto o una posizione aperta: email, LinkedIn e curriculum.", body, glows)
 
 def not_found():
     # La 404 di GitHub Pages viene servita a qualsiasi profondità: link assoluti alla radice

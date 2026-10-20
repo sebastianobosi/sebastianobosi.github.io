@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contatti — Sebastiano Bosi</title>
-<meta name="description" content="Contatta Sebastiano Bosi per un progetto o una posizione aperta.">
+<meta name="description" content="Contatta Sebastiano Bosi per un progetto o una posizione aperta: email, LinkedIn e curriculum.">
 <link rel="canonical" href="https://sebastianobosi.github.io/contatti/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contatti — Sebastiano Bosi">
-<meta property="og:description" content="Contatta Sebastiano Bosi per un progetto o una posizione aperta.">
+<meta property="og:description" content="Contatta Sebastiano Bosi per un progetto o una posizione aperta: email, LinkedIn e curriculum.">
 <meta property="og:url" content="https://sebastianobosi.github.io/contatti/">
 <meta property="og:image" content="https://sebastianobosi.github.io/assets/img/og.png">
 <meta name="theme-color" content="#07080f">
@@ -16,12 +16,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=42350775">
-<script src="../assets/js/main.js?v=42350775" defer></script>
+<link rel="stylesheet" href="../assets/css/style.css?v=40aead10">
+<script src="../assets/js/main.js?v=40aead10" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-240px;width:62vw;height:620px;opacity:0.42"></div><div class="glow glow--lavender" style="left:55%;top:-120px;width:56vw;height:560px;opacity:0.3"></div><div class="glow glow--warm" style="left:62%;top:600px;width:30vw;height:320px;opacity:0.18"></div></div>
+<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-240px;width:62vw;height:620px;opacity:0.42"></div><div class="glow glow--lavender" style="left:55%;top:-120px;width:56vw;height:560px;opacity:0.3"></div><div class="glow glow--warm" style="left:62%;top:500px;width:30vw;height:320px;opacity:0.18"></div></div>
 
 <header class="site-header">
   <div class="wrap">
@@ -52,49 +52,26 @@
   <div class="split split--wide" style="padding-top:clamp(64px,8vw,120px);align-items:start">
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
       <h1 id="titolo" class="display">Scrivimi.</h1>
-      <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri.</p>
-      <ul class="contacts">
-        <li><a class="glass" href="mailto:nome@dominio.it"><span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><span class="label-s">Email</span><strong>nome@dominio.it</strong></span></a></li>
-        <li><a class="glass" href="https://www.linkedin.com/" rel="me noopener" target="_blank"><span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span><span class="label-s">LinkedIn</span><strong>Il mio profilo</strong></span></a></li>
-        <li><a class="glass" href="../assets/sebastiano-bosi-cv.pdf" download><span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span><span class="label-s">Curriculum</span><strong>Scarica il PDF</strong></span></a></li>
-      </ul>
+      <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi.</p>
     </section>
 
-    <section aria-labelledby="modulo">
-      <form class="form glass" action="https://formspree.io/f/TUO_ID" method="POST" novalidate data-contact-form data-fallback-email="nome@dominio.it">
-        <h2 id="modulo" class="h4">Mandami un messaggio</h2>
-        <div class="error-summary" role="alert" tabindex="-1" hidden>
-          <strong>Il messaggio non è partito</strong>
-          <ul></ul>
-        </div>
-        <div class="form__row">
-          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" autocomplete="name" placeholder="Come ti chiami" aria-describedby="nome-help" required>
-            <p class="field__help" id="nome-help"><span>Basta il nome</span></p></div>
-          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="nome@dominio.it" aria-describedby="email-help" required>
-            <p class="field__help" id="email-help"><span>Ti rispondo a questo indirizzo</span></p></div>
-        </div>
-        <fieldset class="field">
-          <legend>Di cosa vuoi parlare?</legend>
-          <input type="hidden" name="motivo" value="Un progetto">
-          <div class="chips" data-motivo>
-            <button class="chip" type="button" aria-pressed="true">Un progetto</button>
-            <button class="chip" type="button" aria-pressed="false">Una posizione aperta</button>
-            <button class="chip" type="button" aria-pressed="false">Altro</button>
-          </div>
-        </fieldset>
-        <div class="field"><label for="messaggio">Messaggio</label><textarea id="messaggio" name="messaggio" placeholder="Raccontami il progetto o la posizione" aria-describedby="messaggio-help" required></textarea>
-          <p class="field__help" id="messaggio-help"><span>Qualche riga basta: i dettagli li vediamo dopo</span></p></div>
-        <div class="form__foot">
-          <p class="label-s">Uso i tuoi dati solo per risponderti.</p>
-          <button class="btn btn--primary" type="submit">Invia messaggio</button>
-        </div>
-      </form>
-      <div class="form glass success" data-contact-success hidden>
-        <div class="success__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:26px;height:26px"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
-        <h2 class="h3" tabindex="-1">Messaggio inviato. Grazie!</h2>
-        <p class="lead">L’ho ricevuto e ti rispondo all’indirizzo che hai indicato. Intanto puoi dare un’occhiata ai lavori.</p>
-        <div class="actions actions--stack-mobile"><a class="btn btn--primary" href="../lavori/">Guarda i lavori</a><a class="btn btn--secondary" href="../">Torna alla home</a></div>
-      </div>
+    <section aria-label="Contatti diretti">
+      <ul class="contacts contacts--large">
+        <li class="contact glass">
+          <span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="contact__text"><span class="label-s">Email</span><a class="contact__value" href="mailto:nome@dominio.it">nome@dominio.it</a></span>
+          <button class="btn btn--secondary contact__action" type="button" data-copy="nome@dominio.it">Copia</button>
+        </li>
+        <li class="contact glass">
+          <span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          <span class="contact__text"><span class="label-s">LinkedIn</span><a class="contact__value" href="https://www.linkedin.com/" rel="me noopener" target="_blank">Il mio profilo</a></span>
+        </li>
+        <li class="contact glass">
+          <span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+          <span class="contact__text"><span class="label-s">Curriculum</span><a class="contact__value" href="../assets/sebastiano-bosi-cv.pdf" download>Scarica il PDF</a></span>
+        </li>
+      </ul>
+      <p class="visually-hidden" aria-live="polite" data-copy-status></p>
     </section>
   </div>
 </div>

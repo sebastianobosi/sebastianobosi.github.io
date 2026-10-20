@@ -8,8 +8,8 @@ Sito pubblicato su **https://sebastianobosi.github.io** con GitHub Pages. HTML, 
 |---|---|
 | Colori, caratteri, spaziature | `assets/css/style.css`, blocco `:root` in cima (sono i token del file Figma «Notturno») |
 | Testi delle pagine | `tools/build.py`, nelle funzioni `home()`, `lavori()`, `uci()`, `chi_sono()`, `contatti()` |
-| Email, LinkedIn, CV, modulo | `tools/build.py`, blocco `CONFIG` in cima |
-| Menu, filtri, modulo contatti | `assets/js/main.js` |
+| Email, LinkedIn, CV | `tools/build.py`, blocco `CONFIG` in cima |
+| Menu, filtri, copia dell’email | `assets/js/main.js` |
 
 Dopo aver modificato `tools/build.py`, rigenera le pagine:
 
@@ -30,9 +30,9 @@ File previsti:
 - `ritratto.webp` (4:5), `og.png` (1200 × 630, anteprima quando condividi il link)
 - `sebastiano-bosi-cv.pdf` in `assets/`
 
-## Modulo contatti
+## Contatti
 
-Finché `form_action` in `CONFIG` contiene `TUO_ID`, il pulsante «Invia messaggio» apre il programma di posta con il messaggio già scritto. Per ricevere i messaggi direttamente: crea un modulo gratuito su formspree.io, copia l'indirizzo (`https://formspree.io/f/...`) in `form_action` e rigenera.
+La pagina Contatti mostra solo contatti diretti: email (con pulsante «Copia»), LinkedIn e CV. Non c'è un modulo da gestire. Per cambiarli modifica `CONFIG` in `tools/build.py` e rigenera.
 
 ## Pubblicazione
 

@@ -43,7 +43,6 @@
   --content: 1312px;
   --section: clamp(96px, 7vw + 40px, 160px);
   --r-card: clamp(28px, 2vw, 36px);
-  --r-field: 14px;
   --blur: 40px;
 }
 
@@ -343,38 +342,19 @@ button.chip { cursor: pointer; min-height: 44px; }
 .band--center { text-align: center; justify-items: center; grid-template-columns: 1fr !important; }
 
 /* --------------------------------------------------------------------------
-   Modulo
+   Contatti
    -------------------------------------------------------------------------- */
-.form { border-radius: var(--r-card); padding: clamp(20px, 3vw, 40px); display: grid; gap: 24px; }
-.form__row { display: grid; gap: 16px; }
-@media (min-width: 1000px) { .form__row { grid-template-columns: 1fr 1fr; } }
-.field { display: grid; gap: 8px; }
-.field label, .field legend { font-size: var(--fs-label); font-weight: 500; padding: 0; }
-.field input, .field textarea {
-  width: 100%; min-height: 52px; padding: 14px 16px; border-radius: var(--r-field);
-  background: var(--glass); border: 1px solid var(--border-strong); color: var(--text);
-  font-size: var(--fs-body);
-}
-.field textarea { min-height: 160px; resize: vertical; }
-.field input::placeholder, .field textarea::placeholder { color: var(--text-2); opacity: .75; }
-.field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-.field__help { font-size: var(--fs-label-s); color: var(--text-2); display: flex; gap: 6px; align-items: flex-start; }
-.field[data-invalid] input, .field[data-invalid] textarea { border: 2px solid var(--error); }
-.field[data-invalid] .field__help { color: var(--error); }
-fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
-.form__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-@media (max-width: 599px) { .form__foot .btn { width: 100%; } }
-.error-summary { border: 2px solid var(--error); border-radius: 16px; padding: 16px 20px; display: grid; gap: 4px; }
-.error-summary a { color: var(--link); }
-.error-summary[hidden] { display: none; }
-.success { display: grid; gap: 20px; justify-items: start; }
-.success__icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--glass-strong); border: 1px solid var(--border-glass); }
-
 .contacts { display: grid; gap: 12px; }
-.contacts a { border-radius: 20px; padding: 16px 20px; display: flex; gap: 16px; align-items: center; text-decoration: none; }
-.contacts a:hover { background: var(--glass-strong); }
-.contacts .service__icon { width: 44px; height: 44px; border-radius: 12px; }
-.contacts strong { display: block; font-weight: 600; }
+.contact { position: relative; border-radius: 24px; padding: clamp(20px, 2.4vw, 28px); display: flex; gap: 16px; align-items: center; }
+.contact:hover { background: var(--glass-strong); }
+.contact .service__icon { flex: none; }
+.contact__text { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.contact__value { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h4); line-height: 1.25; text-decoration: none; overflow-wrap: anywhere; }
+.contact__value::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }  /* tutta la riga cliccabile */
+.contact__value:focus-visible { outline: none; }
+.contact:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+.contact__action { position: relative; z-index: 1; min-height: 44px; padding: 0 18px; }
+@media (max-width: 599px) { .contact { flex-wrap: wrap; } .contact__action { width: 100%; } }
 
 /* --------------------------------------------------------------------------
    Footer
