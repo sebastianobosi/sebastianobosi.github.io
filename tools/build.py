@@ -409,8 +409,8 @@ def uci():
     <p class="lead" style="margin-bottom:24px">Ogni schermata usa componenti del design system: prima si riusa ciò che esiste, poi si crea il nuovo e lo si aggiunge alla libreria, con ogni modifica nel changelog.</p>
     <div class="grid grid--3">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
     <figure class="figure" style="margin-top:16px">
-      <div class="figure__frame glass">{media("Design system", "figure__media figure__media--fit", img + "uci-design-system.webp", "Copertina del design system UCI Cinemas per l’app mobile, con l’ellisse gialla")}</div>
-      <figcaption>80 componenti in 10 pagine, con fondamenta (colore, tipografia, spazi, movimento), brand e l’assistente Iris, nei temi Blue e Dark.</figcaption>
+      <div class="figure__frame glass">{media("Design system", "figure__media figure__media--fit", img + "uci-design-system.webp", "Design system UCI Cinemas: titolo e una tavola di componenti reali dell’app in tema Dark")}</div>
+      <figcaption>Alcuni degli 80 componenti, in tema Dark: Hero Card, Showtime Chip, Seat Map, riepilogo di Iris, Ticket Card, Food Item Card, Composer, Tab Bar e Loyalty Card.</figcaption>
     </figure>
   </section>
 

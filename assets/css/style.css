@@ -234,13 +234,13 @@ button.chip { cursor: pointer; min-height: 44px; }
 /* Telefoni */
 .phones { position: relative; height: clamp(360px, 46vw, 660px); max-width: 560px; width: 100%; margin-inline: auto; }
 .phone {
-  position: absolute; width: clamp(150px, 19vw, 260px); aspect-ratio: 260 / 563;
+  position: absolute; width: clamp(150px, 19vw, 260px);
   background: var(--device); border: 1.5px solid var(--border-glass);
   border-radius: clamp(26px, 3.2vw, 44px); padding: 8px;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55);
 }
 .phone__screen {
-  width: 100%; height: 100%; border-radius: calc(clamp(26px, 3.2vw, 44px) - 8px);
+  width: 100%; aspect-ratio: 390 / 844; border-radius: calc(clamp(26px, 3.2vw, 44px) - 8px);
   background: var(--media); overflow: hidden; position: relative;
 }
 .phone__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
@@ -444,6 +444,6 @@ button.chip { cursor: pointer; min-height: 44px; }
 .ucicons { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 900px) { .ucicons { grid-template-columns: repeat(3, 1fr); } }
 .ucicon { border-radius: 24px; padding: clamp(20px, 2.4vw, 32px); display: grid; gap: 16px; align-content: start; }
-.ucicon__art { height: clamp(88px, 9vw, 128px); display: grid; place-items: center; }
-.ucicon img { max-height: 88%; max-width: min(72%, 220px); width: auto; height: auto; }
-.ucicon span { font-size: var(--fs-label); color: var(--text-2); }
+.ucicon__art { height: clamp(96px, 9vw, 128px); position: relative; overflow: hidden; }
+.ucicon__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.ucicon span { font-size: var(--fs-body); line-height: 1.4; color: var(--text); position: relative; }
