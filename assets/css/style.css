@@ -50,7 +50,7 @@
    Base
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--bg); min-height: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0;
@@ -354,7 +354,7 @@ button.chip { cursor: pointer; min-height: 44px; }
 .figure figcaption { font-size: var(--fs-label-s); color: var(--text-2); }
 
 .split { display: grid; gap: clamp(20px, 4vw, 64px); }
-@media (min-width: 1000px) { .split { grid-template-columns: 400px 1fr; } .split--wide { grid-template-columns: 520px 1fr; align-items: center; } .split--contacts { grid-template-columns: 520px 1fr; align-items: center !important; } }
+@media (min-width: 1000px) { .split { grid-template-columns: 400px 1fr; } .split--wide { grid-template-columns: 520px 1fr; align-items: center; } .split--contacts { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(40px, 5vw, 64px); align-items: center !important; } }
 
 .areas { display: grid; gap: 16px; grid-template-columns: 1fr; counter-reset: area; }
 @media (min-width: 600px) { .areas { grid-template-columns: 1fr 1fr; } }
@@ -379,7 +379,7 @@ button.chip { cursor: pointer; min-height: 44px; }
 .contact:hover { background: var(--glass-strong); }
 .contact .service__icon { flex: none; }
 .contact__text { display: grid; gap: 2px; min-width: 0; flex: 1; }
-.contact__value { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h4); line-height: 1.25; text-decoration: none; overflow-wrap: anywhere; }
+.contact__value { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h4); line-height: 1.25; text-decoration: none; overflow-wrap: break-word; }
 .contact__value::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }  /* tutta la riga cliccabile */
 .contact__value:focus-visible { outline: none; }
 .contact:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
