@@ -62,6 +62,9 @@ body {
   overflow-x: hidden;
   position: relative;   /* le luci coprono tutta la pagina, non solo il primo schermo */
   -webkit-font-smoothing: antialiased;
+  /* La pagina occupa sempre almeno l'altezza dello schermo: il footer resta in fondo anche sulle pagine corte */
+  display: flex; flex-direction: column;
+  min-height: 100vh; min-height: 100dvh;
 }
 img { max-width: 100%; display: block; height: auto; }
 a { color: inherit; }
@@ -88,7 +91,10 @@ button, input, textarea { font: inherit; color: inherit; }
    Layout
    -------------------------------------------------------------------------- */
 .wrap { width: 100%; max-width: calc(var(--content) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
-main { position: relative; z-index: 1; }
+main { position: relative; z-index: 1; flex: 1 0 auto; display: flex; flex-direction: column; }
+main > .wrap { flex: 1 0 auto; }
+/* Pagine corte (Contatti): il contenuto si centra nello spazio libero tra navigazione e footer */
+.wrap--fill { display: flex; flex-direction: column; justify-content: center; }
 .section { margin-top: var(--section); }
 .stack > * + * { margin-top: var(--gap, 24px); }
 
@@ -390,5 +396,5 @@ button.chip { cursor: pointer; min-height: 44px; }
 .footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* 404 */
-.notfound { min-height: 70vh; display: grid; place-items: center; text-align: center; }
+.notfound { display: grid; place-items: center; text-align: center; padding-block: 48px; }
 .notfound__code { font-family: var(--font-display); font-weight: 600; font-size: clamp(7.5rem, 5rem + 10vw, 13.75rem); line-height: .95; letter-spacing: -0.04em; }

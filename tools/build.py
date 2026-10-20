@@ -430,8 +430,8 @@ def chi_sono():
 
 def contatti():
     body = f"""
-<div class="wrap">
-  <div class="split split--contacts" style="padding-top:clamp(64px,8vw,120px)">
+<div class="wrap wrap--fill">
+  <div class="split split--contacts" style="padding-block:clamp(64px,8vw,120px) 0">
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
       <h1 id="titolo" class="display">Scrivimi.</h1>
       <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi.</p>
@@ -463,7 +463,7 @@ def contatti():
 def not_found():
     # La 404 di GitHub Pages viene servita a qualsiasi profondità: link assoluti alla radice
     body = """
-<div class="wrap"><section class="notfound"><div class="stack" style="--gap:20px;justify-items:center;display:grid">
+<div class="wrap wrap--fill"><section class="notfound"><div class="stack" style="--gap:20px;justify-items:center;display:grid">
   <p class="notfound__code" aria-hidden="true">404</p>
   <h1 class="h3">Questa pagina non esiste.</h1>
   <p class="lead" style="margin-inline:auto">Forse il link è cambiato. Riparti dalla home o guarda direttamente i lavori.</p>
