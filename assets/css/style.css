@@ -208,7 +208,8 @@ button.chip { cursor: pointer; min-height: 44px; }
   -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur));
 }
 .menu[hidden] { display: none; }
-.menu .nav { width: 100%; }
+.menu .menu__bar { width: 100%; justify-content: space-between; padding-left: 22px; }
+.menu .menu__bar .nav__menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; background: var(--glass-strong); border: 1px solid var(--border-glass); }
 .menu__list { margin-top: clamp(16px, 6vh, 48px); flex: 1 0 auto; }
 .menu .actions { margin-top: 24px; }
 .menu__list a {
@@ -356,6 +357,7 @@ button.chip { cursor: pointer; min-height: 44px; }
 .figure figcaption { font-size: var(--fs-label-s); color: var(--text-2); }
 
 .split { display: grid; gap: clamp(20px, 4vw, 64px); }
+.split--contacts { gap: 32px; }
 @media (min-width: 1000px) { .split { grid-template-columns: 400px 1fr; } .split--wide { grid-template-columns: 520px 1fr; align-items: center; } .split--contacts { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(40px, 5vw, 64px); align-items: center !important; } }
 
 .areas { display: grid; gap: 16px; grid-template-columns: 1fr; counter-reset: area; }

@@ -101,9 +101,9 @@ def layout(page, depth, title, description, body, glows):
 </header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="nav glass" style="width:auto;justify-content:space-between;padding-left:22px">
+  <div class="nav glass menu__bar">
     <a class="nav__logo" href="{r or './'}">{CONFIG['name']}</a>
-    <button class="nav__menu-btn" style="display:inline-flex" type="button" data-menu-close aria-label="Chiudi il menu">{icon("close")}</button>
+    <button class="nav__menu-btn" type="button" data-menu-close aria-label="Chiudi il menu">{icon("close")}</button>
   </div>
   <ul class="menu__list">{menu_links}</ul>
   <div class="actions">
