@@ -71,7 +71,7 @@ img { max-width: 100%; display: block; height: auto; }
 a { color: inherit; }
 h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; margin: 0; text-wrap: balance; }
 p { margin: 0; text-wrap: pretty; }
-ul { margin: 0; padding: 0; list-style: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
 button, input, textarea { font: inherit; color: inherit; }
 
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
@@ -403,3 +403,47 @@ button.chip { cursor: pointer; min-height: 44px; }
 /* 404 */
 .notfound { display: grid; place-items: center; text-align: center; padding-block: 48px; }
 .notfound__code { font-family: var(--font-display); font-weight: 600; font-size: clamp(7.5rem, 5rem + 10vw, 13.75rem); line-height: .95; letter-spacing: -0.04em; }
+
+/* --------------------------------------------------------------------------
+   Case study UCI: film, brand identity
+   I colori del brand UCI qui sono contenuti del progetto, non token del portfolio.
+   -------------------------------------------------------------------------- */
+.film { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: calc(var(--r-card) - 8px); background: #3433ff; }
+.details { margin-top: 16px; border-radius: 24px; padding: 4px clamp(20px, 2.4vw, 28px); }
+.details summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+.details ol { margin: 0 0 20px; padding-left: 1.4em; list-style: decimal; display: grid; gap: 8px; color: var(--text-2); max-width: 75ch; }
+
+.figure__media--fit { min-height: 0; }
+.figure__media--fit img { height: auto; object-fit: contain; }
+
+.brand-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .brand-grid { grid-template-columns: 1.4fr 1fr; } }
+.brand-tile { border-radius: var(--r-card); min-height: clamp(220px, 24vw, 340px); display: grid; place-items: center; padding: clamp(32px, 4vw, 56px); }
+.brand-tile--logo { background: #3433ff; }
+.brand-tile--logo img { width: min(100%, 420px); height: auto; }
+.brand-tile--claim { background: #ffda33; color: #272727; place-items: center start; }
+.brand-claim { font-family: "Rubik", var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem); line-height: 1; letter-spacing: -0.01em; }
+.brand-sub { margin: clamp(40px, 4vw, 56px) 0 16px; }
+
+.swatches { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 700px) { .swatches { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1100px) { .swatches { grid-template-columns: repeat(7, 1fr); } }
+.swatch { border-radius: 20px; min-height: 180px; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10); }
+.swatch__hex { font-family: "Rubik", var(--font-display); font-weight: 900; font-size: 1.0625rem; }
+.swatch__name { font-weight: 600; }
+.swatch__use { font-size: var(--fs-label-s); line-height: 1.35; }
+
+.type-card { border-radius: var(--r-card); padding: clamp(24px, 3vw, 40px); display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
+.type-card__sample { font-size: clamp(5rem, 3rem + 6vw, 8.5rem); line-height: .9; }
+.type-card__sample--rubik, .type-card__name--rubik { font-family: "Rubik", var(--font-display); font-weight: 900; }
+.type-card__sample--outfit, .type-card__name--outfit { font-family: "Outfit", var(--font-text); font-weight: 400; }
+.type-card__name { font-size: var(--fs-h4); margin-bottom: 4px; }
+.type-card__name--rubik { text-transform: uppercase; }
+.type-card__name--outfit { font-weight: 600; }
+
+.ucicons { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .ucicons { grid-template-columns: repeat(3, 1fr); } }
+.ucicon { border-radius: 24px; padding: clamp(20px, 2.4vw, 32px); display: grid; gap: 16px; align-content: start; }
+.ucicon__art { height: clamp(88px, 9vw, 128px); display: grid; place-items: center; }
+.ucicon img { max-height: 88%; max-width: min(72%, 220px); width: auto; height: auto; }
+.ucicon span { font-size: var(--fs-label); color: var(--text-2); }
