@@ -238,12 +238,12 @@ def home():
       </div>
       <div class="stack" style="--gap:12px">
         <h3 class="h4">Esperienza e formazione</h3>
-        {timeline([("[Ruolo]", "[Azienda o scuola]", "[Anno – Anno]")]*3)}
+        {timeline([("[Ruolo]", "[Azienda o scuola]", "[Anno – Anno]")]*4)}
       </div>
     </div>
   </section>
 
-  <section class="section" aria-label="Competenze">{chips(SKILLS)}</section>
+  <section class="section" aria-label="Competenze">{chips(SKILLS).replace('class="chips"', 'class="chips chips--center"')}</section>
 
   <section class="closing" aria-labelledby="contatti-titolo">
     <h2 id="contatti-titolo" class="display">Lavoriamo insieme.</h2>
