@@ -449,6 +449,7 @@ button.chip { cursor: pointer; min-height: 44px; }
 .ucicon span { font-size: var(--fs-body); line-height: 1.4; color: var(--text); position: relative; }
 
 /* idealista */
+.film--idealista { background: #141414; }
 .brand-tile--idealista { background: #141414; }
 .brand-tile--idealista img { width: min(100%, 440px); height: auto; }
 .brand-tile--idealista-claim { background: #e1f56e; color: #141414; place-items: center start; }

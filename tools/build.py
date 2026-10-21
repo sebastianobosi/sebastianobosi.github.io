@@ -636,6 +636,10 @@ def idealista():
              "Stato attivo come nel brand: tile nero, pixel lime sopra l’icona, etichetta bianca.",
              "Modalità scura ottenuta cambiando solo la modalità della collezione Color, senza componenti duplicati."]
     acc = [("44 pt", "Area minima di tocco per chip, pin e pulsanti icona"), ("AA", "Lime mai usato come testo su fondo chiaro"), ("2", "Segnali per ogni stato: colore più icona o testo")]
+    film_scenes = ["Su nero compare un pixel lime, poi una griglia di pixel che si accende.", "La griglia diventa il logo idealista, con il claim «Ora è il momento».",
+                   "Su lime, «Colore con un ruolo»: nero per la lettura, magenta per l’azione, carta per lo sfondo.",
+                   "La tipografia: Funnel Display, con un prezzo nel cartellino lime.", "La mappa: i prezzi nei pin, e il pin selezionato diventa nero con il pixel lime.",
+                   "L’app icon «id» con il pixel.", "Chiusura su lime: il logo, il claim «Ora è il momento. Segui il tuo intuito.» e la firma del progetto."]
     next_p = dict(PROJECTS[0]); next_p["large"] = True; next_p["eyebrow"] = "Prossimo progetto · App mobile · 2026"
     def phones3(items):
         return "".join(phone(n, img + f"idealista-{n}.webp", a) for n, a in items)
@@ -658,6 +662,23 @@ def idealista():
       {phone("idealista · Onboarding", img + "idealista-o1.webp")}{phone("idealista · Home", img + "idealista-r1.webp")}{phone("idealista · Risultati", img + "idealista-r3.webp")}{phone("idealista · Annuncio", img + "idealista-a1.webp")}{phone("idealista · Pubblica", img + "idealista-c8.webp")}
     </div>
   </div>
+
+  <section class="section" aria-labelledby="film">
+    <div class="section-head"><h2 id="film" class="h2">Il video del brand</h2><p class="label">20 secondi · senza audio</p></div>
+    <figure class="figure">
+      <div class="figure__frame glass">
+        <video class="film film--idealista" controls playsinline preload="none" width="1920" height="1080" poster="{img}idealista-video-poster.webp" aria-describedby="film-descrizione">
+          <source src="{r}assets/video/idealista-brand-video.mp4" type="video/mp4">
+          <a href="{r}assets/video/idealista-brand-video.mp4">Scarica il video (MP4)</a>
+        </video>
+      </div>
+      <figcaption>La nuova brand identity di idealista in 20 secondi.</figcaption>
+    </figure>
+    <details class="details glass" id="film-descrizione">
+      <summary>Descrizione del video</summary>
+      <ol>{"".join(f"<li>{t}</li>" for t in film_scenes)}</ol>
+    </details>
+  </section>
 
   <section class="section" aria-labelledby="motion">
     <div class="section-head"><h2 id="motion" class="h2">Motion</h2><p class="label">Il pixel si muove a scatti</p></div>
@@ -759,7 +780,7 @@ def idealista():
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
              ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
     fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@600;700&family=Funnel+Sans:wght@400;600&display=swap">\n<script src="../../assets/js/idealista-motion.js" defer></script>\n'
-    return layout("lavori/idealista/", 2, "idealista, case study", "Case study del rebranding di idealista e della nuova app: logo, pixel, colore, tipografia e icone, 39 schermate, design system e motion del pixel.", body, glows, fonts)
+    return layout("lavori/idealista/", 2, "idealista, case study", "Case study del rebranding di idealista e della nuova app: logo, pixel, colore, tipografia e icone, 39 schermate, design system e video del brand.", body, glows, fonts)
 
 def chi_sono():
     body = f"""
