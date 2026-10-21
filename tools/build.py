@@ -593,8 +593,6 @@ def jethr():
     fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@800&family=Wix+Madefor+Display:wght@400&display=swap">\n'
     return layout("lavori/jet-hr/", 2, "Jet HR, case study", "Case study del redesign dell’area dipendente di Jet HR: web app desktop, app iOS 27 con gli stessi componenti e una busta paga che si capisce.", body, glows, fonts)
 
-IDEALISTA_MOTION = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "idealista_motion.html"), encoding="utf-8").read()
-
 IDEALISTA_ICONS = {"Casa": "<path d=\"M9 43.5L36 21L63 43.5V75H45V57H27V75H9V43.5Z\"/>", "Cerca": "<path d=\"M31.5 22.5A21 21 0 1 0 31.5 64.5A21 21 0 1 0 31.5 22.5Z\"/><path d=\"M48 60L63 75\"/>", "Mappa": "<path d=\"M9 30L27 21L45 30L63 21V66L45 75L27 66L9 75V30Z\"/><path d=\"M27 21V66\"/><path d=\"M45 30V75\"/>", "Preferiti": "<path d=\"M36 72L12 48V33L21 24H30L36 30L42 24H51L60 33V48L36 72Z\"/>", "Messaggi": "<path d=\"M9 24H63V63H27L9 75V24Z\"/>", "Filtri": "<path d=\"M9 33H39\"/><path d=\"M51 33H63\"/><path d=\"M39 24H51V42H39V24Z\"/><path d=\"M9 63H21\"/><path d=\"M33 63H63\"/><path d=\"M21 54H33V72H21V54Z\"/>", "Avvisi": "<path d=\"M18 63V39C18 29 26 21 36 21C46 21 54 29 54 39V63L60 69H12L18 63Z\"/><path d=\"M30 75H42\"/>", "Profilo": "<path d=\"M24 21H48V45H24V21Z\"/><path d=\"M12 75V66L21 57H51L60 66V75\"/>"}
 
 def idealista_icon(name):
@@ -680,11 +678,6 @@ def idealista():
     </details>
   </section>
 
-  <section class="section" aria-labelledby="motion">
-    <div class="section-head"><h2 id="motion" class="h2">Motion</h2><p class="label">Il pixel si muove a scatti</p></div>
-    <p class="lead" style="max-width:760px;margin-bottom:24px">Tre animazioni del sistema: la comparsa del logo, il caricamento e la selezione di un immobile sulla mappa. Il pixel salta da una posizione all’altra senza easing, come nel logo storico; testi e superfici entrano con un ease-out breve.</p>
-    {IDEALISTA_MOTION}
-  </section>
 
   <section class="section split" aria-labelledby="progetto">
     <h2 id="progetto" class="h3">Il progetto</h2>
@@ -779,7 +772,7 @@ def idealista():
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
              ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
-    fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@600;700&family=Funnel+Sans:wght@400;600&display=swap">\n<script src="../../assets/js/idealista-motion.js" defer></script>\n'
+    fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@600;700&family=Funnel+Sans:wght@400;600&display=swap">\n'
     return layout("lavori/idealista/", 2, "idealista, case study", "Case study del rebranding di idealista e della nuova app: logo, pixel, colore, tipografia e icone, 39 schermate, design system e video del brand.", body, glows, fonts)
 
 def chi_sono():
