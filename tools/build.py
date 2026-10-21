@@ -146,9 +146,10 @@ PROJECTS = [
          desc="Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te.",
          media="Schermate UCI: Home, Iris, biglietto", tags="app design-system", large=True, cta="Leggi il case study",
          img="assets/img/uci-cover.webp", alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»"),
-    dict(slug=None, title="Progetto due", eyebrow="Segnaposto · Categoria · Anno",
-         desc="Una riga con il problema risolto e il risultato ottenuto.", media="Immagine del progetto",
-         tags="web", large=False, cta="In arrivo"),
+    dict(slug="lavori/jet-hr/", title="Jet HR", eyebrow="Case study · Web app e iOS · 2026",
+         desc="L’area dipendente e una busta paga che si capisce, su desktop e iPhone.", media="Jet HR: web app e app iOS",
+         tags="web app design-system", large=False, cta="Leggi il case study",
+         img="assets/img/jethr-cover.webp", alt="La home di Jet HR su desktop e su iPhone, con lo stipendio nascosto e la data di accredito"),
     dict(slug=None, title="Progetto tre", eyebrow="Segnaposto · Categoria · Anno",
          desc="Una riga con il problema risolto e il risultato ottenuto.", media="Immagine del progetto",
          tags="design-system", large=False, cta="In arrivo"),
@@ -258,7 +259,7 @@ def home():
     glows = [("blue", "-14%", "-260px", "62vw", "700px", .5), ("lavender", "52%", "-140px", "56vw", "620px", .32),
              ("warm", "66%", "520px", "30vw", "360px", .26), ("blue", "-18%", "1400px", "60vw", "700px", .2),
              ("lavender", "20%", "calc(100% - 900px)", "62vw", "520px", .18)]
-    return layout("", 0, CONFIG["name"], "Portfolio di Sebastiano Bosi, product designer: ricerca, interfacce e design system. Case study UCI Cinemas.", body, glows)
+    return layout("", 0, CONFIG["name"], "Portfolio di Sebastiano Bosi, product designer: ricerca, interfacce e design system. Case study UCI Cinemas e Jet HR.", body, glows)
 
 def lavori():
     r = "../"
@@ -299,7 +300,7 @@ def uci():
              "Raggi annidati: raggio esterno = raggio interno + padding, con angoli smussati al 100%.",
              "Icone a tratto singolo; nei Bottom Sheet le azioni stanno sempre nel footer."]
     acc = [("2,10:1", "Rosso su blu negli errori: illeggibile, prima della correzione"), ("4,82:1", "Dopo: in tema Blue gli errori usano red/300"), ("44 pt", "Altezza minima del selettore cinema, prima era 36")]
-    next_p = dict(PROJECTS[1]); next_p["large"] = True; next_p["eyebrow"] = "Prossimo progetto · segnaposto"
+    next_p = dict(PROJECTS[1]); next_p["large"] = True; next_p["eyebrow"] = "Prossimo progetto · Web app e iOS · 2026"
     img = r + "assets/img/"
     palette = [("#3433FF", "Brand", "Sfondo principale e tema Blue", "#FEFEFE"), ("#FFDA33", "Accento", "Ellisse, azioni principali, Iris", "#272727"),
                ("#FEFEFE", "Superfici", "Testi e superfici chiare", "#3433FF"), ("#272727", "Inchiostro", "Testi su giallo e tema Dark", "#FFDA33"),
@@ -434,6 +435,159 @@ def uci():
     fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@900&family=Outfit:wght@400;600&display=swap">\n'
     return layout("lavori/uci-cinemas/", 2, "UCI Cinemas, case study", "Case study del redesign dell’app UCI Cinemas: brand identity, 85 schermate, design system, assistente AI Iris e revisione di accessibilità WCAG 2.2.", body, glows, fonts)
 
+def jethr():
+    r = "../../"
+    img = r + "assets/img/"
+    stats = [("20", "schermate: 9 per la web app desktop e 11 per l’app iOS 27"), ("6", "componenti condivisi tra desktop e iPhone, oltre a pulsanti, badge e campi"),
+             ("1", "cedolino A4 riprogettato, con tutti i dati obbligatori"), ("AA", "contrasti WCAG 2.2 verificati sui token del design system")]
+    steps = [("search", "Discovery", "Problema riformulato, domande reali dei dipendenti e vincoli di legge prima di disegnare."),
+             ("components", "Design system", "Il brand del sito esteso in token, stili di testo e componenti con variante desktop e mobile."),
+             ("layout", "Desktop e iOS 27", "Web app e app iPhone con gli stessi componenti; nativi solo quelli di sistema."),
+             ("accessibility", "Busta paga e verifica", "Cedolino A4 riprogettato, vista spiegata voce per voce, piano di test e controlli WCAG.")]
+    questions = [("Quanto ricevo, e quando?", "Netto e data di accredito sono la prima cosa in home. Il netto è nascosto finché non tocchi l’occhio."),
+                 ("Perché è diverso dal mese scorso?", "Ogni busta paga dice cosa è cambiato rispetto al mese prima, con le voci che spiegano la differenza."),
+                 ("Quanti giorni di ferie ho?", "Ferie e permessi in giorni, con le ore come dettaglio e la stima al 31 dicembre."),
+                 ("Dove finiscono i soldi tra lordo e netto?", "Una barra divisa in tre: quello che resta a te, i contributi per la pensione e le tasse.")]
+    legal = [("L. 4/1953", "La busta paga è obbligatoria ma non ha un modello fisso: si può riorganizzare, purché contenga tutti i dati."),
+             ("LUL · D.L. 112/2008", "Il prospetto deve corrispondere al Libro Unico del Lavoro: stessi importi e codici, cambia solo come si leggono."),
+             ("GDPR", "Dati minimi e privati per default: netto nascosto, IBAN mascherato, niente codice fiscale nei nomi dei file."),
+             ("D.Lgs. 96/2026", "Trasparenza retributiva: dal profilo si chiedono i livelli retributivi medi per il proprio ruolo.")]
+    rules = ["Stessi componenti su desktop e iPhone: Riga lista, Card netto, Controllo segmentato e gli altri hanno una variante per piattaforma. Su iOS restano nativi solo status bar, toolbar, tab bar e sheet.",
+             "Raggi annidati: raggio esterno = raggio interno + padding. Card con padding 20 e raggio 40, quindi tutto ciò che tocca un angolo ha raggio 20; pulsanti a capsula.",
+             "Stessi stili di testo ovunque: Mona Sans per titoli e importi, Wix Madefor Display per il testo, anche nei titoli della toolbar e nella tab bar di iOS."]
+    palette = [("#DFEB57", "Lime", "Accento del brand e stati in evidenza", "#11150A"), ("#11150A", "Nero", "Testi, pulsanti principali e card dello stipendio", "#DFEB57"),
+               ("#F8FAF5", "Pagina", "Sfondo delle schermate", "#11150A"), ("#FFFFFF", "Card", "Superfici e liste", "#11150A"),
+               ("#0BB098", "Ferie", "Categoria nel calendario", "#11150A"), ("#4330B2", "Permesso", "Categoria e contributi", "#FFFFFF"),
+               ("#B01F42", "Malattia", "Categoria e tasse", "#FFFFFF")]
+    acc = [("14,2:1", "Testo nero su lime, nei pulsanti del brand"), ("3,6 → 6,1:1", "Stato «Rifiutata»: il token è stato scurito dopo la verifica"), ("≥ 44 pt", "Area di tocco su iOS, anche per i pulsanti piccoli")]
+    next_p = dict(PROJECTS[0]); next_p["eyebrow"] = "Prossimo progetto · App mobile · 2026"
+    body = f"""
+<div class="wrap">
+  <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
+  <section class="intro" style="display:grid;gap:clamp(20px,2vw,28px);justify-items:start;padding-top:16px" aria-labelledby="titolo">
+    <p class="chip chip--status">Case study · Web app e iOS · 2026</p>
+    <h1 id="titolo" class="display">Jet HR</h1>
+    <p class="lead" style="max-width:760px">Il redesign dell’area dipendente di Jet HR, su desktop e iPhone, e una busta paga che si capisce anche senza conoscere le sigle.</p>
+    <dl class="meta">
+      <div><dt>Ruolo</dt><dd>Product designer · progetto personale</dd></div>
+      <div><dt>Anno</dt><dd>2026</dd></div>
+      <div><dt>Piattaforma</dt><dd>Web app desktop e iOS 27</dd></div>
+      <div><dt>Strumenti</dt><dd>Figma</dd></div>
+    </dl>
+  </section>
+  <div class="figure__frame glass" style="margin-top:32px;padding:0">
+    <div class="phone-row" role="img" aria-label="Schermate dell’app iOS di Jet HR: home, tempo libero, stipendio, busta paga spiegata e calcolo dell’IRPEF">
+      {phone("Jet HR · Home", img + "jethr-m-home.webp")}{phone("Jet HR · Tempo libero", img + "jethr-m-tempo.webp")}{phone("Jet HR · Stipendio", img + "jethr-m-stipendio.webp")}{phone("Jet HR · Busta paga", img + "jethr-m-busta.webp")}{phone("Jet HR · Calcolo IRPEF", img + "jethr-m-irpef.webp")}
+    </div>
+  </div>
+
+  <section class="section split" aria-labelledby="progetto">
+    <h2 id="progetto" class="h3">Il progetto</h2>
+    <div class="stack">
+      <p class="lead lead--primary">Jet HR gestisce le paghe di molte piccole aziende italiane. L’area dei dipendenti è dove si guarda la busta paga, si chiedono le ferie, si caricano gli scontrini e si scaricano i documenti. Oggi l’app mobile è la versione desktop rimpicciolita, e la busta paga parla la lingua del consulente del lavoro. Ho riprogettato entrambe partendo da una domanda: cosa vuole sapere davvero un dipendente quando apre l’app?</p>
+      <aside class="callout glass"><p class="callout__label">Nota</p><p>Concept personale, non commissionato né approvato da Jet HR. Persone, aziende e importi sono fittizi. I riferimenti normativi vengono da una ricerca su fonti pubbliche (ottobre 2026), usata solo a scopo progettuale: non sono consulenza legale o fiscale.</p></aside>
+    </div>
+  </section>
+
+  <section class="section grid grid--stats" style="margin-top:clamp(64px,6vw,96px)" aria-label="Il progetto in numeri">
+    {"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in stats)}
+  </section>
+
+  <section class="section" aria-labelledby="processo">
+    <div class="section-head"><h2 id="processo" class="h2">Processo</h2><p class="label">Quattro fasi</p></div>
+    <ol class="grid grid--4">{"".join(f'<li class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{n}. {t}</h3><p class="muted">{d}</p></li>' for n, (i, t, d) in enumerate(steps, 1))}</ol>
+  </section>
+
+  <section class="section" aria-labelledby="domande">
+    <div class="section-head"><h2 id="domande" class="h2">Le domande giuste</h2><p class="label">Discovery</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Chi apre l’area dipendente ha quasi sempre una domanda precisa. Ho messo in ordine quelle più frequenti e ho costruito la home e la busta paga per rispondere prima a quelle.</p>
+    <div class="grid grid--2">{"".join(f'<div class="callout glass"><p class="callout__label">{q}</p><p>{a}</p></div>' for q, a in questions)}</div>
+    <figure class="figure" style="margin-top:16px">
+      <div class="figure__frame glass">{media("Domande dei dipendenti", "figure__media figure__media--fit", img + "jethr-domande.webp", "Tavola di discovery: le domande di un dipendente raggruppate per tema, da «Quanto e quando» a «Dov’è il documento»")}</div>
+      <figcaption>Le domande raggruppate per tema e frequenza: guidano l’ordine dei contenuti in home e nella busta paga.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section" aria-labelledby="legge">
+    <div class="section-head"><h2 id="legge" class="h2">Cosa si può cambiare</h2><p class="label">Vincoli di legge</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Prima di ridisegnare la busta paga ho verificato cosa è obbligatorio e cosa no. La forma è libera, il contenuto no.</p>
+    <div class="grid grid--2">{"".join(f'<div class="callout glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in legal)}</div>
+  </section>
+
+  <section class="section" aria-labelledby="desktop">
+    <div class="section-head"><h2 id="desktop" class="h2">La web app</h2><p class="label">Desktop</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">In home ci sono lo stipendio con la data di accredito, il tempo libero in giorni, le cose da fare e la settimana del team. Le richieste si fanno da un pannello laterale, senza perdere il calendario.</p>
+    <figure class="figure">
+      <div class="figure__frame glass">{media("Home desktop", "figure__media figure__media--fit", img + "jethr-d-home.webp", "Home della web app: stipendio di settembre nascosto, tempo libero, cose da fare, settimana del team e richieste")}</div>
+      <figcaption>Home: il netto resta nascosto finché non tocchi l’occhio; la data di accredito è sempre visibile.</figcaption>
+    </figure>
+    <figure class="figure" style="margin-top:16px">
+      <div class="figure__frame glass">{media("Richiesta di assenza", "figure__media figure__media--fit", img + "jethr-d-assenza.webp", "Calendario del tempo libero con il pannello per richiedere un’assenza: tipo, date, durata e riepilogo")}</div>
+      <figcaption>Richiesta di ferie: tipo, date, saldo dopo la richiesta e chi del team è assente, nello stesso pannello.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section split split--wide" aria-labelledby="ios">
+    <div class="stack">
+      <h2 id="ios" class="h2">L’app iOS 27</h2>
+      <p class="lead">Status bar, toolbar, tab bar e sheet vengono dalla libreria ufficiale di Apple. Dentro, gli stessi componenti della web app: chi passa dal computer al telefono ritrova le stesse righe, le stesse card e gli stessi pulsanti.</p>
+      <aside class="callout glass"><p class="callout__label">Decisione</p><p>Nella tab bar le quattro sezioni usano le icone di Jet HR, non gli SF Symbols: sono le stesse della barra laterale desktop.</p></aside>
+    </div>
+    <div class="phones phones--compact" role="img" aria-label="Tre schermate iOS: richiesta di assenza, stipendio e calcolo dell’IRPEF">
+      {phone("Richiedi un’assenza", img + "jethr-m-assenza.webp")}{phone("Stipendio", img + "jethr-m-stipendio.webp")}{phone("Tasse sul reddito", img + "jethr-m-irpef.webp")}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="busta">
+    <div class="section-head"><h2 id="busta" class="h2">La busta paga</h2><p class="label">Due livelli, un solo dato</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Il PDF ufficiale resta il documento legale, ma riorganizzato per domande. Nell’app, la vista spiegata mette ogni voce in parole semplici, con il nome ufficiale e il codice accanto. Gli importi sono gli stessi, cambiano le parole.</p>
+    <figure class="figure">
+      <div class="figure__frame glass">{media("Busta paga spiegata", "figure__media figure__media--fit", img + "jethr-d-busta.webp", "Busta paga di settembre spiegata: netto, differenze rispetto ad agosto, dal lordo al netto e tutte le voci")}</div>
+      <figcaption>Busta paga spiegata: cosa è cambiato rispetto ad agosto, dove vanno i soldi tra lordo e netto, ogni voce con il suo calcolo.</figcaption>
+    </figure>
+    <div class="grid grid--2" style="margin-top:16px;align-items:start">
+      <figure class="figure">
+        <div class="figure__frame glass">{media("Cedolino A4", "figure__media figure__media--fit", img + "jethr-cedolino.webp", "Cedolino A4 riprogettato: dati del datore e del lavoratore, riepilogo, competenze, trattenute, ferie, TFR e presenze del mese")}</div>
+        <figcaption>Il cedolino A4: riepilogo in alto, poi competenze e trattenute con codici e spiegazione breve.</figcaption>
+      </figure>
+      <figure class="figure">
+        <div class="figure__frame glass">{media("Dal documento alla spiegazione", "figure__media figure__media--fit", img + "jethr-strategia.webp", "Tavola di strategia: per ogni domanda dell’utente, dove trova la risposta nell’app; per ogni dato obbligatorio, dove sta nel PDF")}</div>
+        <figcaption>Ogni domanda dell’utente ha il suo posto nell’app, ogni dato obbligatorio il suo posto nel PDF.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ds">
+    <div class="section-head"><h2 id="ds" class="h2">Design system</h2><p class="label">Esteso dal sito di Jet HR</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Colori e caratteri vengono dal sito di Jet HR. Li ho trasformati in variabili e stili, poi ho aggiunto i componenti che servivano all’app, ognuno con una variante desktop e una mobile.</p>
+    <ul class="swatches">{"".join(f'<li class="swatch" style="background:{h};color:{fg}"><span class="swatch__hex">{h}</span><span class="swatch__name">{n}</span><span class="swatch__use">{u}</span></li>' for h, n, u, fg in palette)}</ul>
+    <div class="grid grid--2" style="margin-top:16px">
+      <div class="type-card glass"><p class="type-card__sample" style="font-family:'Mona Sans',sans-serif;font-weight:800">Aa</p><div><p class="type-card__name" style="font-family:'Mona Sans',sans-serif;font-weight:800">Mona Sans</p><p class="muted">Titoli e importi</p></div></div>
+      <div class="type-card glass"><p class="type-card__sample" style="font-family:'Wix Madefor Display',sans-serif">Aa</p><div><p class="type-card__name" style="font-family:'Wix Madefor Display',sans-serif">Wix Madefor Display</p><p class="muted">Testi ed etichette</p></div></div>
+    </div>
+    <div class="grid grid--3" style="margin-top:16px">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
+  </section>
+
+  <section class="section" aria-labelledby="a11y">
+    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità e test</h2><p class="label">WCAG 2.2 AA</p></div>
+    <div class="grid grid--3">{"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in acc)}</div>
+    <aside class="callout glass" style="margin-top:16px"><p class="callout__label">Prossima verifica</p><p>Usability test moderato da remoto con 5 persone su desktop e 5 su iPhone: capire quanto si riceve e quando, spiegare una voce della busta paga, chiedere un giorno di ferie, caricare una spesa, trovare la Certificazione Unica.</p></aside>
+  </section>
+
+  <section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2><p class="lead">[Due o tre lezioni dal progetto: una decisione che rifaresti, una che cambieresti, cosa ti ha sorpreso.]</p></div>
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">Usability test con dipendenti veri, verifica dei testi con un consulente del lavoro, modalità scura e Dynamic Type, passaggio agli sviluppatori.</p></div>
+  </section>
+
+  <section class="section" aria-label="Prossimo progetto">
+    <div class="projects">{project_card(next_p, r, "h2")}</div>
+  </section>
+</div>"""
+    glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
+             ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
+    fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@800&family=Wix+Madefor+Display:wght@400&display=swap">\n'
+    return layout("lavori/jet-hr/", 2, "Jet HR, case study", "Case study del redesign dell’area dipendente di Jet HR: web app desktop, app iOS 27 con gli stessi componenti e una busta paga che si capisce.", body, glows, fonts)
+
 def chi_sono():
     body = f"""
 <div class="wrap">
@@ -531,7 +685,7 @@ FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect w
 def main(out):
     src = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     os.makedirs(out, exist_ok=True)
-    pages = {"index.html": home(), "lavori/index.html": lavori(), "lavori/uci-cinemas/index.html": uci(),
+    pages = {"index.html": home(), "lavori/index.html": lavori(), "lavori/uci-cinemas/index.html": uci(), "lavori/jet-hr/index.html": jethr(),
              "chi-sono/index.html": chi_sono(), "contatti/index.html": contatti(), "404.html": not_found()}
     for path, content in pages.items():
         p = os.path.join(out, path); os.makedirs(os.path.dirname(p), exist_ok=True)
@@ -542,7 +696,7 @@ def main(out):
     os.makedirs(os.path.join(out, "assets/img"), exist_ok=True)
     open(os.path.join(out, "assets/img/favicon.svg"), "w").write(FAVICON)
     open(os.path.join(out, ".nojekyll"), "w").write("")
-    urls = ["", "lavori/", "lavori/uci-cinemas/", "chi-sono/", "contatti/"]
+    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "chi-sono/", "contatti/"]
     open(os.path.join(out, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{CONFIG['site_url']}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
