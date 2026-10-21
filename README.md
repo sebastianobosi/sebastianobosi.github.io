@@ -29,7 +29,7 @@ Le immagini stanno in `assets/img/` (WebP). Il case study UCI usa:
 
 Il film del progetto è `assets/video/uci-cinemas-brand-film.mp4` (1080p, 60 fps, senza audio). Si carica solo quando lo avvii. Per sostituirlo, carica un nuovo file con lo stesso nome.
 
-Il case study idealista usa le immagini `idealista-*.webp` (stesse dimensioni) e il film `assets/video/idealista-brand-film.mp4` (1080p, 60 fps, senza audio, poster `idealista-film-poster.webp`).
+Il case study idealista usa le immagini `idealista-*.webp` (stesse dimensioni), il logo `brand/idealista-logo.svg` (esportato dal file Figma del brand) e le animazioni del motion in `assets/js/idealista-motion.js` (markup in `tools/idealista_motion.html`).
 
 Il case study Jet HR usa le immagini `jethr-*.webp` (schermate esportate da Figma a 2x e ridotte: telefoni 780 px, desktop 1800 px, copertina 1600 px).
 

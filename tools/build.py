@@ -213,8 +213,8 @@ def home():
         <a class="btn btn--secondary" href="chi-sono/">Chi sono</a>
       </div>
     </div>
-    <div class="phones" role="img" aria-label="Schermate dai progetti: la home dell’app UCI Cinemas, la home dell’app Jet HR e l’assistente Iris di UCI">
-      {phone("UCI · Home", "assets/img/uci-home.webp")}{phone("Jet HR · Home", "assets/img/jethr-m-home.webp")}{phone("UCI · Iris", "assets/img/iris-benvenuto.webp")}
+    <div class="phones" role="img" aria-label="Schermate dai progetti: la home dell’app UCI Cinemas, la home dell’app Jet HR e la home dell’app idealista">
+      {phone("UCI · Home", "assets/img/uci-home.webp")}{phone("Jet HR · Home", "assets/img/jethr-m-home.webp")}{phone("idealista · Home", "assets/img/idealista-r1.webp")}
     </div>
   </section>
 
@@ -593,6 +593,8 @@ def jethr():
     fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@800&family=Wix+Madefor+Display:wght@400&display=swap">\n'
     return layout("lavori/jet-hr/", 2, "Jet HR, case study", "Case study del redesign dell’area dipendente di Jet HR: web app desktop, app iOS 27 con gli stessi componenti e una busta paga che si capisce.", body, glows, fonts)
 
+IDEALISTA_MOTION = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "idealista_motion.html"), encoding="utf-8").read()
+
 IDEALISTA_ICONS = {"Casa": "<path d=\"M9 43.5L36 21L63 43.5V75H45V57H27V75H9V43.5Z\"/>", "Cerca": "<path d=\"M31.5 22.5A21 21 0 1 0 31.5 64.5A21 21 0 1 0 31.5 22.5Z\"/><path d=\"M48 60L63 75\"/>", "Mappa": "<path d=\"M9 30L27 21L45 30L63 21V66L45 75L27 66L9 75V30Z\"/><path d=\"M27 21V66\"/><path d=\"M45 30V75\"/>", "Preferiti": "<path d=\"M36 72L12 48V33L21 24H30L36 30L42 24H51L60 33V48L36 72Z\"/>", "Messaggi": "<path d=\"M9 24H63V63H27L9 75V24Z\"/>", "Filtri": "<path d=\"M9 33H39\"/><path d=\"M51 33H63\"/><path d=\"M39 24H51V42H39V24Z\"/><path d=\"M9 63H21\"/><path d=\"M33 63H63\"/><path d=\"M21 54H33V72H21V54Z\"/>", "Avvisi": "<path d=\"M18 63V39C18 29 26 21 36 21C46 21 54 29 54 39V63L60 69H12L18 63Z\"/><path d=\"M30 75H42\"/>", "Profilo": "<path d=\"M24 21H48V45H24V21Z\"/><path d=\"M12 75V66L21 57H51L60 66V75\"/>"}
 
 def idealista_icon(name):
@@ -634,13 +636,6 @@ def idealista():
              "Stato attivo come nel brand: tile nero, pixel lime sopra l’icona, etichetta bianca.",
              "Modalità scura ottenuta cambiando solo la modalità della collezione Color, senza componenti duplicati."]
     acc = [("44 pt", "Area minima di tocco per chip, pin e pulsanti icona"), ("AA", "Lime mai usato come testo su fondo chiaro"), ("2", "Segnali per ogni stato: colore più icona o testo")]
-    film_scenes = ["Il pixel lime compare su nero, la «i» si costruisce a scatti e il logo scorre al suo posto, con il claim «Ora è il momento. Segui il tuo intuito.».",
-                   "Il logo prima e dopo: dalla griglia di pixel a Funnel Display Bold, con i puntini delle «i» quadrati.",
-                   "Il pixel diventa il sistema: una griglia di quadrati si accende fino a formare la «i».",
-                   "Il colore: lime, nero, magenta e carta, ognuno con il suo ruolo.", "La tipografia: Funnel Display e Funnel Sans, con un cartellino prezzo.",
-                   "Le icone con i terminali squadrati e lo stato attivo con il pixel lime.", "La fotografia: case vere, luce naturale.",
-                   "L’app: tre schermate, poi otto passaggi chiave, dalla ricerca in linguaggio naturale alla pubblicazione con il prezzo di mercato.",
-                   "Il design system: la tavola dei componenti.", "Chiusura su lime con il logo e il claim."]
     next_p = dict(PROJECTS[0]); next_p["large"] = True; next_p["eyebrow"] = "Prossimo progetto · App mobile · 2026"
     def phones3(items):
         return "".join(phone(n, img + f"idealista-{n}.webp", a) for n, a in items)
@@ -664,21 +659,10 @@ def idealista():
     </div>
   </div>
 
-  <section class="section" aria-labelledby="film">
-    <div class="section-head"><h2 id="film" class="h2">Il film del progetto</h2><p class="label">67 secondi · senza audio</p></div>
-    <figure class="figure">
-      <div class="figure__frame glass">
-        <video class="film film--idealista" controls playsinline preload="none" width="1920" height="1080" poster="{img}idealista-film-poster.webp" aria-describedby="film-descrizione">
-          <source src="{r}assets/video/idealista-brand-film.mp4" type="video/mp4">
-          <a href="{r}assets/video/idealista-brand-film.mp4">Scarica il video (MP4)</a>
-        </video>
-      </div>
-      <figcaption>La brand identity e l’app in un minuto. Motion design realizzato dai file Figma del progetto, con le regole di motion del brand: il pixel si muove a scatti.</figcaption>
-    </figure>
-    <details class="details glass" id="film-descrizione">
-      <summary>Descrizione del video</summary>
-      <ol>{"".join(f"<li>{t}</li>" for t in film_scenes)}</ol>
-    </details>
+  <section class="section" aria-labelledby="motion">
+    <div class="section-head"><h2 id="motion" class="h2">Motion</h2><p class="label">Il pixel si muove a scatti</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Tre animazioni del sistema: la comparsa del logo, il caricamento e la selezione di un immobile sulla mappa. Il pixel salta da una posizione all’altra senza easing, come nel logo storico; testi e superfici entrano con un ease-out breve.</p>
+    {IDEALISTA_MOTION}
   </section>
 
   <section class="section split" aria-labelledby="progetto">
@@ -702,7 +686,7 @@ def idealista():
     <div class="section-head"><h2 id="brand" class="h2">Brand identity</h2><p class="label">Segui il tuo intuito</p></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Il vecchio logo era una griglia di 7 moduli: forte, ma rigido e poco leggibile in piccolo. Il nuovo usa Funnel Display Bold e tiene un solo pixel, quello sulla «i»: sempre quadrato, mai arrotondato.</p>
     <div class="brand-grid">
-      <div class="brand-tile brand-tile--idealista"><img src="{img}idealista-wordmark.webp" alt="Logo idealista: scritta bianca su nero, con il puntino della prima i come pixel quadrato lime" width="970" height="210"></div>
+      <div class="brand-tile brand-tile--idealista"><img src="{img}brand/idealista-logo.svg" alt="Logo idealista: scritta bianca su nero, con il puntino della prima i come pixel quadrato lime" width="271" height="49"></div>
       <div class="brand-tile brand-tile--idealista-claim"><p class="brand-claim brand-claim--funnel">Ora è il momento. Segui il tuo intuito.</p></div>
     </div>
     <figure class="figure" style="margin-top:16px">
@@ -774,8 +758,8 @@ def idealista():
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
              ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
-    fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700&family=Funnel+Sans:wght@400;600&display=swap">\n'
-    return layout("lavori/idealista/", 2, "idealista, case study", "Case study del rebranding di idealista e della nuova app: logo, pixel, colore, tipografia e icone, 39 schermate, design system e film del progetto.", body, glows, fonts)
+    fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@600;700&family=Funnel+Sans:wght@400;600&display=swap">\n<script src="../../assets/js/idealista-motion.js" defer></script>\n'
+    return layout("lavori/idealista/", 2, "idealista, case study", "Case study del rebranding di idealista e della nuova app: logo, pixel, colore, tipografia e icone, 39 schermate, design system e motion del pixel.", body, glows, fonts)
 
 def chi_sono():
     body = f"""
