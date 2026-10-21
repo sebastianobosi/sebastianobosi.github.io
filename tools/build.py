@@ -212,8 +212,8 @@ def home():
         <a class="btn btn--secondary" href="chi-sono/">Chi sono</a>
       </div>
     </div>
-    <div class="phones" role="img" aria-label="Tre schermate dell’app UCI Cinemas: Home, assistente Iris e biglietto">
-      {phone("UCI · Home", "assets/img/uci-home.webp")}{phone("UCI · Iris", "assets/img/iris-benvenuto.webp")}{phone("UCI · Biglietto", "assets/img/uci-biglietto.webp")}
+    <div class="phones" role="img" aria-label="Schermate dai progetti: la home dell’app UCI Cinemas, la home dell’app Jet HR e l’assistente Iris di UCI">
+      {phone("UCI · Home", "assets/img/uci-home.webp")}{phone("Jet HR · Home", "assets/img/jethr-m-home.webp")}{phone("UCI · Iris", "assets/img/iris-benvenuto.webp")}
     </div>
   </section>
 
