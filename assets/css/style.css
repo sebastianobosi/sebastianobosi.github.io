@@ -447,3 +447,22 @@ button.chip { cursor: pointer; min-height: 44px; }
 .ucicon__art { height: clamp(96px, 9vw, 128px); position: relative; overflow: hidden; }
 .ucicon__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .ucicon span { font-size: var(--fs-body); line-height: 1.4; color: var(--text); position: relative; }
+
+/* idealista */
+.film--idealista { background: #141414; }
+.brand-tile--idealista { background: #141414; }
+.brand-tile--idealista img { width: min(100%, 440px); height: auto; }
+.brand-tile--idealista-claim { background: #e1f56e; color: #141414; place-items: center start; }
+.brand-claim--funnel { font-family: "Funnel Display", var(--font-display); font-weight: 700; text-transform: none; letter-spacing: -0.02em; line-height: 1.05; }
+@media (min-width: 1100px) { .swatches--4 { grid-template-columns: repeat(4, 1fr); } }
+.swatches--4 .swatch { min-height: 200px; }
+.swatch__hex--funnel { font-family: "Funnel Display", var(--font-display); font-weight: 700; }
+.type-card__sample--funnel-d, .type-card__name--funnel-d { font-family: "Funnel Display", var(--font-display); font-weight: 700; }
+.type-card__sample--funnel-s, .type-card__name--funnel-s { font-family: "Funnel Sans", var(--font-text); font-weight: 400; }
+.type-card__name--funnel-s { font-weight: 600; }
+.id-icons { display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); }
+@media (min-width: 900px) { .id-icons { grid-template-columns: repeat(8, 1fr); } }
+.id-icon { position: relative; border-radius: 20px; background: #fafbf9; color: #141414; padding: 20px 8px 14px; display: grid; justify-items: center; gap: 10px; font-family: "Funnel Sans", var(--font-text); font-weight: 600; font-size: var(--fs-label-s); }
+.id-icon svg { width: 36px; height: auto; }
+.id-icon--active { background: #141414; color: #fafbf9; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+.id-icon--active::before { content: ""; position: absolute; top: 8px; left: 50%; width: 8px; height: 8px; margin-left: -4px; background: #e1f56e; }

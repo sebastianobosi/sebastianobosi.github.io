@@ -150,9 +150,10 @@ PROJECTS = [
          desc="L’area dipendente e una busta paga che si capisce, su desktop e iPhone.", media="Jet HR: web app e app iOS",
          tags="web app design-system", large=False, cta="Leggi il case study",
          img="assets/img/jethr-cover.webp", alt="La home di Jet HR su desktop e su iPhone, con lo stipendio nascosto e la data di accredito"),
-    dict(slug=None, title="Progetto tre", eyebrow="Segnaposto · Categoria · Anno",
-         desc="Una riga con il problema risolto e il risultato ottenuto.", media="Immagine del progetto",
-         tags="design-system", large=False, cta="In arrivo"),
+    dict(slug="lavori/idealista/", title="idealista", eyebrow="Case study · Brand identity e app · 2026",
+         desc="Nuova identità e app per trovare casa con prezzi chiari e annunci verificati.", media="idealista: brand identity e app",
+         tags="app design-system", large=False, cta="Leggi il case study",
+         img="assets/img/idealista-cover.webp", alt="La copertina del progetto idealista: il nuovo logo con il pixel quadrato e le schermate dell’app su fondo lime"),
 ]
 
 def project_card(p, r, heading="h3"):
@@ -259,7 +260,7 @@ def home():
     glows = [("blue", "-14%", "-260px", "62vw", "700px", .5), ("lavender", "52%", "-140px", "56vw", "620px", .32),
              ("warm", "66%", "520px", "30vw", "360px", .26), ("blue", "-18%", "1400px", "60vw", "700px", .2),
              ("lavender", "20%", "calc(100% - 900px)", "62vw", "520px", .18)]
-    return layout("", 0, CONFIG["name"], "Portfolio di Sebastiano Bosi, product designer: ricerca, interfacce e design system. Case study UCI Cinemas e Jet HR.", body, glows)
+    return layout("", 0, CONFIG["name"], "Portfolio di Sebastiano Bosi, product designer: ricerca, interfacce e design system. Case study UCI Cinemas, Jet HR e idealista.", body, glows)
 
 def lavori():
     r = "../"
@@ -460,7 +461,7 @@ def jethr():
                ("#0BB098", "Ferie", "Categoria nel calendario", "#11150A"), ("#4330B2", "Permesso", "Categoria e contributi", "#FFFFFF"),
                ("#B01F42", "Malattia", "Categoria e tasse", "#FFFFFF")]
     acc = [("14,2:1", "Testo nero su lime, nei pulsanti del brand"), ("3,6 → 6,1:1", "Stato «Rifiutata»: il token è stato scurito dopo la verifica"), ("≥ 44 pt", "Area di tocco su iOS, anche per i pulsanti piccoli")]
-    next_p = dict(PROJECTS[0]); next_p["eyebrow"] = "Prossimo progetto · App mobile · 2026"
+    next_p = dict(PROJECTS[2]); next_p["eyebrow"] = "Prossimo progetto · Brand identity e app · 2026"
     body = f"""
 <div class="wrap">
   <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
@@ -592,6 +593,190 @@ def jethr():
     fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@800&family=Wix+Madefor+Display:wght@400&display=swap">\n'
     return layout("lavori/jet-hr/", 2, "Jet HR, case study", "Case study del redesign dell’area dipendente di Jet HR: web app desktop, app iOS 27 con gli stessi componenti e una busta paga che si capisce.", body, glows, fonts)
 
+IDEALISTA_ICONS = {"Casa": "<path d=\"M9 43.5L36 21L63 43.5V75H45V57H27V75H9V43.5Z\"/>", "Cerca": "<path d=\"M31.5 22.5A21 21 0 1 0 31.5 64.5A21 21 0 1 0 31.5 22.5Z\"/><path d=\"M48 60L63 75\"/>", "Mappa": "<path d=\"M9 30L27 21L45 30L63 21V66L45 75L27 66L9 75V30Z\"/><path d=\"M27 21V66\"/><path d=\"M45 30V75\"/>", "Preferiti": "<path d=\"M36 72L12 48V33L21 24H30L36 30L42 24H51L60 33V48L36 72Z\"/>", "Messaggi": "<path d=\"M9 24H63V63H27L9 75V24Z\"/>", "Filtri": "<path d=\"M9 33H39\"/><path d=\"M51 33H63\"/><path d=\"M39 24H51V42H39V24Z\"/><path d=\"M9 63H21\"/><path d=\"M33 63H63\"/><path d=\"M21 54H33V72H21V54Z\"/>", "Avvisi": "<path d=\"M18 63V39C18 29 26 21 36 21C46 21 54 29 54 39V63L60 69H12L18 63Z\"/><path d=\"M30 75H42\"/>", "Profilo": "<path d=\"M24 21H48V45H24V21Z\"/><path d=\"M12 75V66L21 57H51L60 66V75\"/>"}
+
+def idealista_icon(name):
+    return (f'<svg viewBox="0 0 72 84" width="48" height="56" fill="none" stroke="currentColor" stroke-width="6" '
+            f'stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">{IDEALISTA_ICONS[name]}</svg>')
+
+def idealista():
+    r = "../../"
+    img = r + "assets/img/"
+    stats = [("39", "schermate in 7 flussi, dall’onboarding al profilo"), ("54", "icone ridisegnate sulla geometria del brand"),
+             ("AA", "contrasti WCAG 2.2 verificati in Light e Dark"), ("1", "sola azione magenta per schermata: la CTA")]
+    steps = [("search", "Discovery", "Sito, app e recensioni pubbliche analizzati: problemi riformulati in assunzioni da validare."),
+             ("components", "Brand identity", "Logo, pixel, colore, tipografia, icone, tono di voce, fotografia e motion."),
+             ("layout", "Architettura e flussi", "Navigazione a 5 voci e 39 schermate, con stati vuoti, errori e conferme."),
+             ("accessibility", "Design system", "Token del brand, componenti con varianti, modalità scura e revisione WCAG 2.2.")]
+    insights = [("Prezzi poco chiari", "Il canone non dice quanto si spende davvero: spese, riscaldamento e deposito arrivano dopo, spesso in chat."),
+                ("Fiducia da conquistare", "Annunci falsi e richieste di caparra prima della visita sono la paura più citata nelle recensioni."),
+                ("Ricerca rigida", "I filtri sono tanti e nascosti. Chi cerca ragiona per frasi: «trilocale con balcone a Isola sotto 1.400 €».")]
+    palette = [("#E1F56E", "Lime", "Superficie di brand, mai testo su chiaro", "#141414"), ("#141414", "Nero", "Testi e stati attivi", "#FAFBF9"),
+               ("#B62682", "Magenta", "Solo azione: una CTA per schermata", "#FFFFFF"), ("#FAFBF9", "Carta", "Sfondo dell’interfaccia", "#141414")]
+    icon_rules = [("Griglia 24", "Area attiva 20×20, usate a 20, 24 e 32."), ("Tratto 2 px", "Terminali e giunzioni squadrati."),
+                  ("Geometria", "Linee rette, curve solo dove servono."), ("Stato attivo", "Icona su nero con il pixel lime sopra.")]
+    brand_slides = [("b-pixel", "Il pixel come sistema", "Il pixel quadrato del logo diventa il modulo: app icon, pin della mappa, indicatori di novità e pattern."),
+                    ("b-griglia", "La griglia", "La griglia che regola impaginati, schermate e applicazioni."),
+                    ("b-tono", "Tono di voce", "Diretto, con i numeri in vista, mai ironico nei momenti di rischio."),
+                    ("b-foto", "Fotografia", "Case vere e luce naturale: le foto aiutano a decidere, non a sognare."),
+                    ("b-applicazioni", "Applicazioni", "Il sistema applicato a cartelli, comunicazione e touchpoint."),
+                    ("b-motion", "Motion", "Il pixel si muove a scatti, l’interfaccia scorre con un ease-out da 120 a 320 ms.")]
+    flows = [("Ricerca", "Cerca come parli", "La frase diventa filtri visibili e modificabili. I filtri di fiducia, «Solo verificati» ed «Escludi aste», sono chip sempre in vista. Sulla mappa il pixel dice cosa è nuovo, selezionato o già visto.",
+              [("r2", "Ricerca in linguaggio naturale: la frase trilocale con balcone a Isola tradotta in filtri"), ("r3", "Risultati con i chip Solo verificati e prezzo massimo"), ("r4", "Mappa con i prezzi nei pin quadrati")]),
+             ("Annuncio e contatto", "Quanto spendi davvero", "Sopra la piega: prezzo, €/m² e costo mensile totale con spese e riscaldamento. Una sola CTA, «Contatta». Il messaggio è già pronto e la visita si prenota in app.",
+              [("a1", "Scheda annuncio con il costo mensile totale"), ("a3", "Messaggio precompilato con domande rapide"), ("a5", "Richiesta di visita inviata, con i consigli per la visita")]),
+             ("Salvati e sicurezza", "Sicurezza nel momento del rischio", "Le ricerche salvate restano vive: modifichi un filtro e si aggiorna da sola, con Annulla. Se in chat qualcuno chiede soldi prima della visita, l’app avvisa, oscura l’IBAN e fa segnalare in due tocchi.",
+              [("s2", "Ricerche salvate con avvisi regolabili"), ("s3", "Ricerca salvata aggiornata, con il toast Annulla"), ("m3", "Chat con l’allerta sulla richiesta di denaro")]),
+             ("Pubblica", "Chi pubblica sa il prezzo", "Pubblicare un annuncio in 5 passi, con bozza automatica e indirizzo privato di default. Il prezzo arriva da idealista/valuta e la verifica dell’identità dà il badge «Verificato».",
+              [("c1", "Pubblica: annunci dell’utente e servizi per proprietari"), ("c6", "Passo 5: canone con la forbice di mercato di idealista/valuta"), ("c8", "Annuncio online e verificato")])]
+    nav = ["Home", "Salvati", "Messaggi", "Pubblica", "Profilo"]
+    rules = ["Una sola azione magenta per schermata: è sempre la CTA principale.",
+             "Stato attivo come nel brand: tile nero, pixel lime sopra l’icona, etichetta bianca.",
+             "Modalità scura ottenuta cambiando solo la modalità della collezione Color, senza componenti duplicati."]
+    acc = [("44 pt", "Area minima di tocco per chip, pin e pulsanti icona"), ("AA", "Lime mai usato come testo su fondo chiaro"), ("2", "Segnali per ogni stato: colore più icona o testo")]
+    film_scenes = ["Il pixel lime compare su nero, la «i» si costruisce a scatti e il logo scorre al suo posto, con il claim «Ora è il momento. Segui il tuo intuito.».",
+                   "Il logo prima e dopo: dalla griglia di pixel a Funnel Display Bold, con i puntini delle «i» quadrati.",
+                   "Il pixel diventa il sistema: una griglia di quadrati si accende fino a formare la «i».",
+                   "Il colore: lime, nero, magenta e carta, ognuno con il suo ruolo.", "La tipografia: Funnel Display e Funnel Sans, con un cartellino prezzo.",
+                   "Le icone con i terminali squadrati e lo stato attivo con il pixel lime.", "La fotografia: case vere, luce naturale.",
+                   "L’app: tre schermate, poi otto passaggi chiave, dalla ricerca in linguaggio naturale alla pubblicazione con il prezzo di mercato.",
+                   "Il design system: la tavola dei componenti.", "Chiusura su lime con il logo e il claim."]
+    next_p = dict(PROJECTS[0]); next_p["large"] = True; next_p["eyebrow"] = "Prossimo progetto · App mobile · 2026"
+    def phones3(items):
+        return "".join(phone(n, img + f"idealista-{n}.webp", a) for n, a in items)
+    body = f"""
+<div class="wrap">
+  <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
+  <section class="intro" style="display:grid;gap:clamp(20px,2vw,28px);justify-items:start;padding-top:16px" aria-labelledby="titolo">
+    <p class="chip chip--status">Case study · Brand identity e app · 2026</p>
+    <h1 id="titolo" class="display">idealista</h1>
+    <p class="lead" style="max-width:720px">Una nuova brand identity e l’app che ne nasce: trovare casa con prezzi chiari e annunci verificati, dalla ricerca alla visita.</p>
+    <dl class="meta">
+      <div><dt>Ruolo</dt><dd>Brand e product designer · progetto personale</dd></div>
+      <div><dt>Anno</dt><dd>2026</dd></div>
+      <div><dt>Piattaforma</dt><dd>iOS e Android</dd></div>
+      <div><dt>Strumenti</dt><dd>Figma</dd></div>
+    </dl>
+  </section>
+  <div class="figure__frame glass" style="margin-top:32px;padding:0">
+    <div class="phone-row" role="img" aria-label="Schermate principali dell’app idealista: onboarding, Home, risultati, scheda annuncio e pubblicazione">
+      {phone("idealista · Onboarding", img + "idealista-o1.webp")}{phone("idealista · Home", img + "idealista-r1.webp")}{phone("idealista · Risultati", img + "idealista-r3.webp")}{phone("idealista · Annuncio", img + "idealista-a1.webp")}{phone("idealista · Pubblica", img + "idealista-c8.webp")}
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="film">
+    <div class="section-head"><h2 id="film" class="h2">Il film del progetto</h2><p class="label">67 secondi · senza audio</p></div>
+    <figure class="figure">
+      <div class="figure__frame glass">
+        <video class="film film--idealista" controls playsinline preload="none" width="1920" height="1080" poster="{img}idealista-film-poster.webp" aria-describedby="film-descrizione">
+          <source src="{r}assets/video/idealista-brand-film.mp4" type="video/mp4">
+          <a href="{r}assets/video/idealista-brand-film.mp4">Scarica il video (MP4)</a>
+        </video>
+      </div>
+      <figcaption>La brand identity e l’app in un minuto. Motion design realizzato dai file Figma del progetto, con le regole di motion del brand: il pixel si muove a scatti.</figcaption>
+    </figure>
+    <details class="details glass" id="film-descrizione">
+      <summary>Descrizione del video</summary>
+      <ol>{"".join(f"<li>{t}</li>" for t in film_scenes)}</ol>
+    </details>
+  </section>
+
+  <section class="section split" aria-labelledby="progetto">
+    <h2 id="progetto" class="h3">Il progetto</h2>
+    <div class="stack">
+      <p class="lead lead--primary">Ho ripensato idealista partendo dal marchio: il logo a griglia di pixel diventa un carattere vero, e il pixel quadrato resta come segno di tutto il sistema. Da lì ho riprogettato l’app partendo dal sito attuale, con un obiettivo: far capire subito quanto costa davvero una casa e di chi fidarsi.</p>
+      <aside class="callout glass"><p class="callout__label">Nota</p><p>Concept non ufficiale, non commissionato da idealista. Prezzi, indirizzi e annunci sono esempi; le foto della fotografia sono generate con AI per illustrare il trattamento.</p></aside>
+    </div>
+  </section>
+
+  <section class="section grid grid--stats" style="margin-top:clamp(64px,6vw,96px)" aria-label="Il progetto in numeri">
+    {"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in stats)}
+  </section>
+
+  <section class="section" aria-labelledby="processo">
+    <div class="section-head"><h2 id="processo" class="h2">Processo</h2><p class="label">Quattro fasi</p></div>
+    <ol class="grid grid--4">{"".join(f'<li class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{n}. {t}</h3><p class="muted">{d}</p></li>' for n, (i, t, d) in enumerate(steps, 1))}</ol>
+  </section>
+
+  <section class="section" aria-labelledby="brand">
+    <div class="section-head"><h2 id="brand" class="h2">Brand identity</h2><p class="label">Segui il tuo intuito</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Il vecchio logo era una griglia di 7 moduli: forte, ma rigido e poco leggibile in piccolo. Il nuovo usa Funnel Display Bold e tiene un solo pixel, quello sulla «i»: sempre quadrato, mai arrotondato.</p>
+    <div class="brand-grid">
+      <div class="brand-tile brand-tile--idealista"><img src="{img}idealista-wordmark.webp" alt="Logo idealista: scritta bianca su nero, con il puntino della prima i come pixel quadrato lime" width="970" height="210"></div>
+      <div class="brand-tile brand-tile--idealista-claim"><p class="brand-claim brand-claim--funnel">Ora è il momento. Segui il tuo intuito.</p></div>
+    </div>
+    <figure class="figure" style="margin-top:16px">
+      <div class="figure__frame glass">{media("Logo prima e dopo", "figure__media figure__media--fit", img + "idealista-b-logo.webp", "Il logo prima e dopo: dalla griglia di pixel alla scritta in Funnel Display con i puntini quadrati")}</div>
+      <figcaption>Il logo, prima e dopo.</figcaption>
+    </figure>
+    <h3 class="h4 brand-sub">Colore</h3>
+    <ul class="swatches swatches--4">{"".join(f'<li class="swatch" style="background:{h};color:{fg}"><span class="swatch__hex swatch__hex--funnel">{h}</span><span class="swatch__name">{n}</span><span class="swatch__use">{u}</span></li>' for h, n, u, fg in palette)}</ul>
+    <h3 class="h4 brand-sub">Tipografia</h3>
+    <div class="grid grid--2">
+      <div class="type-card glass"><p class="type-card__sample type-card__sample--funnel-d">Aa</p><div><p class="type-card__name type-card__name--funnel-d">Funnel Display</p><p class="muted">Titoli e prezzi, in Bold</p></div></div>
+      <div class="type-card glass"><p class="type-card__sample type-card__sample--funnel-s">Aa</p><div><p class="type-card__name type-card__name--funnel-s">Funnel Sans</p><p class="muted">Interfaccia e testi, da Regular a SemiBold</p></div></div>
+    </div>
+    <h3 class="h4 brand-sub">Iconografia</h3>
+    <ul class="id-icons">{"".join(f'<li class="id-icon{" id-icon--active" if n == "Casa" else ""}">{idealista_icon(n)}<span>{n}</span></li>' for n in IDEALISTA_ICONS)}</ul>
+    <div class="grid grid--4" style="margin-top:16px">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">{a}</p><p>{b}</p></div>' for a, b in icon_rules)}</div>
+    <h3 class="h4 brand-sub">Il sistema</h3>
+    <div class="grid grid--2" style="align-items:start">{"".join(f'<figure class="figure"><div class="figure__frame glass">{media(t, "figure__media figure__media--fit", img + f"idealista-{n}.webp", d)}</div><figcaption><strong>{t}.</strong> {d}</figcaption></figure>' for n, t, d in brand_slides)}</div>
+  </section>
+
+  <section class="section" aria-labelledby="discovery">
+    <div class="section-head"><h2 id="discovery" class="h2">Discovery</h2><p class="label">Tre problemi dal sito attuale</p></div>
+    <div class="grid grid--3">{"".join(f'<div class="card glass stack" style="--gap:12px;border-radius:var(--r-card);padding:clamp(24px,3vw,40px)"><h3 class="h4">{t}</h3><p class="muted">{d}</p></div>' for t, d in insights)}</div>
+    <aside class="callout glass" style="margin-top:16px"><p class="callout__label">Limite</p><p>Discovery da desk research: sito, store e recensioni pubbliche. Le assunzioni vanno validate con 6–8 test di usabilità e interviste a privati.</p></aside>
+  </section>
+
+  <section class="section" aria-labelledby="architettura">
+    <div class="section-head"><h2 id="architettura" class="h2">Architettura</h2><p class="label">5 voci, 7 flussi</p></div>
+    <p class="lead" style="max-width:760px;margin-bottom:24px">Una navigazione con le etichette di tutte le app immobiliari. «Pubblica» raccoglie quello che sul sito è sparso nella home: i tuoi annunci, idealista/valuta, i mutui e le agenzie.</p>
+    <ol class="areas">{"".join(f'<li class="glass">{a}</li>' for a in nav)}</ol>
+    <div class="grid grid--2" style="margin-top:16px;align-items:start">
+      <figure class="figure"><div class="figure__frame glass">{media("Mappa dell’app", "figure__media figure__media--fit", img + "idealista-mappa.webp", "Mappa dell’app: le cinque voci della tab bar e le schermate di ognuna")}</div><figcaption>La mappa dell’app.</figcaption></figure>
+      <figure class="figure"><div class="figure__frame glass">{media("Flussi", "figure__media figure__media--fit", img + "idealista-flussi.webp", "I sette flussi: onboarding, ricerca, annuncio e contatto, salvati, messaggi, pubblica, profilo")}</div><figcaption>I sette flussi, dall’onboarding al profilo.</figcaption></figure>
+    </div>
+  </section>
+
+  {"".join(f"""<section class="section split split--wide" aria-labelledby="flusso-{k}">
+    <div class="stack">
+      <p class="label">{lab}</p>
+      <h2 id="flusso-{k}" class="h2">{t}</h2>
+      <p class="lead">{d}</p>
+    </div>
+    <div class="phones phones--compact" role="img" aria-label="{html.escape(' · '.join(a for _, a in ph))}">{phones3(ph)}</div>
+  </section>""" for k, (lab, t, d, ph) in enumerate(flows, 1))}
+
+  <section class="section" aria-labelledby="ds">
+    <div class="section-head"><h2 id="ds" class="h2">Design system</h2><p class="label">v0.2</p></div>
+    <p class="lead" style="margin-bottom:24px">Gli stessi token del file brand, con gli stessi nomi: Primitives, poi Color in Light e Dark, poi Spacing. Componenti con varianti e proprietà in italiano, documentati in schede.</p>
+    <div class="grid grid--3">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
+    <div class="grid grid--2" style="margin-top:16px;align-items:start">
+      <figure class="figure"><div class="figure__frame glass">{media("Componenti", "figure__media figure__media--fit", img + "idealista-componenti.webp", "Tavola dei componenti: ListingCard, TabBar, Button, PricePin e Badge con le loro varianti")}</div><figcaption>Alcuni componenti: ListingCard, TabBar, Button, PricePin e Badge.</figcaption></figure>
+      <figure class="figure"><div class="figure__frame glass">{media("Icone", "figure__media figure__media--fit", img + "idealista-icone.webp", "Parte del set di 54 icone con terminali squadrati")}</div><figcaption>Una parte delle 54 icone.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="a11y">
+    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità</h2><p class="label">WCAG 2.2 AA</p></div>
+    <div class="grid grid--3">{"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in acc)}</div>
+  </section>
+
+  <section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2><p class="lead">[Due o tre lezioni dal progetto: una decisione che rifaresti, una che cambieresti, cosa ti ha sorpreso.]</p></div>
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">Test di usabilità con 6–8 persone, interviste a chi affitta da privato, foto reali al posto dei segnaposto e passaggio agli sviluppatori.</p></div>
+  </section>
+
+  <section class="section" aria-label="Prossimo progetto">
+    <div class="projects">{project_card(next_p, r, "h2")}</div>
+  </section>
+</div>"""
+    glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
+             ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
+    fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@700&family=Funnel+Sans:wght@400;600&display=swap">\n'
+    return layout("lavori/idealista/", 2, "idealista, case study", "Case study del rebranding di idealista e della nuova app: logo, pixel, colore, tipografia e icone, 39 schermate, design system e film del progetto.", body, glows, fonts)
+
 def chi_sono():
     body = f"""
 <div class="wrap">
@@ -689,7 +874,7 @@ FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect w
 def main(out):
     src = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     os.makedirs(out, exist_ok=True)
-    pages = {"index.html": home(), "lavori/index.html": lavori(), "lavori/uci-cinemas/index.html": uci(), "lavori/jet-hr/index.html": jethr(),
+    pages = {"index.html": home(), "lavori/index.html": lavori(), "lavori/uci-cinemas/index.html": uci(), "lavori/jet-hr/index.html": jethr(), "lavori/idealista/index.html": idealista(),
              "chi-sono/index.html": chi_sono(), "contatti/index.html": contatti(), "404.html": not_found()}
     for path, content in pages.items():
         p = os.path.join(out, path); os.makedirs(os.path.dirname(p), exist_ok=True)
@@ -700,7 +885,7 @@ def main(out):
     os.makedirs(os.path.join(out, "assets/img"), exist_ok=True)
     open(os.path.join(out, "assets/img/favicon.svg"), "w").write(FAVICON)
     open(os.path.join(out, ".nojekyll"), "w").write("")
-    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "chi-sono/", "contatti/"]
+    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "lavori/idealista/", "chi-sono/", "contatti/"]
     open(os.path.join(out, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{CONFIG['site_url']}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
