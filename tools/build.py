@@ -543,7 +543,7 @@ def jethr():
     <p class="lead" style="max-width:760px;margin-bottom:24px">Il PDF ufficiale resta il documento legale, ma riorganizzato per domande. Nell’app, la vista spiegata mette ogni voce in parole semplici, con il nome ufficiale e il codice accanto. Gli importi sono gli stessi, cambiano le parole.</p>
     <figure class="figure">
       <div class="figure__frame glass">{media("Busta paga spiegata", "figure__media figure__media--fit", img + "jethr-d-busta.webp", "Busta paga di settembre spiegata: netto, differenze rispetto ad agosto, dal lordo al netto e tutte le voci")}</div>
-      <figcaption>Busta paga spiegata: cosa è cambiato rispetto ad agosto, dove vanno i soldi tra lordo e netto, ogni voce con il suo calcolo.</figcaption>
+      <figcaption>Busta paga spiegata: cosa è cambiato rispetto ad agosto, dove vanno i soldi tra lordo e netto, ogni voce con il suo calcolo (dettaglio della schermata).</figcaption>
     </figure>
     <div class="grid grid--2" style="margin-top:16px;align-items:start">
       <figure class="figure">
@@ -566,6 +566,10 @@ def jethr():
       <div class="type-card glass"><p class="type-card__sample" style="font-family:'Wix Madefor Display',sans-serif">Aa</p><div><p class="type-card__name" style="font-family:'Wix Madefor Display',sans-serif">Wix Madefor Display</p><p class="muted">Testi ed etichette</p></div></div>
     </div>
     <div class="grid grid--3" style="margin-top:16px">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
+    <figure class="figure" style="margin-top:16px">
+      <div class="figure__frame glass">{media("Componenti condivisi", "figure__media figure__media--fit", img + "jethr-componenti.webp", "Tavola dei componenti condivisi: Toggle, Riga lista, Intestazione sezione, Controllo segmentato, Card netto e Scelta tipo, ognuno in versione desktop e mobile")}</div>
+      <figcaption>I componenti condivisi, ognuno con la variante desktop e quella mobile.</figcaption>
+    </figure>
   </section>
 
   <section class="section" aria-labelledby="a11y">

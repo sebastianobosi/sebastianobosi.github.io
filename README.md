@@ -7,7 +7,7 @@ Sito pubblicato su **https://sebastianobosi.github.io** con GitHub Pages. HTML, 
 | Cosa | Dove |
 |---|---|
 | Colori, caratteri, spaziature | `assets/css/style.css`, blocco `:root` in cima (sono i token del file Figma «Notturno») |
-| Testi delle pagine | `tools/build.py`, nelle funzioni `home()`, `lavori()`, `uci()`, `chi_sono()`, `contatti()` |
+| Testi delle pagine | `tools/build.py`, nelle funzioni `home()`, `lavori()`, `uci()`, `jethr()`, `chi_sono()`, `contatti()` |
 | Email, LinkedIn, CV | `tools/build.py`, blocco `CONFIG` in cima |
 | Menu, filtri, copia dell’email | `assets/js/main.js` |
 
@@ -28,6 +28,8 @@ Le immagini stanno in `assets/img/` (WebP). Il case study UCI usa:
 - `og.png` (anteprima quando condividi il link)
 
 Il film del progetto è `assets/video/uci-cinemas-brand-film.mp4` (1080p, 60 fps, senza audio). Si carica solo quando lo avvii. Per sostituirlo, carica un nuovo file con lo stesso nome.
+
+Il case study Jet HR usa le immagini `jethr-*.webp` (schermate esportate da Figma a 2x e ridotte: telefoni 780 px, desktop 1800 px, copertina 1600 px).
 
 Ancora da aggiungere: `ritratto.webp` (4:5) e il CV `sebastiano-bosi-cv.pdf` in `assets/`.
 
