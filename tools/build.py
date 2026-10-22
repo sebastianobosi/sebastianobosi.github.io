@@ -13,6 +13,7 @@ CONFIG = {
     "email": "sebastianobosi@icloud.com",
     "linkedin": "https://www.linkedin.com/in/sebastiano-bosi-24674016a",
     "cv": "assets/sebastiano-bosi-cv.pdf",
+    "cv_ats": "assets/sebastiano-bosi-cv-ats.pdf",            # generato da tools/cv_ats.py
 }
 
 ICONS = {
@@ -62,7 +63,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
         f'<div class="glow glow--{c}" style="left:{x};top:{y};width:{w};height:{h};opacity:{o}"></div>'
         for c, x, y, w, h, o in glows
     )
-    full_title = f"{title} — {CONFIG['name']}" if title != CONFIG["name"] else f"{CONFIG['name']} — UX/UI Designer"
+    full_title = f"{title} — {CONFIG['name']}" if title != CONFIG["name"] else f"{CONFIG['name']} — UX/UI Designer a Milano"
     canonical = CONFIG["site_url"] + "/" + ("" if page == "" else page)
     return f"""<!doctype html>
 <html lang="it">
@@ -77,7 +78,10 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{CONFIG['site_url']}/assets/img/og.png">
+<meta property="og:locale" content="it_IT">
+<meta name="author" content="{CONFIG['name']}">
 <meta name="theme-color" content="#07080f">
+{structured_data(page, title, description)}
 <link rel="icon" href="{r}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,6 +128,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
         <li><a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a></li>
         <li><a href="mailto:{CONFIG['email']}">Email</a></li>
         <li><a href="{r}{CONFIG['cv']}" download>CV</a></li>
+        <li><a href="{r}cv/">CV in testo</a></li>
       </ul></nav>
       <a href="#contenuto">Torna su {icon("arrow-up", 16)}</a>
     </div>
@@ -200,9 +205,27 @@ FORMAZIONE = [
 HARD_SKILLS = ["Discovery", "Wireframing", "Prototyping", "User testing", "Grafica", "Scrittura", "HTML", "CSS"]
 STRUMENTI = ["Figma", "Claude", "ChatGPT", "Photoshop"]
 SOFT_SKILLS = ["Team working", "Networking", "Impatto sociale", "Proattività", "Precisione", "Mentoring", "People oriented", "Creatività"]
+DETTAGLI = {
+    "UX/UI Designer": "Progetto interfacce e dinamiche di prodotto dell’app Collecto, pensate per coinvolgere gli utenti e generare valore concreto. Lavoro in Figma, dalla discovery al prototipo.",
+    "Fashion Photographer": "Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.",
+    "Photo Retoucher & Video Editor": "Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.",
+}
+KNOWS_ABOUT = ["UX design", "UI design", "Product design", "User research", "Discovery", "Usability testing", "Wireframing",
+               "Prototipazione", "Architettura dell’informazione", "Design system", "Design token", "Accessibilità WCAG 2.2",
+               "Brand identity", "Motion design", "Figma", "HTML", "CSS"]
 LINGUE = [("Italiano", "Madrelingua", ""), ("Inglese", "Intermedio", "")]
 
 SKILLS = ["Discovery", "Wireframing", "Prototyping", "User testing", "Design system", "Accessibilità WCAG 2.2", "Figma"]
+
+def in_breve(items):
+    cells = "".join(f'<div class="callout callout--small glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in items)
+    return f'''<section style="margin-top:16px" aria-labelledby="breve"><h2 id="breve" class="visually-hidden">In breve</h2><div class="grid grid--4">{cells}</div></section>'''
+
+def lezioni(testo, prossimi):
+    return f'''<section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2>{"".join(f'<p class="lead">{t}</p>' for t in testo)}</div>
+    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">{prossimi}</p></div>
+  </section>'''
 
 def chips(items):
     return '<ul class="chips">' + "".join(f'<li class="chip">{s}</li>' for s in items) + "</ul>"
@@ -222,9 +245,9 @@ def home():
 <div class="wrap">
   <section class="hero" aria-labelledby="titolo">
     <div class="hero__text intro">
-      <p class="chip chip--status">UX/UI Designer · Portfolio 2026–27</p>
+      <p class="chip chip--status">UX/UI Designer a Milano · Aperto a nuove opportunità</p>
       <h1 id="titolo" class="display hero__title">Interfacce chiare per prodotti complessi.</h1>
-      <p class="lead">Ricerca, UI e design system: porto i prodotti dal problema giusto a componenti accessibili, pronti per lo sviluppo.</p>
+      <p class="lead">Sono Sebastiano Bosi, UX/UI Designer in Collecto. Ricerca, UI e design system: porto i prodotti dal problema giusto a componenti accessibili, pronti per lo sviluppo.</p>
       <div class="actions actions--stack-mobile">
         <a class="btn btn--primary" href="#lavori">Guarda i lavori</a>
         <a class="btn btn--secondary" href="chi-sono/">Chi sono</a>
@@ -277,7 +300,7 @@ def home():
     glows = [("blue", "-14%", "-260px", "62vw", "700px", .5), ("lavender", "52%", "-140px", "56vw", "620px", .32),
              ("warm", "66%", "520px", "30vw", "360px", .26), ("blue", "-18%", "1400px", "60vw", "700px", .2),
              ("lavender", "20%", "calc(100% - 900px)", "62vw", "520px", .18)]
-    return layout("", 0, CONFIG["name"], "Portfolio di Sebastiano Bosi, UX/UI Designer: ricerca, interfacce e design system. Case study UCI Cinemas, Jet HR e idealista.", body, glows)
+    return layout("", 0, CONFIG["name"], "Sebastiano Bosi, UX/UI Designer a Milano: user research, interfacce per app e web app, design system e accessibilità. Case study UCI Cinemas, Jet HR e idealista.", body, glows)
 
 def lavori():
     r = "../"
@@ -286,7 +309,7 @@ def lavori():
 <div class="wrap">
   <section class="intro" style="padding-top:clamp(72px,8vw,120px);display:grid;gap:20px;justify-items:start">
     <h1 class="display">Lavori</h1>
-    <p class="lead">Progetti di ricerca, interfacce e design system, dal problema al prodotto finito.</p>
+    <p class="lead">Tre case study, dal problema al prototipo: discovery, interfacce, design system e accessibilità. Sono progetti personali, realizzati in autonomia.</p>
     <div class="chips" data-filters role="group" aria-label="Filtra i progetti">
       <button class="chip" type="button" data-filter="tutti" aria-pressed="true">Tutti</button>
       <button class="chip" type="button" data-filter="app" aria-pressed="false">App mobile</button>
@@ -303,7 +326,7 @@ def lavori():
   </section>
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3), ("blue", "-10%", "900px", "50vw", "500px", .18)]
-    return layout("lavori/", 1, "Lavori", "Progetti di Sebastiano Bosi: ricerca UX, interfacce e design system.", body, glows)
+    return layout("lavori/", 1, "Lavori", "Case study di Sebastiano Bosi, UX/UI Designer: redesign di app mobile e web app, brand identity, design system e accessibilità.", body, glows)
 
 def uci():
     r = "../../"
@@ -339,7 +362,7 @@ def uci():
     <h1 id="titolo" class="display">UCI Cinemas</h1>
     <p class="lead" style="max-width:720px">Il redesign dell’app per comprare biglietti, ordinare al bar e farsi consigliare da Iris, un’assistente AI.</p>
     <dl class="meta">
-      <div><dt>Ruolo</dt><dd>Product designer · progetto personale</dd></div>
+      <div><dt>Ruolo</dt><dd>UX/UI Designer · progetto personale</dd></div>
       <div><dt>Anno</dt><dd>2026</dd></div>
       <div><dt>Piattaforma</dt><dd>iOS e Android (Flutter)</dd></div>
       <div><dt>Strumenti</dt><dd>Figma</dd></div>
@@ -350,6 +373,10 @@ def uci():
       {phone("UCI · Home", img + "uci-home.webp")}{phone("UCI · Iris", img + "iris-proposte.webp")}{phone("UCI · Posti", img + "uci-posti.webp")}{phone("UCI · Biglietto", img + "uci-biglietto.webp")}{phone("UCI · Bar", img + "uci-bar.webp")}
     </div>
   </div>
+  {in_breve([("Problema", "Comprare un biglietto richiede troppi passaggi, e l’acquisto rapido non aiuta a scegliere il film."),
+              ("Il mio ruolo", "Progetto individuale: discovery, brand identity, UX, UI, design system, accessibilità e motion."),
+              ("Cosa ho fatto", "Nuova identità, 85 schermate in 9 aree, 80 componenti e Iris, l’assistente AI che guida l’acquisto."),
+              ("Risultato", "Prototipo completo in Figma, contrasti WCAG 2.2 AA verificati in due temi, pronto per i test con utenti.")])}
 
   <section class="section" aria-labelledby="film">
     <div class="section-head"><h2 id="film" class="h2">Il film del progetto</h2><p class="label">53 secondi · senza audio</p></div>
@@ -439,10 +466,10 @@ def uci():
     <aside class="callout glass" style="margin-top:16px"><p class="callout__label">Per lo sviluppo</p><p>Testo dinamico fino al 200%, etichette per VoiceOver e TalkBack su ogni pulsante icona, rispetto di «Riduci movimento» e stati mai affidati al solo colore.</p></aside>
   </section>
 
-  <section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2><p class="lead">[Due o tre lezioni dal progetto: una decisione che rifaresti, una che cambieresti, cosa ti ha sorpreso.]</p></div>
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">Test con utenti, versione Android, Google Pay e Wallet, immagini definitive e passaggio agli sviluppatori.</p></div>
-  </section>
+  {lezioni(["Partire dal design system ha reso più veloci le 85 schermate: ogni componente nuovo entrava subito in libreria, con il suo changelog.",
+            "Rifarei la scelta di far confermare sempre il pagamento all’utente: un’assistente AI deve aiutare a decidere, non decidere al posto tuo.",
+            "Cambierei il momento della verifica di accessibilità: il rosso degli errori a 2,10:1 l’ho trovato a schermate finite. Oggi controllo i contrasti già sui token."],
+           "Test con utenti, versione Android, Google Pay e Wallet, immagini definitive e passaggio agli sviluppatori.")}
 
   <section class="section" aria-label="Prossimo progetto">
     <div class="projects">{project_card(next_p, r, "h2")}</div>
@@ -487,7 +514,7 @@ def jethr():
     <h1 id="titolo" class="display">Jet HR</h1>
     <p class="lead" style="max-width:760px">Il redesign dell’area dipendente di Jet HR, su desktop e iPhone, e una busta paga che si capisce anche senza conoscere le sigle.</p>
     <dl class="meta">
-      <div><dt>Ruolo</dt><dd>Product designer · progetto personale</dd></div>
+      <div><dt>Ruolo</dt><dd>UX/UI Designer · progetto personale</dd></div>
       <div><dt>Anno</dt><dd>2026</dd></div>
       <div><dt>Piattaforma</dt><dd>Web app desktop e iOS 27</dd></div>
       <div><dt>Strumenti</dt><dd>Figma</dd></div>
@@ -498,6 +525,10 @@ def jethr():
       {phone("Jet HR · Home", img + "jethr-m-home.webp")}{phone("Jet HR · Tempo libero", img + "jethr-m-tempo.webp")}{phone("Jet HR · Stipendio", img + "jethr-m-stipendio.webp")}{phone("Jet HR · Busta paga", img + "jethr-m-busta.webp")}{phone("Jet HR · Calcolo IRPEF", img + "jethr-m-irpef.webp")}
     </div>
   </div>
+  {in_breve([("Problema", "L’app è il desktop rimpicciolito e la busta paga parla la lingua del consulente del lavoro."),
+              ("Il mio ruolo", "Progetto individuale: discovery, ricerca normativa, UX, UI, design system e piano di test."),
+              ("Cosa ho fatto", "20 schermate per web app e iOS 27 con componenti condivisi, cedolino A4 e busta paga spiegata voce per voce."),
+              ("Risultato", "Home e busta paga rispondono prima alle quattro domande più frequenti. Test pianificato con 10 persone.")])}
 
   <section class="section split" aria-labelledby="progetto">
     <h2 id="progetto" class="h3">Il progetto</h2>
@@ -596,10 +627,10 @@ def jethr():
     <aside class="callout glass" style="margin-top:16px"><p class="callout__label">Prossima verifica</p><p>Usability test moderato da remoto con 5 persone su desktop e 5 su iPhone: capire quanto si riceve e quando, spiegare una voce della busta paga, chiedere un giorno di ferie, caricare una spesa, trovare la Certificazione Unica.</p></aside>
   </section>
 
-  <section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2><p class="lead">[Due o tre lezioni dal progetto: una decisione che rifaresti, una che cambieresti, cosa ti ha sorpreso.]</p></div>
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">Usability test con dipendenti veri, verifica dei testi con un consulente del lavoro, modalità scura e Dynamic Type, passaggio agli sviluppatori.</p></div>
-  </section>
+  {lezioni(["Studiare i vincoli di legge prima di disegnare ha cambiato il progetto: la forma della busta paga è libera, il contenuto no. Questo mi ha detto esattamente quanto potevo osare.",
+            "Rifarei la scelta di usare gli stessi componenti su desktop e iPhone: l’esperienza è coerente e il design system resta piccolo.",
+            "La prossima volta porterei prima le domande dei dipendenti davanti a persone vere, invece di partire solo da fonti pubbliche."],
+           "Usability test con dipendenti veri, verifica dei testi con un consulente del lavoro, modalità scura e Dynamic Type, passaggio agli sviluppatori.")}
 
   <section class="section" aria-label="Prossimo progetto">
     <div class="projects">{project_card(next_p, r, "h2")}</div>
@@ -666,7 +697,7 @@ def idealista():
     <h1 id="titolo" class="display">idealista</h1>
     <p class="lead" style="max-width:720px">Una nuova brand identity e l’app che ne nasce: trovare casa con prezzi chiari e annunci verificati, dalla ricerca alla visita.</p>
     <dl class="meta">
-      <div><dt>Ruolo</dt><dd>Brand e product designer · progetto personale</dd></div>
+      <div><dt>Ruolo</dt><dd>Brand e UX/UI Designer · progetto personale</dd></div>
       <div><dt>Anno</dt><dd>2026</dd></div>
       <div><dt>Piattaforma</dt><dd>iOS e Android</dd></div>
       <div><dt>Strumenti</dt><dd>Figma</dd></div>
@@ -677,6 +708,10 @@ def idealista():
       {phone("idealista · Onboarding", img + "idealista-o1.webp")}{phone("idealista · Home", img + "idealista-r1.webp")}{phone("idealista · Risultati", img + "idealista-r3.webp")}{phone("idealista · Annuncio", img + "idealista-a1.webp")}{phone("idealista · Pubblica", img + "idealista-c8.webp")}
     </div>
   </div>
+  {in_breve([("Problema", "Prezzi poco chiari, paura degli annunci falsi e filtri rigidi rendono difficile scegliere casa."),
+              ("Il mio ruolo", "Progetto individuale: brand identity, discovery, architettura, UI, design system e video del brand."),
+              ("Cosa ho fatto", "Rebrand evolutivo, 54 icone, 39 schermate in 7 flussi e un design system con modalità scura."),
+              ("Risultato", "Costo mensile totale in vista, ricerca in linguaggio naturale e avvisi anti-truffa in chat.")])}
 
   <section class="section" aria-labelledby="film">
     <div class="section-head"><h2 id="film" class="h2">Il video del brand</h2><p class="label">20 secondi · senza audio</p></div>
@@ -778,10 +813,10 @@ def idealista():
     <div class="grid grid--3">{"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in acc)}</div>
   </section>
 
-  <section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2><p class="lead">[Due o tre lezioni dal progetto: una decisione che rifaresti, una che cambieresti, cosa ti ha sorpreso.]</p></div>
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">Test di usabilità con 6–8 persone, interviste a chi affitta da privato, foto reali al posto dei segnaposto e passaggio agli sviluppatori.</p></div>
-  </section>
+  {lezioni(["Un rebrand evolutivo è più difficile di uno da zero: il lavoro vero è decidere cosa tenere. Tenere solo il pixel quadrato ha dato coerenza a logo, icone, mappa e motion.",
+            "Rifarei la regola di una sola azione magenta per schermata: ha semplificato decine di decisioni sull’interfaccia.",
+            "Cambierei l’ordine: farei qualche intervista prima di chiudere i flussi. Le recensioni dicono cosa non funziona, non sempre perché."],
+           "Test di usabilità con 6–8 persone, interviste a chi affitta da privato, foto reali al posto dei segnaposto e passaggio agli sviluppatori.")}
 
   <section class="section" aria-label="Prossimo progetto">
     <div class="projects">{project_card(next_p, r, "h2")}</div>
@@ -800,6 +835,7 @@ def chi_sono():
       <p class="chip chip--status" style="width:max-content">UX/UI Designer · Milano</p>
       <h1 id="titolo" class="display" style="max-width:10ch">Ciao, sono Sebastiano.</h1>
       <p class="lead" style="max-width:720px">{BIO}</p>
+      <p class="lead" style="max-width:720px">Cerco un ruolo da UX/UI Designer in un team di prodotto, in startup e scale-up italiane, dove portare ricerca, interfacce e design system dalla prima idea allo sviluppo.</p>
       <div class="actions actions--stack-mobile">
         <a class="btn btn--primary" href="../{CONFIG['cv']}" download>Scarica il CV</a>
         <a class="btn btn--secondary" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
@@ -815,7 +851,7 @@ def chi_sono():
 
   <section class="section grid grid--2" style="gap:48px 32px;align-items:start" aria-label="Percorso">
     <div class="stack" style="--gap:12px"><h2 class="h3">Esperienza</h2>{timeline(ESPERIENZA)}</div>
-    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2>{timeline(FORMAZIONE)}</div>
+    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2>{timeline(FORMAZIONE)}<p><a class="link" href="../cv/">Leggi il CV completo in testo{icon("arrow-up-right", 18)}</a></p></div>
   </section>
 
   <section class="section stack" aria-labelledby="skill">
@@ -846,7 +882,7 @@ def contatti():
   <div class="split split--contacts" style="padding-block:clamp(64px,8vw,120px) 0">
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
       <h1 id="titolo" class="display">Scrivimi.</h1>
-      <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi.</p>
+      <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi. Sono a Milano.</p>
     </section>
 
     <section aria-label="Contatti diretti">
@@ -889,13 +925,117 @@ def not_found():
                 .replace('href="chi-sono/"', 'href="/chi-sono/"').replace('href="contatti/"', 'href="/contatti/"')
                 .replace('href="#metodo"', 'href="/#metodo"'))
 
+# ---------------------------------------------------------------------------
+# Dati per recruiter e agenti AI: JSON-LD, CV in testo, llms.txt
+# ---------------------------------------------------------------------------
+import json
+
+PROGETTI_TESTO = {
+    "lavori/uci-cinemas/": "Redesign dell’app UCI Cinemas (iOS e Android, Flutter): nuova brand identity, 85 schermate in 9 aree, design system da 80 componenti, assistente AI Iris per l’acquisto, revisione WCAG 2.2 AA, video in motion design.",
+    "lavori/jet-hr/": "Redesign dell’area dipendente di Jet HR (web app desktop e iOS 27): discovery sulle domande dei dipendenti, ricerca normativa sulla busta paga, 20 schermate con componenti condivisi, cedolino A4 riprogettato, piano di usability test.",
+    "lavori/idealista/": "Rebranding evolutivo di idealista e nuova app (iOS e Android): logo, colore, tipografia Funnel, 54 icone, 39 schermate in 7 flussi, design system con modalità scura, video del brand.",
+}
+
+def person_ld():
+    site = CONFIG["site_url"]
+    return {
+        "@type": "Person", "@id": site + "/#persona", "name": CONFIG["name"], "givenName": "Sebastiano", "familyName": "Bosi",
+        "jobTitle": "UX/UI Designer", "description": BIO, "url": site + "/", "image": site + "/assets/img/ritratto.webp",
+        "email": "mailto:" + CONFIG["email"], "sameAs": [CONFIG["linkedin"]],
+        "address": {"@type": "PostalAddress", "addressLocality": "Milano", "addressRegion": "Lombardia", "addressCountry": "IT"},
+        "worksFor": {"@type": "Organization", "name": "Collecto"},
+        "hasOccupation": {"@type": "Occupation", "name": "UX/UI Designer", "occupationLocation": {"@type": "City", "name": "Milano"},
+                          "skills": ", ".join(HARD_SKILLS + STRUMENTI)},
+        "alumniOf": [{"@type": "EducationalOrganization", "name": b} for _, b, _ in FORMAZIONE],
+        "knowsAbout": KNOWS_ABOUT,
+        "knowsLanguage": [{"@type": "Language", "name": "Italiano", "alternateName": "it"}, {"@type": "Language", "name": "Inglese", "alternateName": "en"}],
+    }
+
+def structured_data(page, title, description):
+    if page == "404":
+        return ""
+    site = CONFIG["site_url"]
+    url = site + "/" + page
+    graph = [person_ld(), {"@type": "WebSite", "@id": site + "/#sito", "url": site + "/", "name": CONFIG["name"] + " — Portfolio",
+                           "inLanguage": "it-IT", "author": {"@id": site + "/#persona"}}]
+    proj = next((p for p in PROJECTS if p["slug"] == page), None)
+    if page in ("chi-sono/", "cv/"):
+        graph.append({"@type": "ProfilePage", "@id": url, "url": url, "name": title, "description": description,
+                      "inLanguage": "it-IT", "mainEntity": {"@id": site + "/#persona"}, "isPartOf": {"@id": site + "/#sito"}})
+    elif proj:
+        graph.append({"@type": "CreativeWork", "@id": url, "url": url, "name": proj["title"] + " — case study",
+                      "headline": proj["desc"], "description": PROGETTI_TESTO[page], "image": site + "/" + proj["img"],
+                      "inLanguage": "it-IT", "dateCreated": "2026", "author": {"@id": site + "/#persona"},
+                      "creator": {"@id": site + "/#persona"}, "genre": "Case study UX/UI", "isPartOf": {"@id": site + "/#sito"}})
+    else:
+        graph.append({"@type": "WebPage", "@id": url, "url": url, "name": title, "description": description,
+                      "inLanguage": "it-IT", "about": {"@id": site + "/#persona"}, "isPartOf": {"@id": site + "/#sito"}})
+    data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
+    return '<script type="application/ld+json">' + data.replace("</", "<\\/") + "</script>"
+
+def cv_page():
+    r = "../"
+    def esp(items, dettagli=None):
+        out = ""
+        for a, b, c in items:
+            d = (dettagli or {}).get(a, "")
+            out += f'<li class="glass cv-item"><div><h3 class="cv-item__title">{a}</h3><p class="label">{b}</p>{f"<p class=muted>{d}</p>" if d else ""}</div><p class="label">{c}</p></li>'
+        return f'<ul class="cv-list">{out}</ul>'
+    progetti = "".join(
+        f'<li class="glass cv-item"><div><h3 class="cv-item__title"><a href="{r}{p["slug"]}">{p["title"]}</a></h3><p class="label">{p["eyebrow"].replace("Case study · ", "")} · progetto personale</p><p class="muted">{PROGETTI_TESTO[p["slug"]]}</p></div></li>'
+        for p in PROJECTS)
+    body = f"""
+<div class="wrap">
+  <article class="cv" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
+    <header class="stack" style="--gap:16px">
+      <p class="chip chip--status" style="width:max-content">Curriculum vitae</p>
+      <h1 id="titolo" class="display">{CONFIG['name']}</h1>
+      <p class="h4">UX/UI Designer · Milano, Italia</p>
+      <p class="muted">Email: <a href="mailto:{CONFIG['email']}">{CONFIG['email']}</a> · LinkedIn: <a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">sebastiano-bosi</a> · Portfolio: <a href="{r}">sebastianobosi.github.io</a></p>
+      <div class="actions actions--stack-mobile">
+        <a class="btn btn--primary" href="{r}{CONFIG['cv']}" download>Scarica il CV grafico</a>
+        <a class="btn btn--secondary" href="{r}{CONFIG['cv_ats']}" download>Scarica il CV solo testo (ATS)</a>
+      </div>
+    </header>
+    <section class="section stack" style="--gap:12px" aria-labelledby="profilo"><h2 id="profilo" class="h3">Profilo</h2><p class="lead">{BIO}</p></section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="esperienza"><h2 id="esperienza" class="h3">Esperienza</h2>{esp(ESPERIENZA, DETTAGLI)}</section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="progetti"><h2 id="progetti" class="h3">Progetti (case study)</h2><ul class="cv-list">{progetti}</ul></section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="formazione"><h2 id="formazione" class="h3">Formazione</h2>{esp(FORMAZIONE)}</section>
+    <section class="section stack" style="--gap:16px" aria-labelledby="competenze"><h2 id="competenze" class="h3">Competenze</h2>
+      <p><strong>Hard skill:</strong> {", ".join(HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2", "Architettura dell’informazione", "Brand identity", "Motion design"])}</p>
+      <p><strong>Strumenti:</strong> {", ".join(STRUMENTI + ["Figma Sites"])}</p>
+      <p><strong>Soft skill:</strong> {", ".join(SOFT_SKILLS)}</p>
+      <p><strong>Lingue:</strong> {", ".join(f"{a} ({b.lower()})" for a, b, _ in LINGUE)}</p>
+    </section>
+  </article>
+</div>"""
+    glows = [("blue", "-14%", "-240px", "62vw", "620px", .36), ("lavender", "55%", "-120px", "56vw", "560px", .26)]
+    return layout("cv/", 1, "Curriculum", "Curriculum di Sebastiano Bosi, UX/UI Designer a Milano: esperienza in Collecto, Master UX/UI Design Start2Impact, competenze, strumenti e case study.", body, glows)
+
+def llms_txt():
+    site = CONFIG["site_url"]
+    righe = [f"# {CONFIG['name']} — UX/UI Designer", "",
+             f"> Portfolio di {CONFIG['name']}, UX/UI Designer a Milano (Italia). Oggi in Collecto app (da luglio 2025). Si occupa di discovery, user research, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.", "",
+             "## Profilo", "", BIO, "",
+             "## Esperienza", ""]
+    righe += [f"- {a}, {b} ({c or 'freelance'}): {DETTAGLI.get(a, '')}".rstrip(": ") for a, b, c in ESPERIENZA]
+    righe += ["", "## Formazione", ""] + [f"- {a}, {b} ({c})" for a, b, c in FORMAZIONE]
+    righe += ["", "## Competenze", "", "- Hard skill: " + ", ".join(HARD_SKILLS), "- Strumenti: " + ", ".join(STRUMENTI),
+              "- Ambiti: " + ", ".join(KNOWS_ABOUT), "- Soft skill: " + ", ".join(SOFT_SKILLS),
+              "- Lingue: " + ", ".join(f"{a} ({b.lower()})" for a, b, _ in LINGUE), ""]
+    righe += ["## Contatti", "", f"- Email: {CONFIG['email']}", f"- LinkedIn: {CONFIG['linkedin']}", ""]
+    righe += ["## Case study", ""] + [f"- [{p['title']}]({site}/{p['slug']}): {PROGETTI_TESTO[p['slug']]}" for p in PROJECTS]
+    righe += ["", "## Pagine", "", f"- [Chi sono]({site}/chi-sono/): percorso, metodo, competenze", f"- [CV in testo]({site}/cv/): curriculum completo in HTML",
+              f"- [CV solo testo, PDF]({site}/{CONFIG['cv_ats']}): versione leggibile dagli ATS", f"- [Contatti]({site}/contatti/)", ""]
+    return "\n".join(righe)
+
 FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#07080f"/><circle cx="20" cy="18" r="22" fill="#1e4fd8" opacity=".55"/><circle cx="48" cy="50" r="20" fill="#9d7bea" opacity=".45"/><text x="32" y="41" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="24" fill="#f2f3f7">SB</text></svg>"""
 
 def main(out):
     src = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     os.makedirs(out, exist_ok=True)
     pages = {"index.html": home(), "lavori/index.html": lavori(), "lavori/uci-cinemas/index.html": uci(), "lavori/jet-hr/index.html": jethr(), "lavori/idealista/index.html": idealista(),
-             "chi-sono/index.html": chi_sono(), "contatti/index.html": contatti(), "404.html": not_found()}
+             "chi-sono/index.html": chi_sono(), "cv/index.html": cv_page(), "contatti/index.html": contatti(), "404.html": not_found()}
     for path, content in pages.items():
         p = os.path.join(out, path); os.makedirs(os.path.dirname(p), exist_ok=True)
         open(p, "w", encoding="utf-8").write(content)
@@ -905,10 +1045,11 @@ def main(out):
     os.makedirs(os.path.join(out, "assets/img"), exist_ok=True)
     open(os.path.join(out, "assets/img/favicon.svg"), "w").write(FAVICON)
     open(os.path.join(out, ".nojekyll"), "w").write("")
-    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "lavori/idealista/", "chi-sono/", "contatti/"]
+    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "lavori/idealista/", "chi-sono/", "cv/", "contatti/"]
     open(os.path.join(out, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{CONFIG['site_url']}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
+    open(os.path.join(out, "llms.txt"), "w", encoding="utf-8").write(llms_txt())
     open(os.path.join(out, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {CONFIG['site_url']}/sitemap.xml\n")
     print("Pagine generate:", ", ".join(pages))
 

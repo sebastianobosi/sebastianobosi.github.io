@@ -39,6 +39,16 @@ Bio, esperienza, formazione, competenze e lingue (presi dal CV) stanno in `tools
 
 Per un’immagine nuova usa `phone("Etichetta", "percorso.webp")` o `media("Etichetta", classe, "percorso.webp", "descrizione")` in `tools/build.py` e rigenera.
 
+## Recruiter e selezione automatica
+
+Il sito è pensato anche per i software di selezione (ATS) e gli agenti AI che leggono i portfolio:
+- ogni pagina ha dati strutturati schema.org (`Person`, `ProfilePage`, `CreativeWork`) generati da `structured_data()` in `tools/build.py`;
+- `cv/` è il curriculum in HTML semplice, a una colonna;
+- `llms.txt` riassume profilo, esperienza, competenze e case study in Markdown per gli agenti AI;
+- `assets/sebastiano-bosi-cv-ats.pdf` è il CV solo testo da caricare nei portali di lavoro. Si rigenera con `python3 tools/cv_ats.py` (serve `pip install reportlab`).
+
+Tutti questi file prendono i dati dalle liste in cima a `tools/build.py`: aggiorna lì e rigenera entrambi gli script.
+
 ## Contatti
 
 La pagina Contatti mostra solo contatti diretti: email (con pulsante «Copia»), LinkedIn e CV. Non c'è un modulo da gestire. Per cambiarli modifica `CONFIG` in `tools/build.py` e rigenera.

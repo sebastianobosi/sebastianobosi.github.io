@@ -1,0 +1,45 @@
+# Sebastiano Bosi — UX/UI Designer
+
+> Portfolio di Sebastiano Bosi, UX/UI Designer a Milano (Italia). Oggi in Collecto app (da luglio 2025). Si occupa di discovery, user research, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.
+
+## Profilo
+
+Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto.
+
+## Esperienza
+
+- UX/UI Designer, Collecto app · Milano (lug 2025 – oggi): Progetto interfacce e dinamiche di prodotto dell’app Collecto, pensate per coinvolgere gli utenti e generare valore concreto. Lavoro in Figma, dalla discovery al prototipo.
+- Fashion Photographer, Freelance · Milano (freelance): Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.
+- Photo Retoucher & Video Editor, PixelModa · Milano (feb 2023 – lug 2023): Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.
+
+## Formazione
+
+- Master in UX/UI Design, Start2Impact (ott 2023 – mag 2025)
+- Accademia di Fotografia di moda, Ferrari Fashion School (ott 2019 – set 2022)
+- Istituto Tecnico, Grafica e comunicazione, Istituto Salesiano San Zeno (2014 – 2019)
+
+## Competenze
+
+- Hard skill: Discovery, Wireframing, Prototyping, User testing, Grafica, Scrittura, HTML, CSS
+- Strumenti: Figma, Claude, ChatGPT, Photoshop
+- Ambiti: UX design, UI design, Product design, User research, Discovery, Usability testing, Wireframing, Prototipazione, Architettura dell’informazione, Design system, Design token, Accessibilità WCAG 2.2, Brand identity, Motion design, Figma, HTML, CSS
+- Soft skill: Team working, Networking, Impatto sociale, Proattività, Precisione, Mentoring, People oriented, Creatività
+- Lingue: Italiano (madrelingua), Inglese (intermedio)
+
+## Contatti
+
+- Email: sebastianobosi@icloud.com
+- LinkedIn: https://www.linkedin.com/in/sebastiano-bosi-24674016a
+
+## Case study
+
+- [UCI Cinemas](https://sebastianobosi.github.io/lavori/uci-cinemas/): Redesign dell’app UCI Cinemas (iOS e Android, Flutter): nuova brand identity, 85 schermate in 9 aree, design system da 80 componenti, assistente AI Iris per l’acquisto, revisione WCAG 2.2 AA, video in motion design.
+- [Jet HR](https://sebastianobosi.github.io/lavori/jet-hr/): Redesign dell’area dipendente di Jet HR (web app desktop e iOS 27): discovery sulle domande dei dipendenti, ricerca normativa sulla busta paga, 20 schermate con componenti condivisi, cedolino A4 riprogettato, piano di usability test.
+- [idealista](https://sebastianobosi.github.io/lavori/idealista/): Rebranding evolutivo di idealista e nuova app (iOS e Android): logo, colore, tipografia Funnel, 54 icone, 39 schermate in 7 flussi, design system con modalità scura, video del brand.
+
+## Pagine
+
+- [Chi sono](https://sebastianobosi.github.io/chi-sono/): percorso, metodo, competenze
+- [CV in testo](https://sebastianobosi.github.io/cv/): curriculum completo in HTML
+- [CV solo testo, PDF](https://sebastianobosi.github.io/assets/sebastiano-bosi-cv-ats.pdf): versione leggibile dagli ATS
+- [Contatti](https://sebastianobosi.github.io/contatti/)
