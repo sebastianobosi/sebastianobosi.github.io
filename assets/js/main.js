@@ -56,6 +56,87 @@
   });
 })();
 
+/* ---------- Provino: il fotogramma scelto va sotto il nome ---------- */
+(() => {
+  const sheet = document.querySelector('.contact-sheet');
+  const img = document.querySelector('[data-frame-img]');
+  const caption = document.querySelector('[data-frame-caption]');
+  if (!sheet || !img || !caption) return;
+  sheet.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-frame]');
+    if (!b || b.getAttribute('aria-pressed') === 'true') return;
+    sheet.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    const next = new Image();
+    next.src = b.dataset.frame;
+    const swap = () => {
+      img.src = b.dataset.frame;
+      img.alt = b.dataset.alt;
+      img.style.objectPosition = b.dataset.pos;
+      img.classList.remove('is-swapping');
+    };
+    img.classList.add('is-swapping');
+    setTimeout(() => (next.complete ? swap() : next.addEventListener('load', swap, { once: true })), 200);
+    caption.innerHTML = '';
+    const a = document.createElement('a');
+    a.href = b.dataset.href;
+    a.textContent = b.dataset.caption;
+    caption.appendChild(a);
+  });
+})();
+
+/* ---------- Ferma il nome che scorre (WCAG 2.2.2) ---------- */
+(() => {
+  const hero = document.querySelector('[data-hero]');
+  const btn = document.querySelector('[data-motion-toggle]');
+  if (!hero || !btn) return;
+  btn.addEventListener('click', () => {
+    const paused = hero.classList.toggle('is-paused');
+    btn.setAttribute('aria-pressed', String(paused));
+    btn.textContent = paused ? 'Riprendi il movimento' : 'Ferma il movimento';
+  });
+})();
+
+/* ---------- Entrata delle sezioni: titolo, poi testo, poi immagini ---------- */
+(() => {
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const sel = [
+    '.work-head > *', '.work-block__visual', '.work-block__cluster > *',
+    '.method-head > *', '.poster li', '.about__side > *', '.about__text > *', '.record > div',
+    '.section-head > *', '.brief > div', '.stat', '.steps li', '.figure', '.callout', '.lessons > div',
+    '.split > *', '.brand-tile', '.swatch', '.type-card', '.ucicon', '.id-icon', '.areas',
+    '.next > *', '.timeline li', '.chips', '.contact', '.footer__invite > *', '.footer__links'
+  ].join(',');
+  const els = [...document.querySelectorAll(sel)].filter((el) => !el.closest('.hero, .menu, .intro'));
+  const io = new IntersectionObserver((entries) => {
+    entries.filter((en) => en.isIntersecting).forEach((en, i) => {
+      en.target.style.transitionDelay = `${Math.min(i, 6) * 75}ms`;
+      en.target.classList.add('is-in');
+      io.unobserve(en.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach((el) => { el.classList.add('reveal'); io.observe(el); });
+  // rete di sicurezza: in fondo alla pagina non deve restare nulla nascosto
+  const atEnd = () => {
+    if (scrollY + innerHeight < document.documentElement.scrollHeight - 4) return;
+    document.querySelectorAll('.reveal:not(.is-in)').forEach((el) => el.classList.add('is-in'));
+    removeEventListener('scroll', atEnd);
+  };
+  addEventListener('scroll', atEnd, { passive: true });
+})();
+
+/* ---------- Video in loop: parte solo quando si vede, mai con «riduci movimento» ---------- */
+(() => {
+  const vids = document.querySelectorAll('video[data-autoplay]');
+  if (!vids.length || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      const v = en.target;
+      if (en.isIntersecting) { v.preload = 'auto'; v.play().catch(() => {}); } else { v.pause(); }
+    });
+  }, { threshold: 0.25 });
+  vids.forEach((v) => io.observe(v));
+})();
+
 /* ---------- Copia indirizzo email ---------- */
 (() => {
   const status = document.querySelector('[data-copy-status]');

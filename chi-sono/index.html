@@ -22,28 +22,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=1054bae8">
-<script src="../assets/js/main.js?v=1054bae8" defer></script>
+<link rel="stylesheet" href="../assets/css/style.css?v=eafd7060">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../assets/js/main.js?v=eafd7060" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-240px;width:62vw;height:620px;opacity:0.42"></div><div class="glow glow--lavender" style="left:55%;top:-120px;width:56vw;height:560px;opacity:0.32"></div><div class="glow glow--blue" style="left:50%;top:1800px;width:50vw;height:600px;opacity:0.16"></div></div>
 
 <header class="site-header">
   <div class="wrap">
-    <nav class="nav glass" aria-label="Principale">
+    <nav class="nav" aria-label="Principale">
       <a class="nav__logo" href="../">Sebastiano Bosi</a>
-      <ul class="nav__links"><li><a href="../lavori/">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/" aria-current="page">Chi sono</a></li></ul>
-      <a class="btn btn--primary nav__cta" href="../contatti/">Contattami</a>
-      <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="nav__right">
+        <ul class="nav__links"><li><a href="../lavori/">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/" aria-current="page">Chi sono</a></li></ul>
+        <a class="nav__cta" href="../contatti/">Contattami</a>
+        <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
     </nav>
   </div>
 </header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="nav glass menu__bar">
+  <div class="menu__bar">
     <a class="nav__logo" href="../">Sebastiano Bosi</a>
-    <button class="nav__menu-btn" type="button" data-menu-close aria-label="Chiudi il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="nav__menu-btn" type="button" data-menu-close>Chiudi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <ul class="menu__list"><li><a href="../lavori/">Lavori<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../#metodo">Metodo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../chi-sono/" aria-current="page">Chi sono<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../contatti/">Contatti<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul>
   <div class="actions">
@@ -57,7 +59,6 @@
 <div class="wrap">
   <section class="about-hero" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
     <div class="stack intro" style="--gap:clamp(20px,2vw,28px)">
-      <p class="chip chip--status" style="width:max-content">UX/UI Designer · Milano</p>
       <h1 id="titolo" class="display" style="max-width:10ch">Ciao, sono Sebastiano.</h1>
       <p class="lead" style="max-width:720px">Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto.</p>
       <p class="lead" style="max-width:720px">Cerco un ruolo da UX/UI Designer in un team di prodotto, in startup e scale-up italiane, dove portare ricerca, interfacce e design system dalla prima idea allo sviluppo.</p>
@@ -70,13 +71,18 @@
   </section>
 
   <section class="section" id="metodo" aria-labelledby="metodo-titolo">
-    <div class="section-head"><h2 id="metodo-titolo" class="h2">Come lavoro</h2><p class="label">Dal problema al componente</p></div>
-    <div class="grid grid--4"><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h3>Ricerca UX</h3><p class="muted">Interviste, mappe delle assunzioni e test per partire dal problema giusto.</p></article><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Interfacce e prototipi</h3><p class="muted">Flussi completi, con stati di errore, vuoti e offline, prototipati prima dello sviluppo.</p></article><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>Design system</h3><p class="muted">Token, componenti e regole documentate, con un changelog che allinea design e codice.</p></article><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4m0 0-3 6m3-6 3 6"/></svg></div><h3>Accessibilità</h3><p class="muted">Interfacce leggibili e facili da usare per tutte le persone, pensate così dal primo componente.</p></article></div>
+    <div class="method-head"><h2 id="metodo-titolo" class="h2">Come lavoro</h2><p class="lead">Dal problema al componente, in quattro passaggi che porto in ogni progetto.</p></div>
+    <ul class="poster"><li><span class="poster__word">Ricerca</span><span class="poster__fact">Interviste, mappe delle assunzioni e test, per partire dal problema giusto.</span></li><li><span class="poster__word">Interfacce</span><span class="poster__fact">Flussi completi, con stati di errore, vuoti e offline, prototipati prima dello sviluppo.</span></li><li><span class="poster__word">Design system</span><span class="poster__fact">Token, componenti e regole, con un changelog che allinea design e codice.</span></li><li><span class="poster__word">Accessibilità</span><span class="poster__fact">Contrasti, aree di tocco e screen reader, verificati dal primo componente.</span></li></ul>
   </section>
 
-  <section class="section grid grid--2" style="gap:48px 32px;align-items:start" aria-label="Percorso">
-    <div class="stack" style="--gap:12px"><h2 class="h3">Esperienza</h2><ul class="timeline"><li class="glass"><span><strong>UX/UI Designer</strong><span class="label">Collecto app · Milano · tempo pieno</span></span><span class="label">gen 2026 – oggi</span></li><li class="glass"><span><strong>UX/UI Designer, stage</strong><span class="label">Collecto app · Milano</span></span><span class="label">lug 2025 – gen 2026</span></li><li class="glass"><span><strong>Fashion Photographer</strong><span class="label">Freelance · Milano</span></span><span class="label"></span></li><li class="glass"><span><strong>Photo Retoucher & Video Editor</strong><span class="label">PixelModa · Milano</span></span><span class="label">feb 2023 – lug 2023</span></li></ul></div>
-    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2><ul class="timeline"><li class="glass"><span><strong>Master in UX/UI Design</strong><span class="label">Start2Impact</span></span><span class="label">ott 2023 – mag 2025</span></li><li class="glass"><span><strong>Accademia di Fotografia di moda</strong><span class="label">Ferrari Fashion School</span></span><span class="label">ott 2019 – set 2022</span></li><li class="glass"><span><strong>Istituto Tecnico, Grafica e comunicazione</strong><span class="label">Istituto Salesiano San Zeno</span></span><span class="label">2014 – 2019</span></li></ul><p><a class="link" href="../cv/">Leggi il CV completo in testo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p></div>
+  <section class="section" aria-labelledby="progetti-titolo">
+    <div class="section-head"><h2 id="progetti-titolo" class="h2">Dai miei progetti</h2><p class="lead">Tre case study personali, dalla discovery al prototipo.</p></div>
+    <ul class="mini-work"><li><a href="../lavori/uci-cinemas/"><span class="mini-work__img"><img src="../assets/img/uci-cover.webp" alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»" loading="lazy" width="1600" height="900"></span><span class="h4">UCI Cinemas</span><span class="muted">App mobile · brand identity · progetto personale</span></a></li><li><a href="../lavori/jet-hr/"><span class="mini-work__img"><img src="../assets/img/jethr-cover.webp" alt="La home di Jet HR su desktop e su smartphone, con lo stipendio nascosto e la data di accredito" loading="lazy" width="1600" height="900"></span><span class="h4">Jet HR</span><span class="muted">Web app e app mobile · progetto personale</span></a></li><li><a href="../lavori/idealista/"><span class="mini-work__img"><img src="../assets/img/idealista-cover.webp" alt="La copertina del progetto idealista: il nuovo logo con il pixel quadrato e le schermate dell’app su fondo lime" loading="lazy" width="1600" height="900"></span><span class="h4">idealista</span><span class="muted">Brand identity e app mobile · progetto personale</span></a></li></ul>
+  </section>
+
+  <section class="section grid grid--2 path" aria-label="Percorso">
+    <div class="stack" style="--gap:12px"><h2 class="h3">Esperienza</h2><ul class="timeline"><li><span><strong>UX/UI Designer</strong><span class="label">Collecto app · Milano · tempo pieno</span></span><span class="label">gen 2026 – oggi</span></li><li><span><strong>UX/UI Designer, stage</strong><span class="label">Collecto app · Milano</span></span><span class="label">lug 2025 – gen 2026</span></li><li><span><strong>Fashion Photographer</strong><span class="label">Freelance · Milano</span></span><span class="label"></span></li><li><span><strong>Photo Retoucher & Video Editor</strong><span class="label">PixelModa · Milano</span></span><span class="label">feb 2023 – lug 2023</span></li></ul></div>
+    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2><ul class="timeline"><li><span><strong>Master in UX/UI Design</strong><span class="label">Start2Impact</span></span><span class="label">ott 2023 – mag 2025</span></li><li><span><strong>Accademia di Fotografia di moda</strong><span class="label">Ferrari Fashion School</span></span><span class="label">ott 2019 – set 2022</span></li><li><span><strong>Istituto Tecnico, Grafica e comunicazione</strong><span class="label">Istituto Salesiano San Zeno</span></span><span class="label">2014 – 2019</span></li></ul><p><a class="link" href="../cv/">Leggi il CV completo in testo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p></div>
   </section>
 
   <section class="section stack" aria-labelledby="skill">
@@ -85,35 +91,34 @@
       <div class="stack" style="--gap:12px"><h3 class="h4">Hard skill</h3><ul class="chips"><li class="chip">Discovery</li><li class="chip">Wireframing</li><li class="chip">Prototyping</li><li class="chip">User testing</li><li class="chip">Grafica</li><li class="chip">Scrittura</li><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">Design system</li><li class="chip">Accessibilità</li></ul></div>
       <div class="stack" style="--gap:12px"><h3 class="h4">Strumenti</h3><ul class="chips"><li class="chip">Figma</li><li class="chip">CleverTap</li><li class="chip">Claude</li><li class="chip">ChatGPT</li><li class="chip">Photoshop</li></ul></div>
       <div class="stack" style="--gap:12px"><h3 class="h4">Soft skill</h3><ul class="chips"><li class="chip">Team working</li><li class="chip">Networking</li><li class="chip">Impatto sociale</li><li class="chip">Proattività</li><li class="chip">Precisione</li><li class="chip">Mentoring</li><li class="chip">People oriented</li><li class="chip">Creatività</li></ul></div>
-      <div class="stack" style="--gap:12px"><h3 class="h4">Lingue</h3><ul class="timeline"><li class="glass"><span><strong>Italiano</strong><span class="label">Madrelingua</span></span><span class="label"></span></li><li class="glass"><span><strong>Inglese</strong><span class="label">Intermedio</span></span><span class="label"></span></li></ul></div>
+      <div class="stack" style="--gap:12px"><h3 class="h4">Lingue</h3><ul class="timeline"><li><span><strong>Italiano</strong><span class="label">Madrelingua</span></span><span class="label"></span></li><li><span><strong>Inglese</strong><span class="label">Intermedio</span></span><span class="label"></span></li></ul></div>
     </div>
   </section>
 
-  <section class="section band band--center glass" aria-labelledby="ct">
-    <h2 id="ct" class="h2">Lavoriamo insieme.</h2>
-    <p class="lead">Hai un progetto o una posizione aperta? Scrivimi.</p>
-    <div class="actions actions--stack-mobile" style="justify-content:center">
-      <a class="btn btn--primary" href="../contatti/">Scrivimi</a>
-      <a class="btn btn--secondary" href="../assets/sebastiano-bosi-cv.pdf" download>Scarica il CV</a>
-    </div>
-  </section>
 </div>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer">
-      <p class="muted">© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
-      <nav aria-label="Contatti"><ul>
-        <li><a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:sebastianobosi@icloud.com">Email</a></li>
-        <li><a href="../assets/sebastiano-bosi-cv.pdf" download>CV</a></li>
-        <li><a href="../cv/">CV in testo</a></li>
-        <li><a href="../note-legali/">Note legali</a></li>
-      </ul></nav>
-      <a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+      <div class="footer__invite">
+        <h2>Lavoriamo insieme.</h2>
+        <p class="footer__lead">Hai una posizione aperta o un progetto? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
+        <a class="btn btn--primary" href="../contatti/">Scrivimi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <nav class="footer__links" aria-label="Contatti">
+        <a href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a>
+        <a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="../assets/sebastiano-bosi-cv.pdf" download>Curriculum (PDF)</a>
+        <a href="../cv/">Curriculum in testo</a>
+      </nav>
+      <div class="footer__legal">
+        <p>© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
+        <ul><li><a href="../note-legali/">Note legali</a></li><li><a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a></li></ul>
+      </div>
     </div>
   </div>
+  <span class="footer__name" aria-hidden="true">Sebastiano Bosi</span>
 </footer>
 </body>
 </html>

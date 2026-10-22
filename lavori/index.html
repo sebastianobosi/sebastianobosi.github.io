@@ -22,28 +22,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=1054bae8">
-<script src="../assets/js/main.js?v=1054bae8" defer></script>
+<link rel="stylesheet" href="../assets/css/style.css?v=eafd7060">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../assets/js/main.js?v=eafd7060" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-240px;width:62vw;height:620px;opacity:0.42"></div><div class="glow glow--lavender" style="left:55%;top:-160px;width:56vw;height:520px;opacity:0.3"></div><div class="glow glow--blue" style="left:-10%;top:900px;width:50vw;height:500px;opacity:0.18"></div></div>
 
 <header class="site-header">
   <div class="wrap">
-    <nav class="nav glass" aria-label="Principale">
+    <nav class="nav" aria-label="Principale">
       <a class="nav__logo" href="../">Sebastiano Bosi</a>
-      <ul class="nav__links"><li><a href="../lavori/" aria-current="page">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/">Chi sono</a></li></ul>
-      <a class="btn btn--primary nav__cta" href="../contatti/">Contattami</a>
-      <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="nav__right">
+        <ul class="nav__links"><li><a href="../lavori/" aria-current="page">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/">Chi sono</a></li></ul>
+        <a class="nav__cta" href="../contatti/">Contattami</a>
+        <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
     </nav>
   </div>
 </header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="nav glass menu__bar">
+  <div class="menu__bar">
     <a class="nav__logo" href="../">Sebastiano Bosi</a>
-    <button class="nav__menu-btn" type="button" data-menu-close aria-label="Chiudi il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="nav__menu-btn" type="button" data-menu-close>Chiudi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <ul class="menu__list"><li><a href="../lavori/" aria-current="page">Lavori<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../#metodo">Metodo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../chi-sono/">Chi sono<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../contatti/">Contatti<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul>
   <div class="actions">
@@ -55,9 +57,9 @@
 <main id="contenuto">
 
 <div class="wrap">
-  <section class="intro" style="padding-top:clamp(72px,8vw,120px);display:grid;gap:20px;justify-items:start">
-    <h1 class="display">Lavori</h1>
-    <p class="lead">Tre case study, dal problema al prototipo: discovery, interfacce, design system e accessibilità. Sono progetti personali, realizzati in autonomia.</p>
+  <section class="page-intro intro" aria-labelledby="titolo">
+    <h1 id="titolo" class="display">Lavori</h1>
+    <p class="lead">Tre case study, dal problema al prototipo: discovery, interfacce, design system e accessibilità. Sono progetti personali, realizzati in autonomia. Ti racconto volentieri anche quelli che non trovano spazio qui.</p>
     <div class="chips" data-filters role="group" aria-label="Filtra i progetti">
       <button class="chip" type="button" data-filter="tutti" aria-pressed="true">Tutti</button>
       <button class="chip" type="button" data-filter="app" aria-pressed="false">App mobile</button>
@@ -66,56 +68,58 @@
     </div>
     <p class="visually-hidden" aria-live="polite" data-filter-status>3 progetti</p>
   </section>
-  <div class="projects" style="margin-top:48px"><article class="project glass project--large" data-tags="app design-system">
-  <div class="project__text">
-    <p class="label">Case study · App mobile</p>
-    <h2><a href="../lavori/uci-cinemas/">UCI Cinemas</a></h2>
-    <p class="lead">Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te.</p>
+  <section class="section" style="margin-top:clamp(56px,6vw,96px)" aria-label="Progetti"><div class="work projects"><article class="work-block work-block--1" data-tags="app design-system">
+  <div class="work-block__visual"><img src="../assets/img/uci-cover.webp" alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»" loading="lazy" width="1600" height="900"></div>
+  <div class="work-block__cluster">
+    <div class="work-block__detail"><img src="../assets/img/uci-design-system.webp" alt="Una tavola del design system UCI in tema scuro: biglietto, mappa dei posti, carta fedeltà" loading="lazy" width="1600" height="1000"></div>
+    <h2 class="work-block__title"><a href="../lavori/uci-cinemas/">UCI Cinemas</a></h2>
+    <p class="work-block__kind">App mobile · brand identity · progetto personale</p>
+    <p>Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te. 85 schermate e 80 componenti in due temi.</p>
     <a class="link" href="../lavori/uci-cinemas/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <div class="project__media"><img src="../assets/img/uci-cover.webp" alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»" loading="lazy"></div>
-  
-</article><article class="project glass" data-tags="web app design-system">
-  <div class="project__text">
-    <p class="label">Case study · Web e mobile</p>
-    <h2><a href="../lavori/jet-hr/">Jet HR</a></h2>
-    <p class="muted">L’area dipendente e una busta paga che si capisce, su desktop e mobile.</p>
-    
+</article><article class="work-block work-block--2" data-tags="web app design-system">
+  <div class="work-block__visual"><img src="../assets/img/jethr-cover.webp" alt="La home di Jet HR su desktop e su smartphone, con lo stipendio nascosto e la data di accredito" loading="lazy" width="1600" height="900"></div>
+  <div class="work-block__cluster">
+    <div class="work-block__detail"><img src="../assets/img/jethr-d-home.webp" alt="La home della web app Jet HR: stipendio, tempo libero, cose da fare e settimana del team" loading="lazy" width="1600" height="1000"></div>
+    <h2 class="work-block__title"><a href="../lavori/jet-hr/">Jet HR</a></h2>
+    <p class="work-block__kind">Web app e app mobile · progetto personale</p>
+    <p>L’area dipendente e una busta paga che si capisce: le domande vere dei dipendenti al centro, gli stessi componenti su desktop e mobile.</p>
+    <a class="link" href="../lavori/jet-hr/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <div class="project__media"><img src="../assets/img/jethr-cover.webp" alt="La home di Jet HR su desktop e su smartphone, con lo stipendio nascosto e la data di accredito" loading="lazy"></div>
-  <a class="link" href="../lavori/jet-hr/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-</article><article class="project glass" data-tags="app design-system">
-  <div class="project__text">
-    <p class="label">Case study · Brand identity e app</p>
-    <h2><a href="../lavori/idealista/">idealista</a></h2>
-    <p class="muted">Nuova identità e app per trovare casa con prezzi chiari e annunci verificati.</p>
-    
+</article><article class="work-block work-block--3" data-tags="app design-system">
+  <div class="work-block__visual"><video muted loop playsinline preload="none" width="1600" height="900" poster="../assets/img/idealista-video-poster.webp" data-autoplay aria-label="Il video del brand idealista, senza audio: il pixel lime diventa il logo, poi colori, tipografia e mappa"><source src="../assets/video/idealista-brand-video.mp4" type="video/mp4"></video></div>
+  <div class="work-block__cluster">
+    <div class="work-block__detail"><img src="../assets/img/idealista-b-pixel.webp" alt="Il pixel quadrato del logo usato come sistema: app icon, pin della mappa e indicatori" loading="lazy" width="1600" height="1000"></div>
+    <h2 class="work-block__title"><a href="../lavori/idealista/">idealista</a></h2>
+    <p class="work-block__kind">Brand identity e app mobile · progetto personale</p>
+    <p>Nuova identità e app per trovare casa con prezzi chiari e annunci verificati: 39 schermate, 54 icone e un solo pixel quadrato.</p>
+    <a class="link" href="../lavori/idealista/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <div class="project__media"><img src="../assets/img/idealista-cover.webp" alt="La copertina del progetto idealista: il nuovo logo con il pixel quadrato e le schermate dell’app su fondo lime" loading="lazy"></div>
-  <a class="link" href="../lavori/idealista/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-</article></div>
-  <section class="section band glass" aria-labelledby="altri">
-    <div class="stack" style="--gap:8px"><h2 id="altri" class="h3">Vuoi vedere altri lavori?</h2>
-    <p class="lead">Ti racconto volentieri anche i progetti che non trovano spazio qui.</p></div>
-    <a class="btn btn--primary" href="../contatti/">Scrivimi</a>
-  </section>
+</article></div></section>
 </div>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer">
-      <p class="muted">© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
-      <nav aria-label="Contatti"><ul>
-        <li><a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:sebastianobosi@icloud.com">Email</a></li>
-        <li><a href="../assets/sebastiano-bosi-cv.pdf" download>CV</a></li>
-        <li><a href="../cv/">CV in testo</a></li>
-        <li><a href="../note-legali/">Note legali</a></li>
-      </ul></nav>
-      <a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+      <div class="footer__invite">
+        <h2>Lavoriamo insieme.</h2>
+        <p class="footer__lead">Hai una posizione aperta o un progetto? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
+        <a class="btn btn--primary" href="../contatti/">Scrivimi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <nav class="footer__links" aria-label="Contatti">
+        <a href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a>
+        <a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="../assets/sebastiano-bosi-cv.pdf" download>Curriculum (PDF)</a>
+        <a href="../cv/">Curriculum in testo</a>
+      </nav>
+      <div class="footer__legal">
+        <p>© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
+        <ul><li><a href="../note-legali/">Note legali</a></li><li><a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a></li></ul>
+      </div>
     </div>
   </div>
+  <span class="footer__name" aria-hidden="true">Sebastiano Bosi</span>
 </footer>
 </body>
 </html>

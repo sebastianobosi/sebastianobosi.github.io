@@ -59,10 +59,6 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
         f'<li><a href="{href(p)}"{" aria-current=\"page\"" if page == p else ""}>{label}{icon("arrow-up-right")}</a></li>'
         for label, p in NAV + [("Contatti", "contatti/")]
     )
-    glow_html = "".join(
-        f'<div class="glow glow--{c}" style="left:{x};top:{y};width:{w};height:{h};opacity:{o}"></div>'
-        for c, x, y, w, h, o in glows
-    )
     full_title = f"{title} — {CONFIG['name']}" if title != CONFIG["name"] else f"{CONFIG['name']} — UX/UI Designer a Milano"
     canonical = CONFIG["site_url"] + "/" + ("" if page == "" else page)
     return f"""<!doctype html>
@@ -90,27 +86,29 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
 <link rel="stylesheet" href="{r}assets/css/style.css?v={v}">
+<script>document.documentElement.classList.add('js')</script>
 <script src="{r}assets/js/main.js?v={v}" defer></script>
 {extra_head}</head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-<div class="glows" aria-hidden="true">{glow_html}</div>
 
 <header class="site-header">
   <div class="wrap">
-    <nav class="nav glass" aria-label="Principale">
+    <nav class="nav" aria-label="Principale">
       <a class="nav__logo" href="{r or './'}">{CONFIG['name']}</a>
-      <ul class="nav__links">{links}</ul>
-      <a class="btn btn--primary nav__cta" href="{r}contatti/">Contattami</a>
-      <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Apri il menu">{icon("menu")}</button>
+      <div class="nav__right">
+        <ul class="nav__links">{links}</ul>
+        <a class="nav__cta" href="{r}contatti/">Contattami</a>
+        <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu {icon("menu")}</button>
+      </div>
     </nav>
   </div>
 </header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="nav glass menu__bar">
+  <div class="menu__bar">
     <a class="nav__logo" href="{r or './'}">{CONFIG['name']}</a>
-    <button class="nav__menu-btn" type="button" data-menu-close aria-label="Chiudi il menu">{icon("close")}</button>
+    <button class="nav__menu-btn" type="button" data-menu-close>Chiudi {icon("close")}</button>
   </div>
   <ul class="menu__list">{menu_links}</ul>
   <div class="actions">
@@ -126,17 +124,24 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer">
-      <p class="muted">© 2026 {CONFIG['name']}. Tutti i diritti riservati.</p>
-      <nav aria-label="Contatti"><ul>
-        <li><a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:{CONFIG['email']}">Email</a></li>
-        <li><a href="{r}{CONFIG['cv']}" download>CV</a></li>
-        <li><a href="{r}cv/">CV in testo</a></li>
-        <li><a href="{r}note-legali/">Note legali</a></li>
-      </ul></nav>
-      <a href="#contenuto">Torna su {icon("arrow-up", 16)}</a>
+      <div class="footer__invite">
+        <h2>Lavoriamo insieme.</h2>
+        <p class="footer__lead">Hai una posizione aperta o un progetto? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
+        <a class="btn btn--primary" href="{r}contatti/">Scrivimi {icon("arrow-up-right", 18)}</a>
+      </div>
+      <nav class="footer__links" aria-label="Contatti">
+        <a href="mailto:{CONFIG['email']}">{CONFIG['email']}</a>
+        <a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="{r}{CONFIG['cv']}" download>Curriculum (PDF)</a>
+        <a href="{r}cv/">Curriculum in testo</a>
+      </nav>
+      <div class="footer__legal">
+        <p>© 2026 {CONFIG['name']}. Tutti i diritti riservati.</p>
+        <ul><li><a href="{r}note-legali/">Note legali</a></li><li><a href="#contenuto">Torna su {icon("arrow-up", 16)}</a></li></ul>
+      </div>
     </div>
   </div>
+  <span class="footer__name" aria-hidden="true">{CONFIG['name']}</span>
 </footer>
 </body>
 </html>
@@ -151,48 +156,68 @@ def media(label, cls="project__media", img=None, alt=""):
     return f'<div class="{cls}">{inner}</div>'
 
 PROJECTS = [
-    dict(slug="lavori/uci-cinemas/", title="UCI Cinemas", eyebrow="Case study · App mobile",
-         desc="Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te.",
-         media="Schermate UCI: Home, Iris, biglietto", tags="app design-system", large=True, cta="Leggi il case study",
-         img="assets/img/uci-cover.webp", alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»"),
-    dict(slug="lavori/jet-hr/", title="Jet HR", eyebrow="Case study · Web e mobile",
-         desc="L’area dipendente e una busta paga che si capisce, su desktop e mobile.", media="Jet HR: web app e app mobile",
-         tags="web app design-system", large=False, cta="Leggi il case study",
-         img="assets/img/jethr-cover.webp", alt="La home di Jet HR su desktop e su smartphone, con lo stipendio nascosto e la data di accredito"),
-    dict(slug="lavori/idealista/", title="idealista", eyebrow="Case study · Brand identity e app",
-         desc="Nuova identità e app per trovare casa con prezzi chiari e annunci verificati.", media="idealista: brand identity e app",
-         tags="app design-system", large=False, cta="Leggi il case study",
-         img="assets/img/idealista-cover.webp", alt="La copertina del progetto idealista: il nuovo logo con il pixel quadrato e le schermate dell’app su fondo lime"),
+    dict(slug="lavori/uci-cinemas/", title="UCI Cinemas", kind="App mobile · brand identity · progetto personale",
+         desc="Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te. 85 schermate e 80 componenti in due temi.",
+         tags="app design-system",
+         img="assets/img/uci-cover.webp", alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»",
+         detail="assets/img/uci-design-system.webp", detail_alt="Una tavola del design system UCI in tema scuro: biglietto, mappa dei posti, carta fedeltà"),
+    dict(slug="lavori/jet-hr/", title="Jet HR", kind="Web app e app mobile · progetto personale",
+         desc="L’area dipendente e una busta paga che si capisce: le domande vere dei dipendenti al centro, gli stessi componenti su desktop e mobile.",
+         tags="web app design-system",
+         img="assets/img/jethr-cover.webp", alt="La home di Jet HR su desktop e su smartphone, con lo stipendio nascosto e la data di accredito",
+         detail="assets/img/jethr-d-home.webp", detail_alt="La home della web app Jet HR: stipendio, tempo libero, cose da fare e settimana del team"),
+    dict(slug="lavori/idealista/", title="idealista", kind="Brand identity e app mobile · progetto personale",
+         desc="Nuova identità e app per trovare casa con prezzi chiari e annunci verificati: 39 schermate, 54 icone e un solo pixel quadrato.",
+         tags="app design-system",
+         img="assets/img/idealista-cover.webp", alt="La copertina del progetto idealista: il nuovo logo con il pixel quadrato e le schermate dell’app su fondo lime",
+         detail="assets/img/idealista-b-pixel.webp", detail_alt="Il pixel quadrato del logo usato come sistema: app icon, pin della mappa e indicatori",
+         video="assets/video/idealista-brand-video.mp4", poster="assets/img/idealista-video-poster.webp"),
 ]
 
-def project_card(p, r, heading="h3"):
-    href = (r + p["slug"]) if p["slug"] else None
-    title = f'<a href="{href}">{p["title"]}</a>' if href else p["title"]
-    link = (f'<a class="link" href="{href}" tabindex="-1" aria-hidden="true">{p["cta"]}{icon("arrow-up-right", 18)}</a>'
-            if href else f'<span class="label">{p["cta"]}</span>')
-    cls = "project glass" + (" project--large" if p["large"] else "")
-    return f"""<article class="{cls}" data-tags="{p['tags']}">
-  <div class="project__text">
-    <p class="label">{p['eyebrow']}</p>
-    <{heading}>{title}</{heading}>
-    <p class="{'lead' if p['large'] else 'muted'}">{p['desc']}</p>
-    {link if p['large'] else ''}
+def work_block(p, r, n, heading="h3"):
+    href = r + p["slug"]
+    if p.get("video"):
+        visual = (f'<video muted loop playsinline preload="none" width="1600" height="900" poster="{r + p["poster"]}" data-autoplay '
+                  f'aria-label="Il video del brand idealista, senza audio: il pixel lime diventa il logo, poi colori, tipografia e mappa">'
+                  f'<source src="{r + p["video"]}" type="video/mp4"></video>')
+    else:
+        visual = f'<img src="{r + p["img"]}" alt="{html.escape(p["alt"])}" loading="lazy" width="1600" height="900">'
+    return f"""<article class="work-block work-block--{n}" data-tags="{p['tags']}">
+  <div class="work-block__visual">{visual}</div>
+  <div class="work-block__cluster">
+    <div class="work-block__detail"><img src="{r + p['detail']}" alt="{html.escape(p['detail_alt'])}" loading="lazy" width="1600" height="1000"></div>
+    <{heading} class="work-block__title"><a href="{href}">{p['title']}</a></{heading}>
+    <p class="work-block__kind">{p['kind']}</p>
+    <p>{p['desc']}</p>
+    <a class="link" href="{href}" tabindex="-1" aria-hidden="true">Leggi il case study{icon("arrow-up-right", 18)}</a>
   </div>
-  {media(p['media'], img=(r + p['img']) if p.get('img') else None, alt=p.get('alt', ''))}
-  {'' if p['large'] else link}
 </article>"""
 
-SERVICES = [
-    ("search", "Ricerca UX", "Interviste, mappe delle assunzioni e test per partire dal problema giusto."),
-    ("layout", "Interfacce e prototipi", "Flussi completi, con stati di errore, vuoti e offline, prototipati prima dello sviluppo."),
-    ("components", "Design system", "Token, componenti e regole documentate, con un changelog che allinea design e codice."),
-    ("accessibility", "Accessibilità", "Interfacce leggibili e facili da usare per tutte le persone, pensate così dal primo componente."),
+def work_blocks(r, heading="h3"):
+    return '<div class="work projects">' + "".join(work_block(p, r, i, heading) for i, p in enumerate(PROJECTS, 1)) + "</div>"
+
+def next_block(p, r):
+    href = r + p["slug"]
+    return f"""<section class="section next" aria-labelledby="prossimo">
+    <div class="stack" style="--gap:16px">
+      <h2 id="prossimo" class="h2"><a href="{href}">Prossimo progetto: {p['title']}</a></h2>
+      <p class="muted">{p['kind']}</p>
+      <p>{p['desc']}</p>
+    </div>
+    <div class="next__visual"><img src="{r + p['img']}" alt="{html.escape(p['alt'])}" loading="lazy" width="1600" height="900"></div>
+  </section>"""
+
+METODO = [
+    ("Ricerca", "Interviste, mappe delle assunzioni e test, per partire dal problema giusto."),
+    ("Interfacce", "Flussi completi, con stati di errore, vuoti e offline, prototipati prima dello sviluppo."),
+    ("Design system", "Token, componenti e regole, con un changelog che allinea design e codice."),
+    ("Accessibilità", "Contrasti, aree di tocco e screen reader, verificati dal primo componente."),
 ]
 
-def services_html(items=SERVICES):
-    return '<div class="grid grid--4">' + "".join(
-        f'<article class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{t}</h3><p class="muted">{d}</p></article>'
-        for i, t, d in items) + "</div>"
+def method_html(heading_id="metodo-titolo"):
+    items = "".join(f'<li><span class="poster__word">{w}</span><span class="poster__fact">{f}</span></li>' for w, f in METODO)
+    return f"""<div class="method-head"><h2 id="{heading_id}" class="h2">Come lavoro</h2><p class="lead">Dal problema al componente, in quattro passaggi che porto in ogni progetto.</p></div>
+    <ul class="poster">{items}</ul>"""
 
 BIO_BREVE = "Dalla fotografia allo UX/UI design: ho trasformato la sensibilità visiva in progettazione di esperienze digitali. Oggi sono UX/UI Designer in Collecto, a Milano."
 BIO = "Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto."
@@ -224,98 +249,137 @@ LINGUE = [("Italiano", "Madrelingua", ""), ("Inglese", "Intermedio", "")]
 SKILLS = ["Discovery", "Wireframing", "Prototyping", "User testing", "Design system", "Accessibilità", "Figma"]
 
 def in_breve(items):
-    cells = "".join(f'<div class="callout callout--small glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in items)
-    return f'''<section style="margin-top:16px" aria-labelledby="breve"><h2 id="breve" class="visually-hidden">In breve</h2><div class="grid grid--4">{cells}</div></section>'''
+    cells = "".join(f'<div><h3>{t}</h3><p>{d}</p></div>' for t, d in items)
+    return f'<section class="brief" aria-labelledby="breve"><h2 id="breve" class="visually-hidden">In breve</h2>{cells}</section>'
 
 def lezioni(testo, prossimi):
-    return f'''<section class="section grid grid--2" aria-label="Lezioni e prossimi passi">
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Cosa ho imparato</h2>{"".join(f'<p class="lead">{t}</p>' for t in testo)}</div>
-    <div class="card glass stack" style="border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)"><h2 class="h3">Prossimi passi</h2><p class="lead">{prossimi}</p></div>
-  </section>'''
+    first = "".join(f'<p class="lead">{t}</p>' for t in testo)
+    return f"""<section class="section lessons" aria-label="Lezioni e prossimi passi">
+    <div><h2 class="h2">Cosa ho imparato</h2>{first}</div>
+    <div><h2 class="h2">Prossimi passi</h2><p class="lead">{prossimi}</p></div>
+  </section>"""
+
+def stats_html(stats):
+    cells = "".join(f'<div class="stat"><p class="stat__value">{v}</p><p>{l}</p></div>' for v, l in stats)
+    return f'<section class="section" aria-labelledby="numeri"><h2 id="numeri" class="h2 section-head">Il progetto in numeri</h2><div class="stats">{cells}</div></section>'
+
+def steps_html(steps, sub):
+    rows = "".join(f'<li><h3>{t}</h3><p>{d}</p></li>' for _, t, d in steps)
+    return f"""<section class="section" aria-labelledby="processo">
+    <div class="section-head"><h2 id="processo" class="h2">Processo</h2><p class="lead">{sub}</p></div>
+    <ol class="steps">{rows}</ol>
+  </section>"""
+
+def cs_intro(title, lead, meta, row_label, phones_html):
+    dl = "".join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in meta)
+    return f"""<section class="cs-intro intro" aria-labelledby="titolo">
+    <h1 id="titolo" class="display">{title}</h1>
+    <div class="cs-intro__side">
+      <p class="lead">{lead}</p>
+      <dl class="meta">{dl}</dl>
+      <p><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
+    </div>
+  </section>
+  <div class="stage">
+    <div class="phone-row" role="img" aria-label="{row_label}">{phones_html}</div>
+  </div>"""
+
+def callouts(items, cols="grid--3"):
+    return f'<div class="grid {cols}">' + "".join(f'<div class="callout glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in items) + "</div>"
 
 def chips(items):
     return '<ul class="chips">' + "".join(f'<li class="chip">{s}</li>' for s in items) + "</ul>"
 
 def timeline(items):
     return '<ul class="timeline">' + "".join(
-        f'<li class="glass"><span><strong>{a}</strong><span class="label">{b}</span></span><span class="label">{c}</span></li>'
+        f'<li><span><strong>{a}</strong><span class="label">{b}</span></span><span class="label">{c}</span></li>'
         for a, b, c in items) + "</ul>"
 
 # ---------------------------------------------------------------------------
 # Pagine
 # ---------------------------------------------------------------------------
+FRAMES = [
+    ("assets/img/uci-posti.webp", "50% 38%", "UCI Cinemas: la scelta dei posti in sala", "lavori/uci-cinemas/", "UCI Cinemas · la scelta dei posti"),
+    ("assets/img/iris-proposte.webp", "50% 40%", "UCI Cinemas: Iris propone i film della serata", "lavori/uci-cinemas/", "UCI Cinemas · Iris propone il film"),
+    ("assets/img/jethr-m-stipendio.webp", "50% 22%", "Jet HR: lo stipendio del mese con le differenze spiegate", "lavori/jet-hr/", "Jet HR · lo stipendio, spiegato"),
+    ("assets/img/jethr-m-tempo.webp", "50% 20%", "Jet HR: ferie e permessi in giorni", "lavori/jet-hr/", "Jet HR · ferie e permessi in giorni"),
+    ("assets/img/idealista-r4.webp", "50% 45%", "idealista: la mappa con i prezzi nei pin quadrati", "lavori/idealista/", "idealista · i prezzi sulla mappa"),
+    ("assets/img/idealista-a1.webp", "50% 30%", "idealista: la scheda annuncio con il costo mensile totale", "lavori/idealista/", "idealista · quanto spendi davvero"),
+]
+
+def marquee(cls):
+    name = f'<span>{CONFIG["name"]}</span><i class="marquee__dot"></i>'
+    return f'<span class="marquee {cls}" aria-hidden="true"><span class="marquee__track">{name * 4}</span></span>'
+
 def home():
     r = ""
-    cards = "".join(project_card(p, r) for p in PROJECTS)
+    src, pos, alt, href, cap = FRAMES[0]
+    sheet = "".join(
+        f'<button type="button" aria-pressed="{"true" if i == 0 else "false"}" data-frame="{f[0]}" data-pos="{f[1]}" data-alt="{html.escape(f[2])}" data-href="{f[3]}" data-caption="{html.escape(f[4])}">'
+        f'<img src="{f[0]}" alt="" style="object-position:{f[1]}" loading="lazy" width="56" height="56"><span class="visually-hidden">{html.escape(f[4])}</span></button>'
+        for i, f in enumerate(FRAMES))
     body = f"""
 <div class="wrap">
-  <section class="hero" aria-labelledby="titolo">
-    <div class="hero__text intro">
-      <p class="chip chip--status">UX/UI Designer a Milano</p>
-      <h1 id="titolo" class="display hero__title">Interfacce chiare per prodotti complessi.</h1>
-      <p class="lead">Sono Sebastiano Bosi, UX/UI Designer in Collecto. Ricerca, UI e design system: porto i prodotti dal problema giusto a componenti accessibili, pronti per lo sviluppo.</p>
-      <div class="actions actions--stack-mobile">
-        <a class="btn btn--primary" href="#lavori">Guarda i lavori</a>
-        <a class="btn btn--secondary" href="chi-sono/">Chi sono</a>
-      </div>
+  <section class="hero" data-hero aria-labelledby="titolo">
+    <div class="hero__stage">
+      <figure class="hero__square"><img src="{src}" alt="{html.escape(alt)}" style="object-position:{pos}" width="390" height="844" data-frame-img></figure>
+      <h1 id="titolo" class="hero__title"><span class="visually-hidden">Sebastiano Bosi, UX/UI designer a Milano</span>{marquee("marquee--ink")}{marquee("marquee--over")}</h1>
     </div>
-    <div class="phones" role="img" aria-label="Schermate dai progetti: la home dell’app UCI Cinemas, la home dell’app Jet HR e la home dell’app idealista">
-      {phone("UCI · Home", "assets/img/uci-home.webp")}{phone("Jet HR · Home", "assets/img/jethr-m-home.webp")}{phone("idealista · Home", "assets/img/idealista-r1.webp")}
+    <div class="hero__copy">
+      <p class="hero__lead">UX/UI designer a Milano, in Collecto. Vengo dalla fotografia di moda: oggi porto lo stesso occhio nelle interfacce, dalla ricerca al design system.</p>
+      <div class="contact-sheet" role="group" aria-label="Scegli una schermata dai progetti">{sheet}</div>
+      <p class="hero__caption" aria-live="polite" data-frame-caption><a href="{href}">{cap}</a></p>
+    </div>
+    <div class="hero__foot">
+      <p class="hero__where">Cerco un ruolo da UX/UI designer in un team di prodotto. <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false">Ferma il movimento</button></p>
+      <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
     </div>
   </section>
 
   <section class="section" id="lavori" aria-labelledby="lavori-titolo">
-    <div class="section-head"><h2 id="lavori-titolo" class="h2">Lavori selezionati</h2><p class="label">3 progetti</p></div>
-    <div class="projects">{cards}</div>
+    <div class="work-head"><h2 id="lavori-titolo" class="h2">Lavori</h2><p class="lead">Tre case study, dalla discovery al prototipo. Progetti personali, realizzati in autonomia.</p></div>
+    {work_blocks(r)}
   </section>
 
   <section class="section" id="metodo" aria-labelledby="metodo-titolo">
-    <div class="section-head"><h2 id="metodo-titolo" class="h2">Come lavoro</h2><p class="label">Dal problema al componente</p></div>
-    {services_html()}
+    {method_html()}
   </section>
 
   <section class="section" aria-labelledby="chi-titolo">
-    <div class="grid grid--2" style="align-items:start">
-      <div class="card glass stack" style="--gap:24px;border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)">
-        <img src="assets/img/ritratto-avatar.webp" alt="Ritratto di Sebastiano Bosi" width="80" height="80" style="width:80px;height:80px;border-radius:50%;border:1px solid var(--border-glass);object-fit:cover">
-        <h2 id="chi-titolo" class="h3">Ciao, sono Sebastiano.</h2>
-        <p class="lead">{BIO_BREVE}</p>
+    <div class="section-head"><h2 id="chi-titolo" class="h2">Chi sono</h2></div>
+    <div class="about">
+      <div class="about__side">
+        <div class="about__portrait"><img src="assets/img/ritratto.webp" alt="Ritratto di Sebastiano Bosi" width="960" height="1200" loading="lazy"></div>
+        <dl class="facts">
+          <div><dt>Oggi</dt><dd>UX/UI Designer in Collecto</dd></div>
+          <div><dt>Base</dt><dd>Milano</dd></div>
+          <div><dt>Prima</dt><dd>Fotografo di moda e ritoccatore</dd></div>
+        </dl>
+      </div>
+      <div class="about__text">
+        <p class="about__para">{BIO}</p>
         <div class="actions actions--stack-mobile">
           <a class="btn btn--primary" href="{CONFIG['cv']}" download>Scarica il CV</a>
           <a class="btn btn--secondary" href="chi-sono/">Più su di me</a>
         </div>
       </div>
-      <div class="stack" style="--gap:12px">
-        <h3 class="h4">Esperienza e formazione</h3>
-        {timeline([ESPERIENZA[0], ESPERIENZA[1], FORMAZIONE[0], ESPERIENZA[3]])}
-      </div>
     </div>
-  </section>
-
-  <section class="section" aria-label="Competenze">{chips(SKILLS).replace('class="chips"', 'class="chips chips--center"')}</section>
-
-  <section class="closing" aria-labelledby="contatti-titolo">
-    <h2 id="contatti-titolo" class="display">Lavoriamo insieme.</h2>
-    <p class="lead">Hai un progetto o una posizione aperta? Scrivimi.</p>
-    <div class="actions actions--stack-mobile">
-      <a class="btn btn--primary" href="contatti/">Scrivimi</a>
-      <a class="btn btn--secondary" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
+    <div class="record">
+      <p class="record__word">Il percorso</p>
+      <div><h3>Esperienza</h3><ul>{"".join(f'<li><span>{a} · {b.split(" · ")[0]}</span><span>{c}</span></li>' for a, b, c in ESPERIENZA)}</ul></div>
+      <div><h3>Formazione</h3><ul>{"".join(f'<li><span>{a} · {b}</span><span>{c}</span></li>' for a, b, c in FORMAZIONE)}</ul></div>
     </div>
   </section>
 </div>"""
-    glows = [("blue", "-14%", "-260px", "62vw", "700px", .5), ("lavender", "52%", "-140px", "56vw", "620px", .32),
-             ("warm", "66%", "520px", "30vw", "360px", .26), ("blue", "-18%", "1400px", "60vw", "700px", .2),
-             ("lavender", "20%", "calc(100% - 900px)", "62vw", "520px", .18)]
-    return layout("", 0, CONFIG["name"], "Sebastiano Bosi, UX/UI Designer a Milano: user research, interfacce per app e web app, design system e accessibilità. Case study UCI Cinemas, Jet HR e idealista.", body, glows)
+    return layout("", 0, CONFIG["name"], "Sebastiano Bosi, UX/UI Designer a Milano: user research, interfacce per app e web app, design system e accessibilità. Case study UCI Cinemas, Jet HR e idealista.", body, [])
 
 def lavori():
     r = "../"
-    cards = "".join(project_card(p, r, "h2") for p in PROJECTS)
     body = f"""
 <div class="wrap">
-  <section class="intro" style="padding-top:clamp(72px,8vw,120px);display:grid;gap:20px;justify-items:start">
-    <h1 class="display">Lavori</h1>
-    <p class="lead">Tre case study, dal problema al prototipo: discovery, interfacce, design system e accessibilità. Sono progetti personali, realizzati in autonomia.</p>
+  <section class="page-intro intro" aria-labelledby="titolo">
+    <h1 id="titolo" class="display">Lavori</h1>
+    <p class="lead">Tre case study, dal problema al prototipo: discovery, interfacce, design system e accessibilità. Sono progetti personali, realizzati in autonomia. Ti racconto volentieri anche quelli che non trovano spazio qui.</p>
     <div class="chips" data-filters role="group" aria-label="Filtra i progetti">
       <button class="chip" type="button" data-filter="tutti" aria-pressed="true">Tutti</button>
       <button class="chip" type="button" data-filter="app" aria-pressed="false">App mobile</button>
@@ -324,15 +388,9 @@ def lavori():
     </div>
     <p class="visually-hidden" aria-live="polite" data-filter-status>3 progetti</p>
   </section>
-  <div class="projects" style="margin-top:48px">{cards}</div>
-  <section class="section band glass" aria-labelledby="altri">
-    <div class="stack" style="--gap:8px"><h2 id="altri" class="h3">Vuoi vedere altri lavori?</h2>
-    <p class="lead">Ti racconto volentieri anche i progetti che non trovano spazio qui.</p></div>
-    <a class="btn btn--primary" href="../contatti/">Scrivimi</a>
-  </section>
+  <section class="section" style="margin-top:clamp(56px,6vw,96px)" aria-label="Progetti">{work_blocks(r, "h2")}</section>
 </div>"""
-    glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3), ("blue", "-10%", "900px", "50vw", "500px", .18)]
-    return layout("lavori/", 1, "Lavori", "Case study di Sebastiano Bosi, UX/UI Designer: redesign di app mobile e web app, brand identity, design system e accessibilità.", body, glows)
+    return layout("lavori/", 1, "Lavori", "Case study di Sebastiano Bosi, UX/UI Designer: redesign di app mobile e web app, brand identity, design system e accessibilità.", body, [])
 
 def uci():
     r = "../../"
@@ -358,35 +416,20 @@ def uci():
     ucicons = [("ellisse", "L’ellisse che sbuca dal buco: il simbolo in movimento"), ("occhi", "Gli occhi: guardare il cinema meglio"),
                ("popcorn", "Il popcorn a righe del bar"), ("cinepresa", "La cinepresa"), ("maschere", "Le maschere del teatro"), ("biglietto", "Il biglietto")]
     film_scenes = ["Iris sbuca da un buco nero, salta fuori e si presenta.", "Il manifesto «Watching movies better» con gli occhi delle ucicons.",
-                   "Il logo e le sue varianti su bianco, nero e giallo, poi il simbolo da solo.", "La palette: sette colori con codice e ruolo.",
+                   "Il logo e le sue varianti su bianco, nero e giallo, poi il simbolo da solo.", "La palette: sette colori, ognuno con il suo codice esadecimale e il suo ruolo.",
                    "La tipografia: Rubik per i titoli, Outfit per i testi.", "Le sei ucicons animate.",
                    "L’app in una serata: chiedi a Iris, lei cerca e trova il film, scegli i posti, confermi tu il pagamento, entri con il QR, ordini al bar senza fila e guadagni punti myUCI.",
                    "Chiusura: Iris, il logo e «Il cinema, a modo tuo»."]
     body = f"""
 <div class="wrap">
-  <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
-  <section class="intro" style="display:grid;gap:clamp(20px,2vw,28px);justify-items:start;padding-top:16px" aria-labelledby="titolo">
-    <p class="chip chip--status">Case study · App mobile</p>
-    <h1 id="titolo" class="display">UCI Cinemas</h1>
-    <p class="lead" style="max-width:720px">Il redesign dell’app per comprare biglietti, ordinare al bar e farsi consigliare da Iris, un’assistente AI.</p>
-    <dl class="meta">
-      <div><dt>Ruolo</dt><dd>UX/UI Designer · progetto personale</dd></div>
-      <div><dt>Piattaforma</dt><dd>App mobile</dd></div>
-      <div><dt>Strumenti</dt><dd>Figma</dd></div>
-    </dl>
-  </section>
-  <div class="figure__frame glass" style="margin-top:32px;padding:0">
-    <div class="phone-row" role="img" aria-label="Schermate principali dell’app UCI Cinemas: Home, Iris, scelta dei posti, biglietto e bar">
-      {phone("UCI · Home", img + "uci-home.webp")}{phone("UCI · Iris", img + "iris-proposte.webp")}{phone("UCI · Posti", img + "uci-posti.webp")}{phone("UCI · Biglietto", img + "uci-biglietto.webp")}{phone("UCI · Bar", img + "uci-bar.webp")}
-    </div>
-  </div>
+  {cs_intro("UCI Cinemas", "Il redesign dell’app per comprare biglietti, ordinare al bar e farsi consigliare da Iris, un’assistente AI.", [("Ruolo", "UX/UI Designer · progetto personale"), ("Piattaforma", "App mobile"), ("Strumenti", "Figma")], "Schermate principali dell’app UCI Cinemas: Home, Iris, scelta dei posti, biglietto e bar", f'''{phone("UCI · Home", img + "uci-home.webp")}{phone("UCI · Iris", img + "iris-proposte.webp")}{phone("UCI · Posti", img + "uci-posti.webp")}{phone("UCI · Biglietto", img + "uci-biglietto.webp")}{phone("UCI · Bar", img + "uci-bar.webp")}''')}
   {in_breve([("Problema", "Comprare un biglietto richiede troppi passaggi, e l’acquisto rapido non aiuta a scegliere il film."),
               ("Il mio ruolo", "Progetto individuale: discovery, brand identity, UX, UI, design system, accessibilità e motion."),
               ("Cosa ho fatto", "Nuova identità, 85 schermate in 9 aree, 80 componenti e Iris, l’assistente AI che guida l’acquisto."),
               ("Risultato", "Un prototipo completo e accessibile, con un’identità riconoscibile, pronto per i test con utenti.")])}
 
   <section class="section" aria-labelledby="film">
-    <div class="section-head"><h2 id="film" class="h2">Il film del progetto</h2><p class="label">Motion design</p></div>
+    <div class="section-head"><h2 id="film" class="h2">Il film del progetto</h2></div>
     <figure class="figure">
       <div class="figure__frame glass">
         <video class="film" controls playsinline preload="none" width="1920" height="1080" poster="{img}uci-cover.webp" aria-describedby="film-descrizione">
@@ -410,17 +453,12 @@ def uci():
     </div>
   </section>
 
-  <section class="section grid grid--stats" style="margin-top:clamp(64px,6vw,96px)" aria-label="Il progetto in numeri">
-    {"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in stats)}
-  </section>
+  {stats_html(stats)}
 
-  <section class="section" aria-labelledby="processo">
-    <div class="section-head"><h2 id="processo" class="h2">Processo</h2><p class="label">Quattro fasi</p></div>
-    <ol class="grid grid--4">{"".join(f'<li class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{n}. {t}</h3><p class="muted">{d}</p></li>' for n, (i, t, d) in enumerate(steps, 1))}</ol>
-  </section>
+  {steps_html(steps, "Dalla discovery all’accessibilità, con il design system al centro.")}
 
   <section class="section" aria-labelledby="brand">
-    <div class="section-head"><h2 id="brand" class="h2">Brand identity</h2><p class="label">Follow the yellow ellipse</p></div>
+    <div class="section-head"><h2 id="brand" class="h2">Brand identity</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Una nuova identità costruita attorno a un solo segno: l’ellisse gialla. È il logo, il simbolo dell’app, il pulsante di Iris e il gesto che lega ogni animazione.</p>
     <div class="brand-grid">
       <div class="brand-tile brand-tile--logo"><img src="{img}brand/logo.svg" alt="Logo UCI Cinemas: ellisse gialla e scritta uci cinemas in bianco" width="323" height="60"></div>
@@ -449,8 +487,8 @@ def uci():
   </section>
 
   <section class="section" aria-labelledby="aree">
-    <div class="section-head"><h2 id="aree" class="h2">Le 9 aree dell’app</h2><p class="label">85 schermate</p></div>
-    <ol class="areas">{"".join(f'<li class="glass">{a}</li>' for a in areas)}</ol>
+    <div class="section-head"><h2 id="aree" class="h2">Le 9 aree dell’app</h2></div>
+    <ol class="areas">{"".join(f'<li>{a}</li>' for a in areas)}</ol>
     <figure class="figure" style="margin-top:16px">
       <div class="figure__frame glass">{media("Mappa dei flussi", "figure__media figure__media--fit", img + "uci-mappa-flussi.webp", "Mappa dei flussi: dall’onboarding alla Home, e dalla Home ad acquisto classico, acquisto con Iris, film, cinema, biglietti, profilo; dal biglietto al bar e al promemoria")}</div>
       <figcaption>Mappa dei flussi: tutte le aree e i collegamenti del prototipo completo.</figcaption>
@@ -458,9 +496,9 @@ def uci():
   </section>
 
   <section class="section" aria-labelledby="ds">
-    <div class="section-head"><h2 id="ds" class="h2">Design system</h2><p class="label">Componenti, token e regole</p></div>
+    <div class="section-head"><h2 id="ds" class="h2">Design system</h2></div>
     <p class="lead" style="margin-bottom:24px">Ogni schermata usa componenti del design system: prima si riusa ciò che esiste, poi si crea il nuovo e lo si aggiunge alla libreria, con ogni modifica nel changelog.</p>
-    <div class="grid grid--3">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
+    <ul class="notes">{"".join(f'<li><p>{t}</p></li>' for t in rules)}</ul>
     <figure class="figure" style="margin-top:16px">
       <div class="figure__frame glass">{media("Design system", "figure__media figure__media--fit", img + "uci-design-system.webp", "Design system UCI Cinemas: titolo e una tavola di componenti reali dell’app in tema Dark")}</div>
       <figcaption>Alcuni componenti del design system in tema scuro: dalla mappa dei posti al biglietto, dal bar alla carta fedeltà.</figcaption>
@@ -468,8 +506,8 @@ def uci():
   </section>
 
   <section class="section" aria-labelledby="a11y">
-    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità</h2><p class="label">Pensata per tutti</p></div>
-    <div class="grid grid--3">{"".join(f'<div class="callout glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in acc)}</div>
+    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità</h2></div>
+    <ul class="notes">{"".join(f'<li><h3>{t}</h3><p>{d}</p></li>' for t, d in acc)}</ul>
   </section>
 
   {lezioni(["Partire dal design system ha reso più veloci le 85 schermate: ogni componente nuovo entrava subito in libreria, con il suo changelog.",
@@ -477,9 +515,7 @@ def uci():
             "Cambierei il momento della verifica di accessibilità: alcuni contrasti li ho corretti a schermate finite. Oggi li controllo già quando definisco i colori."],
            "Test con utenti, pagamenti digitali, immagini definitive e passaggio agli sviluppatori.")}
 
-  <section class="section" aria-label="Prossimo progetto">
-    <div class="projects">{project_card(next_p, r, "h2")}</div>
-  </section>
+  {next_block(next_p, r)}
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
              ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
@@ -516,22 +552,7 @@ def jethr():
     next_p = dict(PROJECTS[2]); next_p["eyebrow"] = "Prossimo progetto · Brand identity e app"
     body = f"""
 <div class="wrap">
-  <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
-  <section class="intro" style="display:grid;gap:clamp(20px,2vw,28px);justify-items:start;padding-top:16px" aria-labelledby="titolo">
-    <p class="chip chip--status">Case study · Web e mobile</p>
-    <h1 id="titolo" class="display">Jet HR</h1>
-    <p class="lead" style="max-width:760px">Il redesign dell’area dipendente di Jet HR, su desktop e mobile, e una busta paga che si capisce anche senza conoscere le sigle.</p>
-    <dl class="meta">
-      <div><dt>Ruolo</dt><dd>UX/UI Designer · progetto personale</dd></div>
-      <div><dt>Piattaforma</dt><dd>Desktop e mobile</dd></div>
-      <div><dt>Strumenti</dt><dd>Figma</dd></div>
-    </dl>
-  </section>
-  <div class="figure__frame glass" style="margin-top:32px;padding:0">
-    <div class="phone-row" role="img" aria-label="Schermate dell’app mobile di Jet HR: home, tempo libero, stipendio, busta paga spiegata e calcolo dell’IRPEF">
-      {phone("Jet HR · Home", img + "jethr-m-home.webp")}{phone("Jet HR · Tempo libero", img + "jethr-m-tempo.webp")}{phone("Jet HR · Stipendio", img + "jethr-m-stipendio.webp")}{phone("Jet HR · Busta paga", img + "jethr-m-busta.webp")}{phone("Jet HR · Calcolo IRPEF", img + "jethr-m-irpef.webp")}
-    </div>
-  </div>
+  {cs_intro("Jet HR", "Il redesign dell’area dipendente di Jet HR, su desktop e mobile, e una busta paga che si capisce anche senza conoscere le sigle.", [("Ruolo", "UX/UI Designer · progetto personale"), ("Piattaforma", "Desktop e mobile"), ("Strumenti", "Figma")], "Schermate dell’app mobile di Jet HR: home, tempo libero, stipendio, busta paga spiegata e calcolo dell’IRPEF", f'''{phone("Jet HR · Home", img + "jethr-m-home.webp")}{phone("Jet HR · Tempo libero", img + "jethr-m-tempo.webp")}{phone("Jet HR · Stipendio", img + "jethr-m-stipendio.webp")}{phone("Jet HR · Busta paga", img + "jethr-m-busta.webp")}{phone("Jet HR · Calcolo IRPEF", img + "jethr-m-irpef.webp")}''')}
   {in_breve([("Problema", "L’app è il desktop rimpicciolito e la busta paga parla la lingua del consulente del lavoro."),
               ("Il mio ruolo", "Progetto individuale: discovery, ricerca normativa, UX, UI, design system e piano di test."),
               ("Cosa ho fatto", "Web app e app mobile con gli stessi componenti, un nuovo cedolino e una busta paga spiegata voce per voce."),
@@ -545,19 +566,14 @@ def jethr():
     </div>
   </section>
 
-  <section class="section grid grid--stats" style="margin-top:clamp(64px,6vw,96px)" aria-label="Il progetto in numeri">
-    {"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in stats)}
-  </section>
+  {stats_html(stats)}
 
-  <section class="section" aria-labelledby="processo">
-    <div class="section-head"><h2 id="processo" class="h2">Processo</h2><p class="label">Quattro fasi</p></div>
-    <ol class="grid grid--4">{"".join(f'<li class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{n}. {t}</h3><p class="muted">{d}</p></li>' for n, (i, t, d) in enumerate(steps, 1))}</ol>
-  </section>
+  {steps_html(steps, "Dalle domande dei dipendenti ai test, con un solo design system.")}
 
   <section class="section" aria-labelledby="domande">
-    <div class="section-head"><h2 id="domande" class="h2">Le domande giuste</h2><p class="label">Discovery</p></div>
+    <div class="section-head"><h2 id="domande" class="h2">Le domande giuste</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Chi apre l’area dipendente ha quasi sempre una domanda precisa. Ho messo in ordine quelle più frequenti e ho costruito la home e la busta paga per rispondere prima a quelle.</p>
-    <div class="grid grid--2">{"".join(f'<div class="callout glass"><p class="callout__label">{q}</p><p>{a}</p></div>' for q, a in questions)}</div>
+    <ul class="notes">{"".join(f'<li><h3>{q}</h3><p>{a}</p></li>' for q, a in questions)}</ul>
     <figure class="figure" style="margin-top:16px">
       <div class="figure__frame glass">{media("Domande dei dipendenti", "figure__media figure__media--fit", img + "jethr-domande.webp", "Tavola di discovery: le domande di un dipendente raggruppate per tema, da «Quanto e quando» a «Dov’è il documento»")}</div>
       <figcaption>Le domande raggruppate per tema e frequenza: guidano l’ordine dei contenuti in home e nella busta paga.</figcaption>
@@ -565,13 +581,13 @@ def jethr():
   </section>
 
   <section class="section" aria-labelledby="legge">
-    <div class="section-head"><h2 id="legge" class="h2">Cosa si può cambiare</h2><p class="label">Vincoli di legge</p></div>
+    <div class="section-head"><h2 id="legge" class="h2">Cosa si può cambiare</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Prima di ridisegnare la busta paga ho verificato cosa è obbligatorio e cosa no. La forma è libera, il contenuto no.</p>
-    <div class="grid grid--2">{"".join(f'<div class="callout glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in legal)}</div>
+    <ul class="notes">{"".join(f'<li><h3>{t}</h3><p>{d}</p></li>' for t, d in legal)}</ul>
   </section>
 
   <section class="section" aria-labelledby="desktop">
-    <div class="section-head"><h2 id="desktop" class="h2">La web app</h2><p class="label">Desktop</p></div>
+    <div class="section-head"><h2 id="desktop" class="h2">La web app</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">In home ci sono lo stipendio con la data di accredito, il tempo libero in giorni, le cose da fare e la settimana del team. Le richieste si fanno da un pannello laterale, senza perdere il calendario.</p>
     <figure class="figure">
       <div class="figure__frame glass">{media("Home desktop", "figure__media figure__media--fit", img + "jethr-d-home.webp", "Home della web app: stipendio di settembre nascosto, tempo libero, cose da fare, settimana del team e richieste")}</div>
@@ -595,7 +611,7 @@ def jethr():
   </section>
 
   <section class="section" aria-labelledby="busta">
-    <div class="section-head"><h2 id="busta" class="h2">La busta paga</h2><p class="label">Due livelli, un solo dato</p></div>
+    <div class="section-head"><h2 id="busta" class="h2">La busta paga</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Il PDF ufficiale resta il documento legale, ma riorganizzato per domande. Nell’app, la vista spiegata mette ogni voce in parole semplici, con il nome ufficiale e il codice accanto. Gli importi sono gli stessi, cambiano le parole.</p>
     <figure class="figure">
       <div class="figure__frame glass">{media("Busta paga spiegata", "figure__media figure__media--fit", img + "jethr-d-busta.webp", "Busta paga di settembre spiegata: netto, differenze rispetto ad agosto, dal lordo al netto e tutte le voci")}</div>
@@ -614,14 +630,16 @@ def jethr():
   </section>
 
   <section class="section" aria-labelledby="ds">
-    <div class="section-head"><h2 id="ds" class="h2">Design system</h2><p class="label">Esteso dal sito di Jet HR</p></div>
+    <div class="section-head"><h2 id="ds" class="h2">Design system</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Colori e caratteri vengono dal sito di Jet HR. Li ho trasformati in variabili e stili, poi ho aggiunto i componenti che servivano all’app, ognuno con una variante desktop e una mobile.</p>
+    <h3 class="h4 brand-sub">Colore</h3>
     <ul class="swatches">{"".join(f'<li class="swatch" style="background:{h};color:{fg}"><span class="swatch__hex">{h}</span><span class="swatch__name">{n}</span><span class="swatch__use">{u}</span></li>' for h, n, u, fg in palette)}</ul>
-    <div class="grid grid--2" style="margin-top:16px">
+    <h3 class="h4 brand-sub">Tipografia</h3>
+    <div class="grid grid--2">
       <div class="type-card glass"><p class="type-card__sample" style="font-family:'Mona Sans',sans-serif;font-weight:800">Aa</p><div><p class="type-card__name" style="font-family:'Mona Sans',sans-serif;font-weight:800">Mona Sans</p><p class="muted">Titoli e importi</p></div></div>
       <div class="type-card glass"><p class="type-card__sample" style="font-family:'Wix Madefor Display',sans-serif">Aa</p><div><p class="type-card__name" style="font-family:'Wix Madefor Display',sans-serif">Wix Madefor Display</p><p class="muted">Testi ed etichette</p></div></div>
     </div>
-    <div class="grid grid--3" style="margin-top:16px">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
+    <ul class="notes" style="margin-top:clamp(32px,4vw,48px)">{"".join(f'<li><p>{t}</p></li>' for t in rules)}</ul>
     <figure class="figure" style="margin-top:16px">
       <div class="figure__frame glass">{media("Componenti condivisi", "figure__media figure__media--fit", img + "jethr-componenti.webp", "Tavola dei componenti condivisi: Toggle, Riga lista, Intestazione sezione, Controllo segmentato, Card netto e Scelta tipo, ognuno in versione desktop e mobile")}</div>
       <figcaption>I componenti condivisi, ognuno con la variante desktop e quella mobile.</figcaption>
@@ -629,8 +647,8 @@ def jethr():
   </section>
 
   <section class="section" aria-labelledby="a11y">
-    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità e test</h2><p class="label">Pensata per tutti</p></div>
-    <div class="grid grid--3">{"".join(f'<div class="callout glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in acc)}</div>
+    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità e test</h2></div>
+    <ul class="notes">{"".join(f'<li><h3>{t}</h3><p>{d}</p></li>' for t, d in acc)}</ul>
     <aside class="callout glass" style="margin-top:16px"><p class="callout__label">Prossima verifica</p><p>Usability test con dipendenti su desktop e mobile, sui compiti di ogni giorno: capire quanto si riceve e quando, spiegare una voce della busta paga, chiedere un giorno di ferie, caricare una spesa, trovare la Certificazione Unica.</p></aside>
   </section>
 
@@ -639,9 +657,7 @@ def jethr():
             "La prossima volta porterei prima le domande dei dipendenti davanti a persone vere, invece di partire solo da fonti pubbliche."],
            "Usability test con dipendenti veri, verifica dei testi con un consulente del lavoro, modalità scura e Dynamic Type, passaggio agli sviluppatori.")}
 
-  <section class="section" aria-label="Prossimo progetto">
-    <div class="projects">{project_card(next_p, r, "h2")}</div>
-  </section>
+  {next_block(next_p, r)}
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
              ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
@@ -700,29 +716,14 @@ def idealista():
         return "".join(phone(n, img + f"idealista-{n}.webp", a) for n, a in items)
     body = f"""
 <div class="wrap">
-  <p style="margin-top:clamp(32px,4vw,48px)"><a class="back" href="../">{icon("arrow-left", 18)} Tutti i lavori</a></p>
-  <section class="intro" style="display:grid;gap:clamp(20px,2vw,28px);justify-items:start;padding-top:16px" aria-labelledby="titolo">
-    <p class="chip chip--status">Case study · Brand identity e app</p>
-    <h1 id="titolo" class="display">idealista</h1>
-    <p class="lead" style="max-width:720px">Una nuova brand identity e l’app che ne nasce: trovare casa con prezzi chiari e annunci verificati, dalla ricerca alla visita.</p>
-    <dl class="meta">
-      <div><dt>Ruolo</dt><dd>Brand e UX/UI Designer · progetto personale</dd></div>
-      <div><dt>Piattaforma</dt><dd>App mobile</dd></div>
-      <div><dt>Strumenti</dt><dd>Figma</dd></div>
-    </dl>
-  </section>
-  <div class="figure__frame glass" style="margin-top:32px;padding:0">
-    <div class="phone-row" role="img" aria-label="Schermate principali dell’app idealista: onboarding, Home, risultati, scheda annuncio e pubblicazione">
-      {phone("idealista · Onboarding", img + "idealista-o1.webp")}{phone("idealista · Home", img + "idealista-r1.webp")}{phone("idealista · Risultati", img + "idealista-r3.webp")}{phone("idealista · Annuncio", img + "idealista-a1.webp")}{phone("idealista · Pubblica", img + "idealista-c8.webp")}
-    </div>
-  </div>
+  {cs_intro("idealista", "Una nuova brand identity e l’app che ne nasce: trovare casa con prezzi chiari e annunci verificati, dalla ricerca alla visita.", [("Ruolo", "Brand e UX/UI Designer · progetto personale"), ("Piattaforma", "App mobile"), ("Strumenti", "Figma")], "Schermate principali dell’app idealista: onboarding, Home, risultati, scheda annuncio e pubblicazione", f'''{phone("idealista · Onboarding", img + "idealista-o1.webp")}{phone("idealista · Home", img + "idealista-r1.webp")}{phone("idealista · Risultati", img + "idealista-r3.webp")}{phone("idealista · Annuncio", img + "idealista-a1.webp")}{phone("idealista · Pubblica", img + "idealista-c8.webp")}''')}
   {in_breve([("Problema", "Prezzi poco chiari, paura degli annunci falsi e filtri rigidi rendono difficile scegliere casa."),
               ("Il mio ruolo", "Progetto individuale: brand identity, discovery, architettura, UI, design system e video del brand."),
               ("Cosa ho fatto", "Rebrand evolutivo, 54 icone, 39 schermate in 7 flussi e un design system con modalità scura."),
               ("Risultato", "Costo mensile totale in vista, ricerca in linguaggio naturale e avvisi anti-truffa in chat.")])}
 
   <section class="section" aria-labelledby="film">
-    <div class="section-head"><h2 id="film" class="h2">Il video del brand</h2><p class="label">20 secondi · senza audio</p></div>
+    <div class="section-head"><h2 id="film" class="h2">Il video del brand</h2></div>
     <figure class="figure">
       <div class="figure__frame glass">
         <video class="film film--idealista" controls playsinline preload="none" width="1920" height="1080" poster="{img}idealista-video-poster.webp" aria-describedby="film-descrizione">
@@ -747,17 +748,12 @@ def idealista():
     </div>
   </section>
 
-  <section class="section grid grid--stats" style="margin-top:clamp(64px,6vw,96px)" aria-label="Il progetto in numeri">
-    {"".join(f'<div class="card glass stat"><p class="stat__value">{v}</p><p class="muted">{l}</p></div>' for v, l in stats)}
-  </section>
+  {stats_html(stats)}
 
-  <section class="section" aria-labelledby="processo">
-    <div class="section-head"><h2 id="processo" class="h2">Processo</h2><p class="label">Quattro fasi</p></div>
-    <ol class="grid grid--4">{"".join(f'<li class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{n}. {t}</h3><p class="muted">{d}</p></li>' for n, (i, t, d) in enumerate(steps, 1))}</ol>
-  </section>
+  {steps_html(steps, "Dal marchio all’app, con gli stessi token dal primo all’ultimo passo.")}
 
   <section class="section" aria-labelledby="brand">
-    <div class="section-head"><h2 id="brand" class="h2">Brand identity</h2><p class="label">Segui il tuo intuito</p></div>
+    <div class="section-head"><h2 id="brand" class="h2">Brand identity</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Il vecchio logo era una griglia di 7 moduli: forte, ma rigido e poco leggibile in piccolo. Il nuovo usa Funnel Display Bold e tiene un solo pixel, quello sulla «i»: sempre quadrato, mai arrotondato.</p>
     <div class="brand-grid">
       <div class="brand-tile brand-tile--idealista"><img src="{img}brand/idealista-logo.svg" alt="Logo idealista: scritta bianca su nero, con il puntino della prima i come pixel quadrato lime" width="271" height="49"></div>
@@ -776,21 +772,21 @@ def idealista():
     </div>
     <h3 class="h4 brand-sub">Iconografia</h3>
     <ul class="id-icons">{"".join(f'<li class="id-icon{" id-icon--active" if n == "Casa" else ""}">{idealista_icon(n)}<span>{n}</span></li>' for n in IDEALISTA_ICONS)}</ul>
-    <div class="grid grid--4" style="margin-top:16px">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">{a}</p><p>{b}</p></div>' for a, b in icon_rules)}</div>
+    <ul class="notes" style="margin-top:16px">{"".join(f'<li><h3>{a}</h3><p>{b}</p></li>' for a, b in icon_rules)}</ul>
     <h3 class="h4 brand-sub">Il sistema</h3>
     <div class="grid grid--2" style="align-items:start">{"".join(f'<figure class="figure"><div class="figure__frame glass">{media(t, "figure__media figure__media--fit", img + f"idealista-{n}.webp", d)}</div><figcaption><strong>{t}.</strong> {d}</figcaption></figure>' for n, t, d in brand_slides)}</div>
   </section>
 
   <section class="section" aria-labelledby="discovery">
-    <div class="section-head"><h2 id="discovery" class="h2">Discovery</h2><p class="label">Tre problemi dal sito attuale</p></div>
+    <div class="section-head"><h2 id="discovery" class="h2">Discovery</h2></div>
     <div class="grid grid--3">{"".join(f'<div class="card glass stack" style="--gap:12px;border-radius:var(--r-card);padding:clamp(24px,3vw,40px)"><h3 class="h4">{t}</h3><p class="muted">{d}</p></div>' for t, d in insights)}</div>
     <aside class="callout glass" style="margin-top:16px"><p class="callout__label">Limite</p><p>Discovery da desk research: sito, store e recensioni pubbliche. Le assunzioni vanno validate con test di usabilità e interviste a chi cerca e affitta casa.</p></aside>
   </section>
 
   <section class="section" aria-labelledby="architettura">
-    <div class="section-head"><h2 id="architettura" class="h2">Architettura</h2><p class="label">5 voci, 7 flussi</p></div>
+    <div class="section-head"><h2 id="architettura" class="h2">Architettura</h2></div>
     <p class="lead" style="max-width:760px;margin-bottom:24px">Una navigazione con le etichette di tutte le app immobiliari. «Pubblica» raccoglie quello che sul sito è sparso nella home: i tuoi annunci, idealista/valuta, i mutui e le agenzie.</p>
-    <ol class="areas">{"".join(f'<li class="glass">{a}</li>' for a in nav)}</ol>
+    <ol class="areas">{"".join(f'<li>{a}</li>' for a in nav)}</ol>
     <div class="grid grid--2" style="margin-top:16px;align-items:start">
       <figure class="figure"><div class="figure__frame glass">{media("Mappa dell’app", "figure__media figure__media--fit", img + "idealista-mappa.webp", "Mappa dell’app: le cinque voci della tab bar e le schermate di ognuna")}</div><figcaption>La mappa dell’app.</figcaption></figure>
       <figure class="figure"><div class="figure__frame glass">{media("Flussi", "figure__media figure__media--fit", img + "idealista-flussi.webp", "I sette flussi: onboarding, ricerca, annuncio e contatto, salvati, messaggi, pubblica, profilo")}</div><figcaption>I sette flussi, dall’onboarding al profilo.</figcaption></figure>
@@ -799,17 +795,16 @@ def idealista():
 
   {"".join(f"""<section class="section split split--wide" aria-labelledby="flusso-{k}">
     <div class="stack">
-      <p class="label">{lab}</p>
       <h2 id="flusso-{k}" class="h2">{t}</h2>
-      <p class="lead">{d}</p>
+      <p class="lead"><strong>{lab}.</strong> {d}</p>
     </div>
     <div class="phones phones--compact" role="img" aria-label="{html.escape(' · '.join(a for _, a in ph))}">{phones3(ph)}</div>
   </section>""" for k, (lab, t, d, ph) in enumerate(flows, 1))}
 
   <section class="section" aria-labelledby="ds">
-    <div class="section-head"><h2 id="ds" class="h2">Design system</h2><p class="label">Token e componenti</p></div>
+    <div class="section-head"><h2 id="ds" class="h2">Design system</h2></div>
     <p class="lead" style="margin-bottom:24px">Brand e app parlano la stessa lingua: colori, spazi e componenti nascono dagli stessi token, in modalità chiara e scura, e ogni componente è documentato.</p>
-    <div class="grid grid--3">{"".join(f'<div class="callout callout--small glass"><p class="callout__label">Regola</p><p>{t}</p></div>' for t in rules)}</div>
+    <ul class="notes">{"".join(f'<li><p>{t}</p></li>' for t in rules)}</ul>
     <div class="grid grid--2" style="margin-top:16px;align-items:start">
       <figure class="figure"><div class="figure__frame glass">{media("Componenti", "figure__media figure__media--fit", img + "idealista-componenti.webp", "Tavola dei componenti: ListingCard, TabBar, Button, PricePin e Badge con le loro varianti")}</div><figcaption>Alcuni componenti: ListingCard, TabBar, Button, PricePin e Badge.</figcaption></figure>
       <figure class="figure"><div class="figure__frame glass">{media("Icone", "figure__media figure__media--fit", img + "idealista-icone.webp", "Parte del set di 54 icone con terminali squadrati")}</div><figcaption>Una parte delle 54 icone.</figcaption></figure>
@@ -817,8 +812,8 @@ def idealista():
   </section>
 
   <section class="section" aria-labelledby="a11y">
-    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità</h2><p class="label">Pensata per tutti</p></div>
-    <div class="grid grid--3">{"".join(f'<div class="callout glass"><p class="callout__label">{t}</p><p>{d}</p></div>' for t, d in acc)}</div>
+    <div class="section-head"><h2 id="a11y" class="h2">Accessibilità</h2></div>
+    <ul class="notes">{"".join(f'<li><h3>{t}</h3><p>{d}</p></li>' for t, d in acc)}</ul>
   </section>
 
   {lezioni(["Un rebrand evolutivo è più difficile di uno da zero: il lavoro vero è decidere cosa tenere. Tenere solo il pixel quadrato ha dato coerenza a logo, icone, mappa e motion.",
@@ -826,9 +821,7 @@ def idealista():
             "Cambierei l’ordine: farei qualche intervista prima di chiudere i flussi. Le recensioni dicono cosa non funziona, non sempre perché."],
            "Test di usabilità, interviste a chi affitta da privato, foto reali al posto dei segnaposto e passaggio agli sviluppatori.")}
 
-  <section class="section" aria-label="Prossimo progetto">
-    <div class="projects">{project_card(next_p, r, "h2")}</div>
-  </section>
+  {next_block(next_p, r)}
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-160px", "56vw", "520px", .3),
              ("warm", "60%", "700px", "28vw", "320px", .22), ("lavender", "-10%", "2600px", "50vw", "600px", .16), ("blue", "50%", "4600px", "50vw", "600px", .16)]
@@ -840,7 +833,6 @@ def chi_sono():
 <div class="wrap">
   <section class="about-hero" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
     <div class="stack intro" style="--gap:clamp(20px,2vw,28px)">
-      <p class="chip chip--status" style="width:max-content">UX/UI Designer · Milano</p>
       <h1 id="titolo" class="display" style="max-width:10ch">Ciao, sono Sebastiano.</h1>
       <p class="lead" style="max-width:720px">{BIO}</p>
       <p class="lead" style="max-width:720px">Cerco un ruolo da UX/UI Designer in un team di prodotto, in startup e scale-up italiane, dove portare ricerca, interfacce e design system dalla prima idea allo sviluppo.</p>
@@ -853,11 +845,15 @@ def chi_sono():
   </section>
 
   <section class="section" id="metodo" aria-labelledby="metodo-titolo">
-    <div class="section-head"><h2 id="metodo-titolo" class="h2">Come lavoro</h2><p class="label">Dal problema al componente</p></div>
-    {services_html()}
+    {method_html()}
   </section>
 
-  <section class="section grid grid--2" style="gap:48px 32px;align-items:start" aria-label="Percorso">
+  <section class="section" aria-labelledby="progetti-titolo">
+    <div class="section-head"><h2 id="progetti-titolo" class="h2">Dai miei progetti</h2><p class="lead">Tre case study personali, dalla discovery al prototipo.</p></div>
+    <ul class="mini-work">{"".join(f'<li><a href="../{p["slug"]}"><span class="mini-work__img"><img src="../{p["img"]}" alt="{html.escape(p["alt"])}" loading="lazy" width="1600" height="900"></span><span class="h4">{p["title"]}</span><span class="muted">{p["kind"]}</span></a></li>' for p in PROJECTS)}</ul>
+  </section>
+
+  <section class="section grid grid--2 path" aria-label="Percorso">
     <div class="stack" style="--gap:12px"><h2 class="h3">Esperienza</h2>{timeline(ESPERIENZA)}</div>
     <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2>{timeline(FORMAZIONE)}<p><a class="link" href="../cv/">Leggi il CV completo in testo{icon("arrow-up-right", 18)}</a></p></div>
   </section>
@@ -872,14 +868,6 @@ def chi_sono():
     </div>
   </section>
 
-  <section class="section band band--center glass" aria-labelledby="ct">
-    <h2 id="ct" class="h2">Lavoriamo insieme.</h2>
-    <p class="lead">Hai un progetto o una posizione aperta? Scrivimi.</p>
-    <div class="actions actions--stack-mobile" style="justify-content:center">
-      <a class="btn btn--primary" href="../contatti/">Scrivimi</a>
-      <a class="btn btn--secondary" href="../{CONFIG['cv']}" download>Scarica il CV</a>
-    </div>
-  </section>
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-120px", "56vw", "560px", .32), ("blue", "50%", "1800px", "50vw", "600px", .16)]
     return layout("chi-sono/", 1, "Chi sono", "Chi è Sebastiano Bosi, UX/UI Designer a Milano: percorso dalla fotografia al design, esperienza, formazione e competenze.", body, glows)
@@ -889,6 +877,7 @@ def contatti():
 <div class="wrap wrap--fill">
   <div class="split split--contacts" style="padding-block:clamp(64px,8vw,120px) 0">
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
+      <div class="about__portrait"><img src="../assets/img/ritratto.webp" alt="Ritratto di Sebastiano Bosi" width="960" height="1200"></div>
       <h1 id="titolo" class="display">Scrivimi.</h1>
       <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi. Sono a Milano.</p>
     </section>
@@ -896,17 +885,14 @@ def contatti():
     <section aria-label="Contatti diretti">
       <ul class="contacts contacts--large">
         <li class="contact glass">
-          <span class="service__icon">{icon("mail")}</span>
-          <span class="contact__text"><span class="label-s">Email</span><a class="contact__value" href="mailto:{CONFIG['email']}">{CONFIG['email']}</a></span>
+          <span class="contact__text"><a class="contact__value" href="mailto:{CONFIG['email']}">{CONFIG['email']}</a><span class="label-s">Email · la via più rapida</span></span>
           <button class="btn btn--secondary contact__action" type="button" data-copy="{CONFIG['email']}">Copia</button>
         </li>
         <li class="contact glass">
-          <span class="service__icon">{icon("arrow-up-right")}</span>
-          <span class="contact__text"><span class="label-s">LinkedIn</span><a class="contact__value" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">Il mio profilo</a></span>
+          <span class="contact__text"><a class="contact__value" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a><span class="label-s">Il mio profilo e il percorso</span></span>
         </li>
         <li class="contact glass">
-          <span class="service__icon">{icon("briefcase")}</span>
-          <span class="contact__text"><span class="label-s">Curriculum</span><a class="contact__value" href="../{CONFIG['cv']}" download>Scarica il PDF</a></span>
+          <span class="contact__text"><a class="contact__value" href="../{CONFIG['cv']}" download>Curriculum</a><span class="label-s">Scarica il PDF</span></span>
         </li>
       </ul>
       <p class="visually-hidden" aria-live="polite" data-copy-status></p>
@@ -987,18 +973,17 @@ def cv_page():
         out = ""
         for a, b, c in items:
             d = (dettagli or {}).get(a, "")
-            out += f'<li class="glass cv-item"><div><h3 class="cv-item__title">{a}</h3><p class="label">{b}</p>{f"<p class=muted>{d}</p>" if d else ""}</div><p class="label">{c}</p></li>'
+            out += f'<li class="cv-item"><div><h3 class="cv-item__title">{a}</h3><p class="label">{b}</p>{f"<p class=muted>{d}</p>" if d else ""}</div><p class="label">{c}</p></li>'
         return f'<ul class="cv-list">{out}</ul>'
     progetti = "".join(
-        f'<li class="glass cv-item"><div><h3 class="cv-item__title"><a href="{r}{p["slug"]}">{p["title"]}</a></h3><p class="label">{p["eyebrow"].replace("Case study · ", "")} · progetto personale</p><p class="muted">{PROGETTI_TESTO[p["slug"]]}</p></div></li>'
+        f'<li class="cv-item"><div><h3 class="cv-item__title"><a href="{r}{p["slug"]}">{p["title"]}</a></h3><p class="label">{p["kind"]}</p><p class="muted">{PROGETTI_TESTO[p["slug"]]}</p></div></li>'
         for p in PROJECTS)
     body = f"""
 <div class="wrap">
   <article class="cv" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
     <header class="stack" style="--gap:16px">
-      <p class="chip chip--status" style="width:max-content">Curriculum vitae</p>
       <h1 id="titolo" class="display">{CONFIG['name']}</h1>
-      <p class="h4">UX/UI Designer · Milano, Italia</p>
+      <p class="h4">Curriculum vitae · UX/UI Designer · Milano, Italia</p>
       <p class="muted">Email: <a href="mailto:{CONFIG['email']}">{CONFIG['email']}</a> · LinkedIn: <a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">sebastiano-bosi</a> · Portfolio: <a href="{r}">sebastianobosi.github.io</a></p>
       <div class="actions actions--stack-mobile">
         <a class="btn btn--primary" href="{r}{CONFIG['cv']}" download>Scarica il CV grafico</a>

@@ -8,8 +8,11 @@ Sito pubblicato su **https://sebastianobosi.github.io** con GitHub Pages. HTML, 
 |---|---|
 | Colori, caratteri, spaziature | `assets/css/style.css`, blocco `:root` in cima (sono i token del file Figma «Notturno») |
 | Testi delle pagine | `tools/build.py`, nelle funzioni `home()`, `lavori()`, `uci()`, `jethr()`, `chi_sono()`, `contatti()` |
+| Fotogrammi del provino in home (schermata, inquadratura, didascalia, link) | `tools/build.py`, lista `FRAMES` |
+| Progetti in home e in Lavori (copertina, dettaglio, video, testi) | `tools/build.py`, lista `PROJECTS` |
+| Le quattro voci di «Come lavoro» | `tools/build.py`, lista `METODO` |
 | Email, LinkedIn, CV | `tools/build.py`, blocco `CONFIG` in cima |
-| Menu, filtri, copia dell’email | `assets/js/main.js` |
+| Menu, filtri, provino, pausa del nome che scorre, entrate allo scorrimento, copia dell’email | `assets/js/main.js` |
 
 Dopo aver modificato `tools/build.py`, rigenera le pagine:
 
@@ -57,4 +60,4 @@ La pagina Contatti mostra solo contatti diretti: email (con pulsante «Copia»),
 
 GitHub Pages pubblica il ramo `main` dalla cartella principale (Settings → Pages → Deploy from a branch → `main` / `root`). Ogni modifica caricata su `main` va online in un paio di minuti.
 
-Design: file Figma «Portfolio» (stile Notturno).
+Design: file Figma «Portfolio» (stile Notturno), rivisto nell’ottobre 2026: niente aloni, vetro, ombre o bordi sottili; superfici separate da un gradino di tono; un solo accento (menta) per focus e passaggi del mouse.
