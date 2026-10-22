@@ -307,10 +307,6 @@ FRAMES = [
     ("assets/img/idealista-a1.webp", "50% 30%", "idealista: la scheda annuncio con il costo mensile totale", "lavori/idealista/", "idealista · quanto spendi davvero"),
 ]
 
-def marquee(cls):
-    name = f'<span>{CONFIG["name"]}</span><i class="marquee__dot"></i>'
-    return f'<span class="marquee {cls}" aria-hidden="true"><span class="marquee__track">{name * 4}</span></span>'
-
 def home():
     r = ""
     src, pos, alt, href, cap = FRAMES[0]
@@ -320,19 +316,19 @@ def home():
         for i, f in enumerate(FRAMES))
     body = f"""
 <div class="wrap">
-  <section class="hero" data-hero aria-labelledby="titolo">
-    <div class="hero__stage">
-      <figure class="hero__square"><img src="{src}" alt="{html.escape(alt)}" style="object-position:{pos}" width="390" height="844" data-frame-img></figure>
-      <h1 id="titolo" class="hero__title"><span class="visually-hidden">Sebastiano Bosi, UX/UI designer a Milano</span>{marquee("marquee--ink")}{marquee("marquee--over")}</h1>
-    </div>
-    <div class="hero__copy">
-      <p class="hero__lead">UX/UI designer a Milano, in Collecto. Vengo dalla fotografia di moda: oggi porto lo stesso occhio nelle interfacce, dalla ricerca al design system.</p>
-      <div class="contact-sheet" role="group" aria-label="Scegli una schermata dai progetti">{sheet}</div>
-      <p class="hero__caption" aria-live="polite" data-frame-caption><a href="{href}">{cap}</a></p>
-    </div>
-    <div class="hero__foot">
-      <p class="hero__where">Cerco un ruolo da UX/UI designer in un team di prodotto. <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false">Ferma il movimento</button></p>
-      <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
+  <section class="hero" aria-labelledby="titolo">
+    <h1 id="titolo" class="hero__title"><span>Sebastiano</span> <span>Bosi</span></h1>
+    <div class="hero__body">
+      <div class="hero__copy">
+        <p class="hero__lead">UX/UI designer a Milano, in Collecto. Vengo dalla fotografia di moda: oggi porto lo stesso occhio nelle interfacce, dalla ricerca al design system.</p>
+        <div class="contact-sheet" role="group" aria-label="Scegli una schermata dai progetti">{sheet}</div>
+        <p class="hero__caption" aria-live="polite" data-frame-caption><a href="{href}">{cap}</a></p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
+          <p class="hero__where">Cerco un ruolo in un team di prodotto.</p>
+        </div>
+      </div>
+      <div class="hero__phone"><div class="phone"><div class="phone__screen"><img src="{src}" alt="{html.escape(alt)}" width="390" height="844" data-frame-img></div></div></div>
     </div>
   </section>
 
@@ -380,13 +376,6 @@ def lavori():
   <section class="page-intro intro" aria-labelledby="titolo">
     <h1 id="titolo" class="display">Lavori</h1>
     <p class="lead">Tre case study, dal problema al prototipo: discovery, interfacce, design system e accessibilità. Sono progetti personali, realizzati in autonomia. Ti racconto volentieri anche quelli che non trovano spazio qui.</p>
-    <div class="chips" data-filters role="group" aria-label="Filtra i progetti">
-      <button class="chip" type="button" data-filter="tutti" aria-pressed="true">Tutti</button>
-      <button class="chip" type="button" data-filter="app" aria-pressed="false">App mobile</button>
-      <button class="chip" type="button" data-filter="web" aria-pressed="false">Web</button>
-      <button class="chip" type="button" data-filter="design-system" aria-pressed="false">Design system</button>
-    </div>
-    <p class="visually-hidden" aria-live="polite" data-filter-status>3 progetti</p>
   </section>
   <section class="section" style="margin-top:clamp(56px,6vw,96px)" aria-label="Progetti">{work_blocks(r, "h2")}</section>
 </div>"""
