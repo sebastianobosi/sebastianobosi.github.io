@@ -10,9 +10,9 @@ import sys, os, shutil, html, hashlib
 CONFIG = {
     "site_url": "https://sebastianobosi.github.io",
     "name": "Sebastiano Bosi",
-    "email": "nome@dominio.it",                     # TODO: la tua email
-    "linkedin": "https://www.linkedin.com/",        # TODO: il tuo profilo
-    "cv": "assets/sebastiano-bosi-cv.pdf",          # TODO: carica il PDF con questo nome
+    "email": "sebastianobosi@icloud.com",
+    "linkedin": "https://www.linkedin.com/in/sebastiano-bosi-24674016a",
+    "cv": "assets/sebastiano-bosi-cv.pdf",
 }
 
 ICONS = {
@@ -62,7 +62,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
         f'<div class="glow glow--{c}" style="left:{x};top:{y};width:{w};height:{h};opacity:{o}"></div>'
         for c, x, y, w, h, o in glows
     )
-    full_title = f"{title} — {CONFIG['name']}" if title != CONFIG["name"] else f"{CONFIG['name']} — Product designer"
+    full_title = f"{title} — {CONFIG['name']}" if title != CONFIG["name"] else f"{CONFIG['name']} — UX/UI Designer"
     canonical = CONFIG["site_url"] + "/" + ("" if page == "" else page)
     return f"""<!doctype html>
 <html lang="it">
@@ -185,7 +185,24 @@ def services_html(items=SERVICES):
         f'<article class="card glass service"><div class="service__icon">{icon(i)}</div><h3>{t}</h3><p class="muted">{d}</p></article>'
         for i, t, d in items) + "</div>"
 
-SKILLS = ["UX research", "Interfacce", "Design system", "Accessibilità WCAG 2.2", "Prototipi", "AI conversazionale", "Figma"]
+BIO_BREVE = "Dalla fotografia allo UX/UI design: ho trasformato la sensibilità visiva in progettazione di esperienze digitali. Oggi sono UX/UI Designer in Collecto, a Milano."
+BIO = "Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto."
+ESPERIENZA = [
+    ("UX/UI Designer", "Collecto app · Milano", "lug 2025 – oggi"),
+    ("Fashion Photographer", "Freelance · Milano", ""),
+    ("Photo Retoucher & Video Editor", "PixelModa · Milano", "feb 2023 – lug 2023"),
+]
+FORMAZIONE = [
+    ("Master in UX/UI Design", "Start2Impact", "ott 2023 – mag 2025"),
+    ("Accademia di Fotografia di moda", "Ferrari Fashion School", "ott 2019 – set 2022"),
+    ("Istituto Tecnico, Grafica e comunicazione", "Istituto Salesiano San Zeno", "2014 – 2019"),
+]
+HARD_SKILLS = ["Discovery", "Wireframing", "Prototyping", "User testing", "Grafica", "Scrittura", "HTML", "CSS"]
+STRUMENTI = ["Figma", "Claude", "ChatGPT", "Photoshop"]
+SOFT_SKILLS = ["Team working", "Networking", "Impatto sociale", "Proattività", "Precisione", "Mentoring", "People oriented", "Creatività"]
+LINGUE = [("Italiano", "Madrelingua", ""), ("Inglese", "Intermedio", "")]
+
+SKILLS = ["Discovery", "Wireframing", "Prototyping", "User testing", "Design system", "Accessibilità WCAG 2.2", "Figma"]
 
 def chips(items):
     return '<ul class="chips">' + "".join(f'<li class="chip">{s}</li>' for s in items) + "</ul>"
@@ -205,7 +222,7 @@ def home():
 <div class="wrap">
   <section class="hero" aria-labelledby="titolo">
     <div class="hero__text intro">
-      <p class="chip chip--status">Product designer · Portfolio 2026–27</p>
+      <p class="chip chip--status">UX/UI Designer · Portfolio 2026–27</p>
       <h1 id="titolo" class="display hero__title">Interfacce chiare per prodotti complessi.</h1>
       <p class="lead">Ricerca, UI e design system: porto i prodotti dal problema giusto a componenti accessibili, pronti per lo sviluppo.</p>
       <div class="actions actions--stack-mobile">
@@ -231,9 +248,9 @@ def home():
   <section class="section" aria-labelledby="chi-titolo">
     <div class="grid grid--2" style="align-items:start">
       <div class="card glass stack" style="--gap:24px;border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)">
-        <div class="phone__screen" style="width:80px;height:80px;border-radius:50%;border:1px solid var(--border-glass)" role="img" aria-label="Foto di Sebastiano (da inserire)"></div>
+        <img src="assets/img/ritratto-avatar.webp" alt="Ritratto di Sebastiano Bosi" width="80" height="80" style="width:80px;height:80px;border-radius:50%;border:1px solid var(--border-glass);object-fit:cover">
         <h2 id="chi-titolo" class="h3">Ciao, sono Sebastiano.</h2>
-        <p class="lead">[Racconta in due o tre righe il tuo percorso, cosa ti appassiona del design e che tipo di lavoro cerchi.]</p>
+        <p class="lead">{BIO_BREVE}</p>
         <div class="actions actions--stack-mobile">
           <a class="btn btn--primary" href="{CONFIG['cv']}" download>Scarica il CV</a>
           <a class="btn btn--secondary" href="chi-sono/">Più su di me</a>
@@ -241,7 +258,7 @@ def home():
       </div>
       <div class="stack" style="--gap:12px">
         <h3 class="h4">Esperienza e formazione</h3>
-        {timeline([("[Ruolo]", "[Azienda o scuola]", "[Anno – Anno]")]*4)}
+        {timeline([ESPERIENZA[0], FORMAZIONE[0], ESPERIENZA[2], FORMAZIONE[1]])}
       </div>
     </div>
   </section>
@@ -260,7 +277,7 @@ def home():
     glows = [("blue", "-14%", "-260px", "62vw", "700px", .5), ("lavender", "52%", "-140px", "56vw", "620px", .32),
              ("warm", "66%", "520px", "30vw", "360px", .26), ("blue", "-18%", "1400px", "60vw", "700px", .2),
              ("lavender", "20%", "calc(100% - 900px)", "62vw", "520px", .18)]
-    return layout("", 0, CONFIG["name"], "Portfolio di Sebastiano Bosi, product designer: ricerca, interfacce e design system. Case study UCI Cinemas, Jet HR e idealista.", body, glows)
+    return layout("", 0, CONFIG["name"], "Portfolio di Sebastiano Bosi, UX/UI Designer: ricerca, interfacce e design system. Case study UCI Cinemas, Jet HR e idealista.", body, glows)
 
 def lavori():
     r = "../"
@@ -780,15 +797,15 @@ def chi_sono():
 <div class="wrap">
   <section class="about-hero" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
     <div class="stack intro" style="--gap:clamp(20px,2vw,28px)">
-      <p class="chip chip--status" style="width:max-content">Product designer</p>
+      <p class="chip chip--status" style="width:max-content">UX/UI Designer · Milano</p>
       <h1 id="titolo" class="display" style="max-width:10ch">Ciao, sono Sebastiano.</h1>
-      <p class="lead" style="max-width:720px">[Racconta in tre o quattro righe chi sei: il percorso che ti ha portato al product design, cosa ti appassiona, in che tipo di team ti piace lavorare e cosa cerchi adesso.]</p>
+      <p class="lead" style="max-width:720px">{BIO}</p>
       <div class="actions actions--stack-mobile">
         <a class="btn btn--primary" href="../{CONFIG['cv']}" download>Scarica il CV</a>
         <a class="btn btn--secondary" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
       </div>
     </div>
-    <div class="figure__frame glass portrait">{media("Il tuo ritratto, 4:5", "figure__media")}</div>
+    <div class="figure__frame glass portrait">{media("Ritratto", "figure__media", "../assets/img/ritratto.webp", "Ritratto di Sebastiano Bosi")}</div>
   </section>
 
   <section class="section" id="metodo" aria-labelledby="metodo-titolo">
@@ -797,13 +814,18 @@ def chi_sono():
   </section>
 
   <section class="section grid grid--2" style="gap:48px 32px;align-items:start" aria-label="Percorso">
-    <div class="stack" style="--gap:12px"><h2 class="h3">Esperienza</h2>{timeline([("[Ruolo]", "[Azienda]", "[Anno – Anno]")]*3)}</div>
-    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2>{timeline([("[Corso o titolo]", "[Scuola o ente]", "[Anno – Anno]")]*2)}</div>
+    <div class="stack" style="--gap:12px"><h2 class="h3">Esperienza</h2>{timeline(ESPERIENZA)}</div>
+    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2>{timeline(FORMAZIONE)}</div>
   </section>
 
   <section class="section stack" aria-labelledby="skill">
     <h2 id="skill" class="h3">Competenze e strumenti</h2>
-    {chips(["UX research", "Interviste", "Usability test", "Architettura dell’informazione", "Interfacce", "Prototipi", "Design system", "Token", "Accessibilità WCAG 2.2", "AI conversazionale", "Figma", "Figma Sites", "Handoff a Flutter"])}
+    <div class="grid grid--2" style="gap:32px;align-items:start">
+      <div class="stack" style="--gap:12px"><h3 class="h4">Hard skill</h3>{chips(HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2"])}</div>
+      <div class="stack" style="--gap:12px"><h3 class="h4">Strumenti</h3>{chips(STRUMENTI + ["Figma Sites"])}</div>
+      <div class="stack" style="--gap:12px"><h3 class="h4">Soft skill</h3>{chips(SOFT_SKILLS)}</div>
+      <div class="stack" style="--gap:12px"><h3 class="h4">Lingue</h3>{timeline(LINGUE)}</div>
+    </div>
   </section>
 
   <section class="section band band--center glass" aria-labelledby="ct">
@@ -816,7 +838,7 @@ def chi_sono():
   </section>
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-120px", "56vw", "560px", .32), ("blue", "50%", "1800px", "50vw", "600px", .16)]
-    return layout("chi-sono/", 1, "Chi sono", "Chi è Sebastiano Bosi, product designer: metodo, esperienza, competenze e strumenti.", body, glows)
+    return layout("chi-sono/", 1, "Chi sono", "Chi è Sebastiano Bosi, UX/UI Designer a Milano: percorso dalla fotografia al design, esperienza, formazione e competenze.", body, glows)
 
 def contatti():
     body = f"""

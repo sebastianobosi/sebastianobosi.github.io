@@ -33,7 +33,9 @@ Il case study idealista usa le immagini `idealista-*.webp` (stesse dimensioni), 
 
 Il case study Jet HR usa le immagini `jethr-*.webp` (schermate esportate da Figma a 2x e ridotte: telefoni 780 px, desktop 1800 px, copertina 1600 px).
 
-Ancora da aggiungere: `ritratto.webp` (4:5) e il CV `sebastiano-bosi-cv.pdf` in `assets/`.
+Ritratto: `ritratto.webp` (4:5, pagina Chi sono) e `ritratto-avatar.webp` (tondo in home). CV: `assets/sebastiano-bosi-cv.pdf`; per aggiornarlo carica un nuovo PDF con lo stesso nome.
+
+Bio, esperienza, formazione, competenze e lingue (presi dal CV) stanno in `tools/build.py`, nelle liste `BIO`, `ESPERIENZA`, `FORMAZIONE`, `HARD_SKILLS`, `STRUMENTI`, `SOFT_SKILLS`, `LINGUE`.
 
 Per un’immagine nuova usa `phone("Etichetta", "percorso.webp")` o `media("Etichetta", classe, "percorso.webp", "descrizione")` in `tools/build.py` e rigenera.
 
