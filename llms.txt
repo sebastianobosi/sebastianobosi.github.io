@@ -34,9 +34,9 @@ Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare 
 
 ## Case study
 
-- [UCI Cinemas](https://sebastianobosi.github.io/lavori/uci-cinemas/): Redesign dell’app UCI Cinemas (iOS e Android, Flutter): nuova brand identity, 85 schermate in 9 aree, design system da 80 componenti, assistente AI Iris per l’acquisto, revisione WCAG 2.2 AA, video in motion design.
-- [Jet HR](https://sebastianobosi.github.io/lavori/jet-hr/): Redesign dell’area dipendente di Jet HR (web app desktop e iOS 27): discovery sulle domande dei dipendenti, ricerca normativa sulla busta paga, 20 schermate con componenti condivisi, cedolino A4 riprogettato, piano di usability test.
-- [idealista](https://sebastianobosi.github.io/lavori/idealista/): Rebranding evolutivo di idealista e nuova app (iOS e Android): logo, colore, tipografia Funnel, 54 icone, 39 schermate in 7 flussi, design system con modalità scura, video del brand.
+- [UCI Cinemas](https://sebastianobosi.github.io/lavori/uci-cinemas/): Redesign dell’app UCI Cinemas: nuova brand identity, app completa con assistente AI per scegliere film e posti, design system in due temi, accessibilità e video in motion design.
+- [Jet HR](https://sebastianobosi.github.io/lavori/jet-hr/): Redesign dell’area dipendente di Jet HR, su desktop e mobile: discovery sulle domande dei dipendenti, una busta paga che si capisce, design system condiviso e piano di usability test.
+- [idealista](https://sebastianobosi.github.io/lavori/idealista/): Rebranding evolutivo di idealista e nuova app: logo, colore, tipografia, icone, flussi completi dalla ricerca alla pubblicazione, design system con modalità scura e video del brand.
 
 ## Pagine
 
