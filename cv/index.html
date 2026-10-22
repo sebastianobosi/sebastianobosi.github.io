@@ -22,28 +22,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=1054bae8">
-<script src="../assets/js/main.js?v=1054bae8" defer></script>
+<link rel="stylesheet" href="../assets/css/style.css?v=eafd7060">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../assets/js/main.js?v=eafd7060" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-240px;width:62vw;height:620px;opacity:0.36"></div><div class="glow glow--lavender" style="left:55%;top:-120px;width:56vw;height:560px;opacity:0.26"></div></div>
 
 <header class="site-header">
   <div class="wrap">
-    <nav class="nav glass" aria-label="Principale">
+    <nav class="nav" aria-label="Principale">
       <a class="nav__logo" href="../">Sebastiano Bosi</a>
-      <ul class="nav__links"><li><a href="../lavori/">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/">Chi sono</a></li></ul>
-      <a class="btn btn--primary nav__cta" href="../contatti/">Contattami</a>
-      <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="nav__right">
+        <ul class="nav__links"><li><a href="../lavori/">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/">Chi sono</a></li></ul>
+        <a class="nav__cta" href="../contatti/">Contattami</a>
+        <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
     </nav>
   </div>
 </header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="nav glass menu__bar">
+  <div class="menu__bar">
     <a class="nav__logo" href="../">Sebastiano Bosi</a>
-    <button class="nav__menu-btn" type="button" data-menu-close aria-label="Chiudi il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="nav__menu-btn" type="button" data-menu-close>Chiudi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <ul class="menu__list"><li><a href="../lavori/">Lavori<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../#metodo">Metodo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../chi-sono/">Chi sono<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../contatti/">Contatti<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul>
   <div class="actions">
@@ -57,9 +59,8 @@
 <div class="wrap">
   <article class="cv" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
     <header class="stack" style="--gap:16px">
-      <p class="chip chip--status" style="width:max-content">Curriculum vitae</p>
       <h1 id="titolo" class="display">Sebastiano Bosi</h1>
-      <p class="h4">UX/UI Designer · Milano, Italia</p>
+      <p class="h4">Curriculum vitae · UX/UI Designer · Milano, Italia</p>
       <p class="muted">Email: <a href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a> · LinkedIn: <a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">sebastiano-bosi</a> · Portfolio: <a href="../">sebastianobosi.github.io</a></p>
       <div class="actions actions--stack-mobile">
         <a class="btn btn--primary" href="../assets/sebastiano-bosi-cv.pdf" download>Scarica il CV grafico</a>
@@ -67,9 +68,9 @@
       </div>
     </header>
     <section class="section stack" style="--gap:12px" aria-labelledby="profilo"><h2 id="profilo" class="h3">Profilo</h2><p class="lead">Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto.</p></section>
-    <section class="section stack" style="--gap:12px" aria-labelledby="esperienza"><h2 id="esperienza" class="h3">Esperienza</h2><ul class="cv-list"><li class="glass cv-item"><div><h3 class="cv-item__title">UX/UI Designer</h3><p class="label">Collecto app · Milano · tempo pieno</p><p class=muted>Progetto e miglioro le esperienze digitali di Collecto in un ruolo trasversale tra design, prodotto e marketing. UX/UI e product design: interfacce, user flow e funzionalità dell’app, design system e identità visiva. Digital design: newsletter, landing page, template e componenti visivi per i canali di comunicazione. CRM e marketing automation: customer journey e automazioni multicanale con CleverTap, email e notifiche push per onboarding, engagement, retention e riattivazione degli utenti.</p></div><p class="label">gen 2026 – oggi</p></li><li class="glass cv-item"><div><h3 class="cv-item__title">UX/UI Designer, stage</h3><p class="label">Collecto app · Milano</p><p class=muted>Stage in UX/UI design, proseguito con l’assunzione a tempo pieno.</p></div><p class="label">lug 2025 – gen 2026</p></li><li class="glass cv-item"><div><h3 class="cv-item__title">Fashion Photographer</h3><p class="label">Freelance · Milano</p><p class=muted>Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.</p></div><p class="label"></p></li><li class="glass cv-item"><div><h3 class="cv-item__title">Photo Retoucher & Video Editor</h3><p class="label">PixelModa · Milano</p><p class=muted>Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.</p></div><p class="label">feb 2023 – lug 2023</p></li></ul></section>
-    <section class="section stack" style="--gap:12px" aria-labelledby="progetti"><h2 id="progetti" class="h3">Progetti (case study)</h2><ul class="cv-list"><li class="glass cv-item"><div><h3 class="cv-item__title"><a href="../lavori/uci-cinemas/">UCI Cinemas</a></h3><p class="label">App mobile · progetto personale</p><p class="muted">Redesign dell’app UCI Cinemas: nuova brand identity, app completa con assistente AI per scegliere film e posti, design system in due temi, accessibilità e video in motion design.</p></div></li><li class="glass cv-item"><div><h3 class="cv-item__title"><a href="../lavori/jet-hr/">Jet HR</a></h3><p class="label">Web e mobile · progetto personale</p><p class="muted">Redesign dell’area dipendente di Jet HR, su desktop e mobile: discovery sulle domande dei dipendenti, una busta paga che si capisce, design system condiviso e piano di usability test.</p></div></li><li class="glass cv-item"><div><h3 class="cv-item__title"><a href="../lavori/idealista/">idealista</a></h3><p class="label">Brand identity e app · progetto personale</p><p class="muted">Rebranding evolutivo di idealista e nuova app: logo, colore, tipografia, icone, flussi completi dalla ricerca alla pubblicazione, design system con modalità scura e video del brand.</p></div></li></ul></section>
-    <section class="section stack" style="--gap:12px" aria-labelledby="formazione"><h2 id="formazione" class="h3">Formazione</h2><ul class="cv-list"><li class="glass cv-item"><div><h3 class="cv-item__title">Master in UX/UI Design</h3><p class="label">Start2Impact</p></div><p class="label">ott 2023 – mag 2025</p></li><li class="glass cv-item"><div><h3 class="cv-item__title">Accademia di Fotografia di moda</h3><p class="label">Ferrari Fashion School</p></div><p class="label">ott 2019 – set 2022</p></li><li class="glass cv-item"><div><h3 class="cv-item__title">Istituto Tecnico, Grafica e comunicazione</h3><p class="label">Istituto Salesiano San Zeno</p></div><p class="label">2014 – 2019</p></li></ul></section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="esperienza"><h2 id="esperienza" class="h3">Esperienza</h2><ul class="cv-list"><li class="cv-item"><div><h3 class="cv-item__title">UX/UI Designer</h3><p class="label">Collecto app · Milano · tempo pieno</p><p class=muted>Progetto e miglioro le esperienze digitali di Collecto in un ruolo trasversale tra design, prodotto e marketing. UX/UI e product design: interfacce, user flow e funzionalità dell’app, design system e identità visiva. Digital design: newsletter, landing page, template e componenti visivi per i canali di comunicazione. CRM e marketing automation: customer journey e automazioni multicanale con CleverTap, email e notifiche push per onboarding, engagement, retention e riattivazione degli utenti.</p></div><p class="label">gen 2026 – oggi</p></li><li class="cv-item"><div><h3 class="cv-item__title">UX/UI Designer, stage</h3><p class="label">Collecto app · Milano</p><p class=muted>Stage in UX/UI design, proseguito con l’assunzione a tempo pieno.</p></div><p class="label">lug 2025 – gen 2026</p></li><li class="cv-item"><div><h3 class="cv-item__title">Fashion Photographer</h3><p class="label">Freelance · Milano</p><p class=muted>Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.</p></div><p class="label"></p></li><li class="cv-item"><div><h3 class="cv-item__title">Photo Retoucher & Video Editor</h3><p class="label">PixelModa · Milano</p><p class=muted>Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.</p></div><p class="label">feb 2023 – lug 2023</p></li></ul></section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="progetti"><h2 id="progetti" class="h3">Progetti (case study)</h2><ul class="cv-list"><li class="cv-item"><div><h3 class="cv-item__title"><a href="../lavori/uci-cinemas/">UCI Cinemas</a></h3><p class="label">App mobile · brand identity · progetto personale</p><p class="muted">Redesign dell’app UCI Cinemas: nuova brand identity, app completa con assistente AI per scegliere film e posti, design system in due temi, accessibilità e video in motion design.</p></div></li><li class="cv-item"><div><h3 class="cv-item__title"><a href="../lavori/jet-hr/">Jet HR</a></h3><p class="label">Web app e app mobile · progetto personale</p><p class="muted">Redesign dell’area dipendente di Jet HR, su desktop e mobile: discovery sulle domande dei dipendenti, una busta paga che si capisce, design system condiviso e piano di usability test.</p></div></li><li class="cv-item"><div><h3 class="cv-item__title"><a href="../lavori/idealista/">idealista</a></h3><p class="label">Brand identity e app mobile · progetto personale</p><p class="muted">Rebranding evolutivo di idealista e nuova app: logo, colore, tipografia, icone, flussi completi dalla ricerca alla pubblicazione, design system con modalità scura e video del brand.</p></div></li></ul></section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="formazione"><h2 id="formazione" class="h3">Formazione</h2><ul class="cv-list"><li class="cv-item"><div><h3 class="cv-item__title">Master in UX/UI Design</h3><p class="label">Start2Impact</p></div><p class="label">ott 2023 – mag 2025</p></li><li class="cv-item"><div><h3 class="cv-item__title">Accademia di Fotografia di moda</h3><p class="label">Ferrari Fashion School</p></div><p class="label">ott 2019 – set 2022</p></li><li class="cv-item"><div><h3 class="cv-item__title">Istituto Tecnico, Grafica e comunicazione</h3><p class="label">Istituto Salesiano San Zeno</p></div><p class="label">2014 – 2019</p></li></ul></section>
     <section class="section stack" style="--gap:16px" aria-labelledby="competenze"><h2 id="competenze" class="h3">Competenze</h2>
       <p><strong>Hard skill:</strong> Discovery, Wireframing, Prototyping, User testing, Grafica, Scrittura, HTML, CSS, Design system, Accessibilità WCAG 2.2, Architettura dell’informazione, User flow, Brand identity, Motion design, Newsletter e landing page, Customer journey, Marketing automation</p>
       <p><strong>Strumenti:</strong> Figma, CleverTap, Claude, ChatGPT, Photoshop</p>
@@ -83,17 +84,24 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer">
-      <p class="muted">© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
-      <nav aria-label="Contatti"><ul>
-        <li><a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:sebastianobosi@icloud.com">Email</a></li>
-        <li><a href="../assets/sebastiano-bosi-cv.pdf" download>CV</a></li>
-        <li><a href="../cv/">CV in testo</a></li>
-        <li><a href="../note-legali/">Note legali</a></li>
-      </ul></nav>
-      <a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+      <div class="footer__invite">
+        <h2>Lavoriamo insieme.</h2>
+        <p class="footer__lead">Hai una posizione aperta o un progetto? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
+        <a class="btn btn--primary" href="../contatti/">Scrivimi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <nav class="footer__links" aria-label="Contatti">
+        <a href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a>
+        <a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="../assets/sebastiano-bosi-cv.pdf" download>Curriculum (PDF)</a>
+        <a href="../cv/">Curriculum in testo</a>
+      </nav>
+      <div class="footer__legal">
+        <p>© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
+        <ul><li><a href="../note-legali/">Note legali</a></li><li><a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a></li></ul>
+      </div>
     </div>
   </div>
+  <span class="footer__name" aria-hidden="true">Sebastiano Bosi</span>
 </footer>
 </body>
 </html>

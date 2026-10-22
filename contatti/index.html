@@ -22,28 +22,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=1054bae8">
-<script src="../assets/js/main.js?v=1054bae8" defer></script>
+<link rel="stylesheet" href="../assets/css/style.css?v=eafd7060">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../assets/js/main.js?v=eafd7060" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-240px;width:62vw;height:620px;opacity:0.42"></div><div class="glow glow--lavender" style="left:55%;top:-120px;width:56vw;height:560px;opacity:0.3"></div><div class="glow glow--warm" style="left:62%;top:500px;width:30vw;height:320px;opacity:0.18"></div></div>
 
 <header class="site-header">
   <div class="wrap">
-    <nav class="nav glass" aria-label="Principale">
+    <nav class="nav" aria-label="Principale">
       <a class="nav__logo" href="../">Sebastiano Bosi</a>
-      <ul class="nav__links"><li><a href="../lavori/">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/">Chi sono</a></li></ul>
-      <a class="btn btn--primary nav__cta" href="../contatti/">Contattami</a>
-      <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="nav__right">
+        <ul class="nav__links"><li><a href="../lavori/">Lavori</a></li><li><a href="../#metodo">Metodo</a></li><li><a href="../chi-sono/">Chi sono</a></li></ul>
+        <a class="nav__cta" href="../contatti/">Contattami</a>
+        <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
     </nav>
   </div>
 </header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="nav glass menu__bar">
+  <div class="menu__bar">
     <a class="nav__logo" href="../">Sebastiano Bosi</a>
-    <button class="nav__menu-btn" type="button" data-menu-close aria-label="Chiudi il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="nav__menu-btn" type="button" data-menu-close>Chiudi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <ul class="menu__list"><li><a href="../lavori/">Lavori<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../#metodo">Metodo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../chi-sono/">Chi sono<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="../contatti/" aria-current="page">Contatti<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul>
   <div class="actions">
@@ -57,6 +59,7 @@
 <div class="wrap wrap--fill">
   <div class="split split--contacts" style="padding-block:clamp(64px,8vw,120px) 0">
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
+      <div class="about__portrait"><img src="../assets/img/ritratto.webp" alt="Ritratto di Sebastiano Bosi" width="960" height="1200"></div>
       <h1 id="titolo" class="display">Scrivimi.</h1>
       <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi. Sono a Milano.</p>
     </section>
@@ -64,17 +67,14 @@
     <section aria-label="Contatti diretti">
       <ul class="contacts contacts--large">
         <li class="contact glass">
-          <span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-          <span class="contact__text"><span class="label-s">Email</span><a class="contact__value" href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a></span>
+          <span class="contact__text"><a class="contact__value" href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a><span class="label-s">Email · la via più rapida</span></span>
           <button class="btn btn--secondary contact__action" type="button" data-copy="sebastianobosi@icloud.com">Copia</button>
         </li>
         <li class="contact glass">
-          <span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-          <span class="contact__text"><span class="label-s">LinkedIn</span><a class="contact__value" href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">Il mio profilo</a></span>
+          <span class="contact__text"><a class="contact__value" href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a><span class="label-s">Il mio profilo e il percorso</span></span>
         </li>
         <li class="contact glass">
-          <span class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
-          <span class="contact__text"><span class="label-s">Curriculum</span><a class="contact__value" href="../assets/sebastiano-bosi-cv.pdf" download>Scarica il PDF</a></span>
+          <span class="contact__text"><a class="contact__value" href="../assets/sebastiano-bosi-cv.pdf" download>Curriculum</a><span class="label-s">Scarica il PDF</span></span>
         </li>
       </ul>
       <p class="visually-hidden" aria-live="polite" data-copy-status></p>
@@ -86,17 +86,24 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer">
-      <p class="muted">© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
-      <nav aria-label="Contatti"><ul>
-        <li><a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:sebastianobosi@icloud.com">Email</a></li>
-        <li><a href="../assets/sebastiano-bosi-cv.pdf" download>CV</a></li>
-        <li><a href="../cv/">CV in testo</a></li>
-        <li><a href="../note-legali/">Note legali</a></li>
-      </ul></nav>
-      <a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+      <div class="footer__invite">
+        <h2>Lavoriamo insieme.</h2>
+        <p class="footer__lead">Hai una posizione aperta o un progetto? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
+        <a class="btn btn--primary" href="../contatti/">Scrivimi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <nav class="footer__links" aria-label="Contatti">
+        <a href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a>
+        <a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="../assets/sebastiano-bosi-cv.pdf" download>Curriculum (PDF)</a>
+        <a href="../cv/">Curriculum in testo</a>
+      </nav>
+      <div class="footer__legal">
+        <p>© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
+        <ul><li><a href="../note-legali/">Note legali</a></li><li><a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a></li></ul>
+      </div>
     </div>
   </div>
+  <span class="footer__name" aria-hidden="true">Sebastiano Bosi</span>
 </footer>
 </body>
 </html>

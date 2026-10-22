@@ -22,28 +22,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=1054bae8">
-<script src="assets/js/main.js?v=1054bae8" defer></script>
+<link rel="stylesheet" href="assets/css/style.css?v=eafd7060">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/js/main.js?v=eafd7060" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-<div class="glows" aria-hidden="true"><div class="glow glow--blue" style="left:-14%;top:-260px;width:62vw;height:700px;opacity:0.5"></div><div class="glow glow--lavender" style="left:52%;top:-140px;width:56vw;height:620px;opacity:0.32"></div><div class="glow glow--warm" style="left:66%;top:520px;width:30vw;height:360px;opacity:0.26"></div><div class="glow glow--blue" style="left:-18%;top:1400px;width:60vw;height:700px;opacity:0.2"></div><div class="glow glow--lavender" style="left:20%;top:calc(100% - 900px);width:62vw;height:520px;opacity:0.18"></div></div>
 
 <header class="site-header">
   <div class="wrap">
-    <nav class="nav glass" aria-label="Principale">
+    <nav class="nav" aria-label="Principale">
       <a class="nav__logo" href="./">Sebastiano Bosi</a>
-      <ul class="nav__links"><li><a href="lavori/">Lavori</a></li><li><a href="#metodo">Metodo</a></li><li><a href="chi-sono/">Chi sono</a></li></ul>
-      <a class="btn btn--primary nav__cta" href="contatti/">Contattami</a>
-      <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="nav__right">
+        <ul class="nav__links"><li><a href="lavori/">Lavori</a></li><li><a href="#metodo">Metodo</a></li><li><a href="chi-sono/">Chi sono</a></li></ul>
+        <a class="nav__cta" href="contatti/">Contattami</a>
+        <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
     </nav>
   </div>
 </header>
 
 <div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="nav glass menu__bar">
+  <div class="menu__bar">
     <a class="nav__logo" href="./">Sebastiano Bosi</a>
-    <button class="nav__menu-btn" type="button" data-menu-close aria-label="Chiudi il menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <button class="nav__menu-btn" type="button" data-menu-close>Chiudi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <ul class="menu__list"><li><a href="lavori/">Lavori<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="#metodo">Metodo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="chi-sono/">Chi sono<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="contatti/">Contatti<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul>
   <div class="actions">
@@ -55,84 +57,82 @@
 <main id="contenuto">
 
 <div class="wrap">
-  <section class="hero" aria-labelledby="titolo">
-    <div class="hero__text intro">
-      <p class="chip chip--status">UX/UI Designer a Milano</p>
-      <h1 id="titolo" class="display hero__title">Interfacce chiare per prodotti complessi.</h1>
-      <p class="lead">Sono Sebastiano Bosi, UX/UI Designer in Collecto. Ricerca, UI e design system: porto i prodotti dal problema giusto a componenti accessibili, pronti per lo sviluppo.</p>
-      <div class="actions actions--stack-mobile">
-        <a class="btn btn--primary" href="#lavori">Guarda i lavori</a>
-        <a class="btn btn--secondary" href="chi-sono/">Chi sono</a>
-      </div>
+  <section class="hero" data-hero aria-labelledby="titolo">
+    <div class="hero__stage">
+      <figure class="hero__square"><img src="assets/img/uci-posti.webp" alt="UCI Cinemas: la scelta dei posti in sala" style="object-position:50% 38%" width="390" height="844" data-frame-img></figure>
+      <h1 id="titolo" class="hero__title"><span class="visually-hidden">Sebastiano Bosi, UX/UI designer a Milano</span><span class="marquee marquee--ink" aria-hidden="true"><span class="marquee__track"><span>Sebastiano Bosi</span><i class="marquee__dot"></i><span>Sebastiano Bosi</span><i class="marquee__dot"></i><span>Sebastiano Bosi</span><i class="marquee__dot"></i><span>Sebastiano Bosi</span><i class="marquee__dot"></i></span></span><span class="marquee marquee--over" aria-hidden="true"><span class="marquee__track"><span>Sebastiano Bosi</span><i class="marquee__dot"></i><span>Sebastiano Bosi</span><i class="marquee__dot"></i><span>Sebastiano Bosi</span><i class="marquee__dot"></i><span>Sebastiano Bosi</span><i class="marquee__dot"></i></span></span></h1>
     </div>
-    <div class="phones" role="img" aria-label="Schermate dai progetti: la home dell’app UCI Cinemas, la home dell’app Jet HR e la home dell’app idealista">
-      <div class="phone"><div class="phone__screen"><img src="assets/img/uci-home.webp" alt="" loading="lazy"></div></div><div class="phone"><div class="phone__screen"><img src="assets/img/jethr-m-home.webp" alt="" loading="lazy"></div></div><div class="phone"><div class="phone__screen"><img src="assets/img/idealista-r1.webp" alt="" loading="lazy"></div></div>
+    <div class="hero__copy">
+      <p class="hero__lead">UX/UI designer a Milano, in Collecto. Vengo dalla fotografia di moda: oggi porto lo stesso occhio nelle interfacce, dalla ricerca al design system.</p>
+      <div class="contact-sheet" role="group" aria-label="Scegli una schermata dai progetti"><button type="button" aria-pressed="true" data-frame="assets/img/uci-posti.webp" data-pos="50% 38%" data-alt="UCI Cinemas: la scelta dei posti in sala" data-href="lavori/uci-cinemas/" data-caption="UCI Cinemas · la scelta dei posti"><img src="assets/img/uci-posti.webp" alt="" style="object-position:50% 38%" loading="lazy" width="56" height="56"><span class="visually-hidden">UCI Cinemas · la scelta dei posti</span></button><button type="button" aria-pressed="false" data-frame="assets/img/iris-proposte.webp" data-pos="50% 40%" data-alt="UCI Cinemas: Iris propone i film della serata" data-href="lavori/uci-cinemas/" data-caption="UCI Cinemas · Iris propone il film"><img src="assets/img/iris-proposte.webp" alt="" style="object-position:50% 40%" loading="lazy" width="56" height="56"><span class="visually-hidden">UCI Cinemas · Iris propone il film</span></button><button type="button" aria-pressed="false" data-frame="assets/img/jethr-m-stipendio.webp" data-pos="50% 22%" data-alt="Jet HR: lo stipendio del mese con le differenze spiegate" data-href="lavori/jet-hr/" data-caption="Jet HR · lo stipendio, spiegato"><img src="assets/img/jethr-m-stipendio.webp" alt="" style="object-position:50% 22%" loading="lazy" width="56" height="56"><span class="visually-hidden">Jet HR · lo stipendio, spiegato</span></button><button type="button" aria-pressed="false" data-frame="assets/img/jethr-m-tempo.webp" data-pos="50% 20%" data-alt="Jet HR: ferie e permessi in giorni" data-href="lavori/jet-hr/" data-caption="Jet HR · ferie e permessi in giorni"><img src="assets/img/jethr-m-tempo.webp" alt="" style="object-position:50% 20%" loading="lazy" width="56" height="56"><span class="visually-hidden">Jet HR · ferie e permessi in giorni</span></button><button type="button" aria-pressed="false" data-frame="assets/img/idealista-r4.webp" data-pos="50% 45%" data-alt="idealista: la mappa con i prezzi nei pin quadrati" data-href="lavori/idealista/" data-caption="idealista · i prezzi sulla mappa"><img src="assets/img/idealista-r4.webp" alt="" style="object-position:50% 45%" loading="lazy" width="56" height="56"><span class="visually-hidden">idealista · i prezzi sulla mappa</span></button><button type="button" aria-pressed="false" data-frame="assets/img/idealista-a1.webp" data-pos="50% 30%" data-alt="idealista: la scheda annuncio con il costo mensile totale" data-href="lavori/idealista/" data-caption="idealista · quanto spendi davvero"><img src="assets/img/idealista-a1.webp" alt="" style="object-position:50% 30%" loading="lazy" width="56" height="56"><span class="visually-hidden">idealista · quanto spendi davvero</span></button></div>
+      <p class="hero__caption" aria-live="polite" data-frame-caption><a href="lavori/uci-cinemas/">UCI Cinemas · la scelta dei posti</a></p>
+    </div>
+    <div class="hero__foot">
+      <p class="hero__where">Cerco un ruolo da UX/UI designer in un team di prodotto. <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false">Ferma il movimento</button></p>
+      <a class="btn btn--primary" href="#lavori">Guarda i lavori <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
   </section>
 
   <section class="section" id="lavori" aria-labelledby="lavori-titolo">
-    <div class="section-head"><h2 id="lavori-titolo" class="h2">Lavori selezionati</h2><p class="label">3 progetti</p></div>
-    <div class="projects"><article class="project glass project--large" data-tags="app design-system">
-  <div class="project__text">
-    <p class="label">Case study · App mobile</p>
-    <h3><a href="lavori/uci-cinemas/">UCI Cinemas</a></h3>
-    <p class="lead">Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te.</p>
+    <div class="work-head"><h2 id="lavori-titolo" class="h2">Lavori</h2><p class="lead">Tre case study, dalla discovery al prototipo. Progetti personali, realizzati in autonomia.</p></div>
+    <div class="work projects"><article class="work-block work-block--1" data-tags="app design-system">
+  <div class="work-block__visual"><img src="assets/img/uci-cover.webp" alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»" loading="lazy" width="1600" height="900"></div>
+  <div class="work-block__cluster">
+    <div class="work-block__detail"><img src="assets/img/uci-design-system.webp" alt="Una tavola del design system UCI in tema scuro: biglietto, mappa dei posti, carta fedeltà" loading="lazy" width="1600" height="1000"></div>
+    <h3 class="work-block__title"><a href="lavori/uci-cinemas/">UCI Cinemas</a></h3>
+    <p class="work-block__kind">App mobile · brand identity · progetto personale</p>
+    <p>Il redesign dell’app: biglietti in pochi tocchi e Iris, l’assistente che sceglie il film con te. 85 schermate e 80 componenti in due temi.</p>
     <a class="link" href="lavori/uci-cinemas/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <div class="project__media"><img src="assets/img/uci-cover.webp" alt="Iris, la mascotte gialla dell’app, sopra il logo UCI Cinemas e il claim «Il cinema, a modo tuo»" loading="lazy"></div>
-  
-</article><article class="project glass" data-tags="web app design-system">
-  <div class="project__text">
-    <p class="label">Case study · Web e mobile</p>
-    <h3><a href="lavori/jet-hr/">Jet HR</a></h3>
-    <p class="muted">L’area dipendente e una busta paga che si capisce, su desktop e mobile.</p>
-    
+</article><article class="work-block work-block--2" data-tags="web app design-system">
+  <div class="work-block__visual"><img src="assets/img/jethr-cover.webp" alt="La home di Jet HR su desktop e su smartphone, con lo stipendio nascosto e la data di accredito" loading="lazy" width="1600" height="900"></div>
+  <div class="work-block__cluster">
+    <div class="work-block__detail"><img src="assets/img/jethr-d-home.webp" alt="La home della web app Jet HR: stipendio, tempo libero, cose da fare e settimana del team" loading="lazy" width="1600" height="1000"></div>
+    <h3 class="work-block__title"><a href="lavori/jet-hr/">Jet HR</a></h3>
+    <p class="work-block__kind">Web app e app mobile · progetto personale</p>
+    <p>L’area dipendente e una busta paga che si capisce: le domande vere dei dipendenti al centro, gli stessi componenti su desktop e mobile.</p>
+    <a class="link" href="lavori/jet-hr/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <div class="project__media"><img src="assets/img/jethr-cover.webp" alt="La home di Jet HR su desktop e su smartphone, con lo stipendio nascosto e la data di accredito" loading="lazy"></div>
-  <a class="link" href="lavori/jet-hr/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-</article><article class="project glass" data-tags="app design-system">
-  <div class="project__text">
-    <p class="label">Case study · Brand identity e app</p>
-    <h3><a href="lavori/idealista/">idealista</a></h3>
-    <p class="muted">Nuova identità e app per trovare casa con prezzi chiari e annunci verificati.</p>
-    
+</article><article class="work-block work-block--3" data-tags="app design-system">
+  <div class="work-block__visual"><video muted loop playsinline preload="none" width="1600" height="900" poster="assets/img/idealista-video-poster.webp" data-autoplay aria-label="Il video del brand idealista, senza audio: il pixel lime diventa il logo, poi colori, tipografia e mappa"><source src="assets/video/idealista-brand-video.mp4" type="video/mp4"></video></div>
+  <div class="work-block__cluster">
+    <div class="work-block__detail"><img src="assets/img/idealista-b-pixel.webp" alt="Il pixel quadrato del logo usato come sistema: app icon, pin della mappa e indicatori" loading="lazy" width="1600" height="1000"></div>
+    <h3 class="work-block__title"><a href="lavori/idealista/">idealista</a></h3>
+    <p class="work-block__kind">Brand identity e app mobile · progetto personale</p>
+    <p>Nuova identità e app per trovare casa con prezzi chiari e annunci verificati: 39 schermate, 54 icone e un solo pixel quadrato.</p>
+    <a class="link" href="lavori/idealista/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <div class="project__media"><img src="assets/img/idealista-cover.webp" alt="La copertina del progetto idealista: il nuovo logo con il pixel quadrato e le schermate dell’app su fondo lime" loading="lazy"></div>
-  <a class="link" href="lavori/idealista/" tabindex="-1" aria-hidden="true">Leggi il case study<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
 </article></div>
   </section>
 
   <section class="section" id="metodo" aria-labelledby="metodo-titolo">
-    <div class="section-head"><h2 id="metodo-titolo" class="h2">Come lavoro</h2><p class="label">Dal problema al componente</p></div>
-    <div class="grid grid--4"><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h3>Ricerca UX</h3><p class="muted">Interviste, mappe delle assunzioni e test per partire dal problema giusto.</p></article><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Interfacce e prototipi</h3><p class="muted">Flussi completi, con stati di errore, vuoti e offline, prototipati prima dello sviluppo.</p></article><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>Design system</h3><p class="muted">Token, componenti e regole documentate, con un changelog che allinea design e codice.</p></article><article class="card glass service"><div class="service__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4m0 0-3 6m3-6 3 6"/></svg></div><h3>Accessibilità</h3><p class="muted">Interfacce leggibili e facili da usare per tutte le persone, pensate così dal primo componente.</p></article></div>
+    <div class="method-head"><h2 id="metodo-titolo" class="h2">Come lavoro</h2><p class="lead">Dal problema al componente, in quattro passaggi che porto in ogni progetto.</p></div>
+    <ul class="poster"><li><span class="poster__word">Ricerca</span><span class="poster__fact">Interviste, mappe delle assunzioni e test, per partire dal problema giusto.</span></li><li><span class="poster__word">Interfacce</span><span class="poster__fact">Flussi completi, con stati di errore, vuoti e offline, prototipati prima dello sviluppo.</span></li><li><span class="poster__word">Design system</span><span class="poster__fact">Token, componenti e regole, con un changelog che allinea design e codice.</span></li><li><span class="poster__word">Accessibilità</span><span class="poster__fact">Contrasti, aree di tocco e screen reader, verificati dal primo componente.</span></li></ul>
   </section>
 
   <section class="section" aria-labelledby="chi-titolo">
-    <div class="grid grid--2" style="align-items:start">
-      <div class="card glass stack" style="--gap:24px;border-radius:var(--r-card);padding:clamp(24px,3.4vw,48px)">
-        <img src="assets/img/ritratto-avatar.webp" alt="Ritratto di Sebastiano Bosi" width="80" height="80" style="width:80px;height:80px;border-radius:50%;border:1px solid var(--border-glass);object-fit:cover">
-        <h2 id="chi-titolo" class="h3">Ciao, sono Sebastiano.</h2>
-        <p class="lead">Dalla fotografia allo UX/UI design: ho trasformato la sensibilità visiva in progettazione di esperienze digitali. Oggi sono UX/UI Designer in Collecto, a Milano.</p>
+    <div class="section-head"><h2 id="chi-titolo" class="h2">Chi sono</h2></div>
+    <div class="about">
+      <div class="about__side">
+        <div class="about__portrait"><img src="assets/img/ritratto.webp" alt="Ritratto di Sebastiano Bosi" width="960" height="1200" loading="lazy"></div>
+        <dl class="facts">
+          <div><dt>Oggi</dt><dd>UX/UI Designer in Collecto</dd></div>
+          <div><dt>Base</dt><dd>Milano</dd></div>
+          <div><dt>Prima</dt><dd>Fotografo di moda e ritoccatore</dd></div>
+        </dl>
+      </div>
+      <div class="about__text">
+        <p class="about__para">Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto.</p>
         <div class="actions actions--stack-mobile">
           <a class="btn btn--primary" href="assets/sebastiano-bosi-cv.pdf" download>Scarica il CV</a>
           <a class="btn btn--secondary" href="chi-sono/">Più su di me</a>
         </div>
       </div>
-      <div class="stack" style="--gap:12px">
-        <h3 class="h4">Esperienza e formazione</h3>
-        <ul class="timeline"><li class="glass"><span><strong>UX/UI Designer</strong><span class="label">Collecto app · Milano · tempo pieno</span></span><span class="label">gen 2026 – oggi</span></li><li class="glass"><span><strong>UX/UI Designer, stage</strong><span class="label">Collecto app · Milano</span></span><span class="label">lug 2025 – gen 2026</span></li><li class="glass"><span><strong>Master in UX/UI Design</strong><span class="label">Start2Impact</span></span><span class="label">ott 2023 – mag 2025</span></li><li class="glass"><span><strong>Photo Retoucher & Video Editor</strong><span class="label">PixelModa · Milano</span></span><span class="label">feb 2023 – lug 2023</span></li></ul>
-      </div>
     </div>
-  </section>
-
-  <section class="section" aria-label="Competenze"><ul class="chips chips--center"><li class="chip">Discovery</li><li class="chip">Wireframing</li><li class="chip">Prototyping</li><li class="chip">User testing</li><li class="chip">Design system</li><li class="chip">Accessibilità</li><li class="chip">Figma</li></ul></section>
-
-  <section class="closing" aria-labelledby="contatti-titolo">
-    <h2 id="contatti-titolo" class="display">Lavoriamo insieme.</h2>
-    <p class="lead">Hai un progetto o una posizione aperta? Scrivimi.</p>
-    <div class="actions actions--stack-mobile">
-      <a class="btn btn--primary" href="contatti/">Scrivimi</a>
-      <a class="btn btn--secondary" href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a>
+    <div class="record">
+      <p class="record__word">Il percorso</p>
+      <div><h3>Esperienza</h3><ul><li><span>UX/UI Designer · Collecto app</span><span>gen 2026 – oggi</span></li><li><span>UX/UI Designer, stage · Collecto app</span><span>lug 2025 – gen 2026</span></li><li><span>Fashion Photographer · Freelance</span><span></span></li><li><span>Photo Retoucher & Video Editor · PixelModa</span><span>feb 2023 – lug 2023</span></li></ul></div>
+      <div><h3>Formazione</h3><ul><li><span>Master in UX/UI Design · Start2Impact</span><span>ott 2023 – mag 2025</span></li><li><span>Accademia di Fotografia di moda · Ferrari Fashion School</span><span>ott 2019 – set 2022</span></li><li><span>Istituto Tecnico, Grafica e comunicazione · Istituto Salesiano San Zeno</span><span>2014 – 2019</span></li></ul></div>
     </div>
   </section>
 </div>
@@ -141,17 +141,24 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer">
-      <p class="muted">© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
-      <nav aria-label="Contatti"><ul>
-        <li><a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:sebastianobosi@icloud.com">Email</a></li>
-        <li><a href="assets/sebastiano-bosi-cv.pdf" download>CV</a></li>
-        <li><a href="cv/">CV in testo</a></li>
-        <li><a href="note-legali/">Note legali</a></li>
-      </ul></nav>
-      <a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+      <div class="footer__invite">
+        <h2>Lavoriamo insieme.</h2>
+        <p class="footer__lead">Hai una posizione aperta o un progetto? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
+        <a class="btn btn--primary" href="contatti/">Scrivimi <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:18px;height:18px"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <nav class="footer__links" aria-label="Contatti">
+        <a href="mailto:sebastianobosi@icloud.com">sebastianobosi@icloud.com</a>
+        <a href="https://www.linkedin.com/in/sebastiano-bosi-24674016a" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="assets/sebastiano-bosi-cv.pdf" download>Curriculum (PDF)</a>
+        <a href="cv/">Curriculum in testo</a>
+      </nav>
+      <div class="footer__legal">
+        <p>© 2026 Sebastiano Bosi. Tutti i diritti riservati.</p>
+        <ul><li><a href="note-legali/">Note legali</a></li><li><a href="#contenuto">Torna su <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:16px;height:16px"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a></li></ul>
+      </div>
     </div>
   </div>
+  <span class="footer__name" aria-hidden="true">Sebastiano Bosi</span>
 </footer>
 </body>
 </html>
