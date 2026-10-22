@@ -193,7 +193,8 @@ def services_html(items=SERVICES):
 BIO_BREVE = "Dalla fotografia allo UX/UI design: ho trasformato la sensibilità visiva in progettazione di esperienze digitali. Oggi sono UX/UI Designer in Collecto, a Milano."
 BIO = "Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto."
 ESPERIENZA = [
-    ("UX/UI Designer", "Collecto app · Milano", "lug 2025 – oggi"),
+    ("UX/UI Designer", "Collecto app · Milano · tempo pieno", "gen 2026 – oggi"),
+    ("UX/UI Designer, stage", "Collecto app · Milano", "lug 2025 – gen 2026"),
     ("Fashion Photographer", "Freelance · Milano", ""),
     ("Photo Retoucher & Video Editor", "PixelModa · Milano", "feb 2023 – lug 2023"),
 ]
@@ -203,16 +204,17 @@ FORMAZIONE = [
     ("Istituto Tecnico, Grafica e comunicazione", "Istituto Salesiano San Zeno", "2014 – 2019"),
 ]
 HARD_SKILLS = ["Discovery", "Wireframing", "Prototyping", "User testing", "Grafica", "Scrittura", "HTML", "CSS"]
-STRUMENTI = ["Figma", "Claude", "ChatGPT", "Photoshop"]
+STRUMENTI = ["Figma", "CleverTap", "Claude", "ChatGPT", "Photoshop"]
 SOFT_SKILLS = ["Team working", "Networking", "Impatto sociale", "Proattività", "Precisione", "Mentoring", "People oriented", "Creatività"]
 DETTAGLI = {
-    "UX/UI Designer": "Progetto interfacce e dinamiche di prodotto dell’app Collecto, pensate per coinvolgere gli utenti e generare valore concreto. Lavoro in Figma, dalla discovery al prototipo.",
+    "UX/UI Designer": "Progetto e miglioro le esperienze digitali di Collecto in un ruolo trasversale tra design, prodotto e marketing. UX/UI e product design: interfacce, user flow e funzionalità dell’app, design system e identità visiva. Digital design: newsletter, landing page, template e componenti visivi per i canali di comunicazione. CRM e marketing automation: customer journey e automazioni multicanale con CleverTap, email e notifiche push per onboarding, engagement, retention e riattivazione degli utenti.",
+    "UX/UI Designer, stage": "Stage in UX/UI design, proseguito con l’assunzione a tempo pieno.",
     "Fashion Photographer": "Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.",
     "Photo Retoucher & Video Editor": "Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.",
 }
 KNOWS_ABOUT = ["UX design", "UI design", "Product design", "User research", "Discovery", "Usability testing", "Wireframing",
                "Prototipazione", "Architettura dell’informazione", "Design system", "Design token", "Accessibilità WCAG 2.2",
-               "Brand identity", "Motion design", "Figma", "HTML", "CSS"]
+               "Brand identity", "Motion design", "User flow", "Customer journey", "CRM e marketing automation", "Email e newsletter", "Landing page", "Figma", "CleverTap", "HTML", "CSS"]
 LINGUE = [("Italiano", "Madrelingua", ""), ("Inglese", "Intermedio", "")]
 
 SKILLS = ["Discovery", "Wireframing", "Prototyping", "User testing", "Design system", "Accessibilità WCAG 2.2", "Figma"]
@@ -281,7 +283,7 @@ def home():
       </div>
       <div class="stack" style="--gap:12px">
         <h3 class="h4">Esperienza e formazione</h3>
-        {timeline([ESPERIENZA[0], FORMAZIONE[0], ESPERIENZA[2], FORMAZIONE[1]])}
+        {timeline([ESPERIENZA[0], ESPERIENZA[1], FORMAZIONE[0], ESPERIENZA[3]])}
       </div>
     </div>
   </section>
@@ -1002,7 +1004,7 @@ def cv_page():
     <section class="section stack" style="--gap:12px" aria-labelledby="progetti"><h2 id="progetti" class="h3">Progetti (case study)</h2><ul class="cv-list">{progetti}</ul></section>
     <section class="section stack" style="--gap:12px" aria-labelledby="formazione"><h2 id="formazione" class="h3">Formazione</h2>{esp(FORMAZIONE)}</section>
     <section class="section stack" style="--gap:16px" aria-labelledby="competenze"><h2 id="competenze" class="h3">Competenze</h2>
-      <p><strong>Hard skill:</strong> {", ".join(HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2", "Architettura dell’informazione", "Brand identity", "Motion design"])}</p>
+      <p><strong>Hard skill:</strong> {", ".join(HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2", "Architettura dell’informazione", "User flow", "Brand identity", "Motion design", "Newsletter e landing page", "Customer journey", "Marketing automation"])}</p>
       <p><strong>Strumenti:</strong> {", ".join(STRUMENTI + ["Figma Sites"])}</p>
       <p><strong>Soft skill:</strong> {", ".join(SOFT_SKILLS)}</p>
       <p><strong>Lingue:</strong> {", ".join(f"{a} ({b.lower()})" for a, b, _ in LINGUE)}</p>
@@ -1010,12 +1012,12 @@ def cv_page():
   </article>
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .36), ("lavender", "55%", "-120px", "56vw", "560px", .26)]
-    return layout("cv/", 1, "Curriculum", "Curriculum di Sebastiano Bosi, UX/UI Designer a Milano: esperienza in Collecto, Master UX/UI Design Start2Impact, competenze, strumenti e case study.", body, glows)
+    return layout("cv/", 1, "Curriculum", "Curriculum di Sebastiano Bosi, UX/UI Designer a Milano: esperienza in Collecto tra UX/UI, product design e marketing automation, Master UX/UI Design Start2Impact, competenze, strumenti e case study.", body, glows)
 
 def llms_txt():
     site = CONFIG["site_url"]
     righe = [f"# {CONFIG['name']} — UX/UI Designer", "",
-             f"> Portfolio di {CONFIG['name']}, UX/UI Designer a Milano (Italia). Oggi in Collecto app (da luglio 2025). Si occupa di discovery, user research, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.", "",
+             f"> Portfolio di {CONFIG['name']}, UX/UI Designer a Milano (Italia). In Collecto app da luglio 2025 (stage, poi tempo pieno da gennaio 2026), tra UX/UI design, product design, comunicazione visiva e marketing automation con CleverTap. Si occupa di discovery, user research, user flow, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.", "",
              "## Profilo", "", BIO, "",
              "## Esperienza", ""]
     righe += [f"- {a}, {b} ({c or 'freelance'}): {DETTAGLI.get(a, '')}".rstrip(": ") for a, b, c in ESPERIENZA]

@@ -20,7 +20,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, B.CONFIG["cv_ats"])
 C = B.CONFIG
 
-base = ParagraphStyle("base", fontName="Helvetica", fontSize=10, leading=13)
+base = ParagraphStyle("base", fontName="Helvetica", fontSize=9.5, leading=12.4)
 nome = ParagraphStyle("nome", parent=base, fontName="Helvetica-Bold", fontSize=20, leading=24)
 ruolo = ParagraphStyle("ruolo", parent=base, fontSize=12, leading=16)
 h2 = ParagraphStyle("h2", parent=base, fontName="Helvetica-Bold", fontSize=12, leading=16, spaceBefore=10, spaceAfter=3)
@@ -30,7 +30,7 @@ def p(t, s=base):
     return Paragraph(t, s)
 
 def main():
-    doc = SimpleDocTemplate(OUT, pagesize=A4, leftMargin=20*mm, rightMargin=20*mm, topMargin=15*mm, bottomMargin=15*mm,
+    doc = SimpleDocTemplate(OUT, pagesize=A4, leftMargin=17*mm, rightMargin=17*mm, topMargin=15*mm, bottomMargin=15*mm,
                             title=f"{C['name']} - CV UX/UI Designer", author=C["name"],
                             subject="Curriculum vitae", keywords=", ".join(B.KNOWS_ABOUT))
     s = [p(C["name"], nome), p("UX/UI Designer", ruolo), Spacer(1, 4),
@@ -49,7 +49,7 @@ def main():
     for a, b, c in B.FORMAZIONE:
         s.append(p(f"{a} | {b} | {c}", voce))
     s += [p("Competenze", h2),
-          p("Hard skill: " + ", ".join(B.HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2", "Architettura dell’informazione", "Brand identity", "Motion design"])),
+          p("Hard skill: " + ", ".join(B.HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2", "Architettura dell’informazione", "User flow", "Brand identity", "Motion design", "Newsletter e landing page", "Customer journey", "Marketing automation"])),
           p("Strumenti: " + ", ".join(B.STRUMENTI + ["Figma Sites"])),
           p("Soft skill: " + ", ".join(B.SOFT_SKILLS)),
           p("Lingue: " + ", ".join(f"{a} ({b.lower()})" for a, b, _ in B.LINGUE)),

@@ -1,6 +1,6 @@
 # Sebastiano Bosi — UX/UI Designer
 
-> Portfolio di Sebastiano Bosi, UX/UI Designer a Milano (Italia). Oggi in Collecto app (da luglio 2025). Si occupa di discovery, user research, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.
+> Portfolio di Sebastiano Bosi, UX/UI Designer a Milano (Italia). In Collecto app da luglio 2025 (stage, poi tempo pieno da gennaio 2026), tra UX/UI design, product design, comunicazione visiva e marketing automation con CleverTap. Si occupa di discovery, user research, user flow, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.
 
 ## Profilo
 
@@ -8,7 +8,8 @@ Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare 
 
 ## Esperienza
 
-- UX/UI Designer, Collecto app · Milano (lug 2025 – oggi): Progetto interfacce e dinamiche di prodotto dell’app Collecto, pensate per coinvolgere gli utenti e generare valore concreto. Lavoro in Figma, dalla discovery al prototipo.
+- UX/UI Designer, Collecto app · Milano · tempo pieno (gen 2026 – oggi): Progetto e miglioro le esperienze digitali di Collecto in un ruolo trasversale tra design, prodotto e marketing. UX/UI e product design: interfacce, user flow e funzionalità dell’app, design system e identità visiva. Digital design: newsletter, landing page, template e componenti visivi per i canali di comunicazione. CRM e marketing automation: customer journey e automazioni multicanale con CleverTap, email e notifiche push per onboarding, engagement, retention e riattivazione degli utenti.
+- UX/UI Designer, stage, Collecto app · Milano (lug 2025 – gen 2026): Stage in UX/UI design, proseguito con l’assunzione a tempo pieno.
 - Fashion Photographer, Freelance · Milano (freelance): Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.
 - Photo Retoucher & Video Editor, PixelModa · Milano (feb 2023 – lug 2023): Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.
 
@@ -21,8 +22,8 @@ Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare 
 ## Competenze
 
 - Hard skill: Discovery, Wireframing, Prototyping, User testing, Grafica, Scrittura, HTML, CSS
-- Strumenti: Figma, Claude, ChatGPT, Photoshop
-- Ambiti: UX design, UI design, Product design, User research, Discovery, Usability testing, Wireframing, Prototipazione, Architettura dell’informazione, Design system, Design token, Accessibilità WCAG 2.2, Brand identity, Motion design, Figma, HTML, CSS
+- Strumenti: Figma, CleverTap, Claude, ChatGPT, Photoshop
+- Ambiti: UX design, UI design, Product design, User research, Discovery, Usability testing, Wireframing, Prototipazione, Architettura dell’informazione, Design system, Design token, Accessibilità WCAG 2.2, Brand identity, Motion design, User flow, Customer journey, CRM e marketing automation, Email e newsletter, Landing page, Figma, CleverTap, HTML, CSS
 - Soft skill: Team working, Networking, Impatto sociale, Proattività, Precisione, Mentoring, People oriented, Creatività
 - Lingue: Italiano (madrelingua), Inglese (intermedio)
 
