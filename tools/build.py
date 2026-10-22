@@ -219,8 +219,8 @@ def method_html(heading_id="metodo-titolo"):
     return f"""<div class="method-head"><h2 id="{heading_id}" class="h2">Come lavoro</h2><p class="lead">Dal problema al componente, in quattro passaggi che porto in ogni progetto.</p></div>
     <ul class="poster">{items}</ul>"""
 
-BIO_BREVE = "Dalla fotografia allo UX/UI design: ho trasformato la sensibilità visiva in progettazione di esperienze digitali. Oggi sono UX/UI Designer in Collecto, a Milano."
-BIO = "Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto."
+BIO_BREVE = "UX/UI designer a Milano: ricerca, interfacce e design system, dal problema giusto a componenti accessibili pronti per lo sviluppo."
+BIO = "Progetto esperienze digitali chiare, dalla ricerca al design system. Parto dal problema giusto, disegno flussi completi con tutti i loro stati e li trasformo in componenti accessibili, documentati e pronti per lo sviluppo."
 ESPERIENZA = [
     ("UX/UI Designer", "Collecto app · Milano · tempo pieno", "gen 2026 – oggi"),
     ("UX/UI Designer, stage", "Collecto app · Milano", "lug 2025 – gen 2026"),
@@ -238,7 +238,7 @@ SOFT_SKILLS = ["Team working", "Networking", "Impatto sociale", "Proattività", 
 DETTAGLI = {
     "UX/UI Designer": "Progetto e miglioro le esperienze digitali di Collecto in un ruolo trasversale tra design, prodotto e marketing. UX/UI e product design: interfacce, user flow e funzionalità dell’app, design system e identità visiva. Digital design: newsletter, landing page, template e componenti visivi per i canali di comunicazione. CRM e marketing automation: customer journey e automazioni multicanale con CleverTap, email e notifiche push per onboarding, engagement, retention e riattivazione degli utenti.",
     "UX/UI Designer, stage": "Stage in UX/UI design, proseguito con l’assunzione a tempo pieno.",
-    "Fashion Photographer": "Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.",
+    "Fashion Photographer": "Servizi fotografici di moda, dalla direzione visiva alla post-produzione.",
     "Photo Retoucher & Video Editor": "Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.",
 }
 KNOWS_ABOUT = ["UX design", "UI design", "Product design", "User research", "Discovery", "Usability testing", "Wireframing",
@@ -315,7 +315,7 @@ def home():
   <section class="hero" aria-labelledby="titolo">
     <div class="hero__copy">
       <h1 id="titolo" class="hero__title">UX/UI designer a Milano</h1>
-      <p class="hero__lead">Sono Sebastiano Bosi e lavoro in Collecto. Vengo dalla fotografia di moda: oggi porto lo stesso occhio nelle interfacce, dalla ricerca al design system.</p>
+      <p class="hero__lead">Sono Sebastiano Bosi. Progetto app e web app chiare, dalla ricerca al design system, fino a componenti accessibili pronti per lo sviluppo.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
         <a class="btn btn--secondary" href="{CONFIG['cv']}" download>Scarica il CV</a>
@@ -339,9 +339,9 @@ def home():
       <div class="about__side">
         <div class="about__portrait"><img src="assets/img/ritratto.webp" alt="Ritratto di Sebastiano Bosi" width="960" height="1200" loading="lazy"></div>
         <dl class="facts">
-          <div><dt>Oggi</dt><dd>UX/UI Designer in Collecto</dd></div>
+          <div><dt>Ruolo</dt><dd>UX/UI Designer</dd></div>
           <div><dt>Base</dt><dd>Milano</dd></div>
-          <div><dt>Prima</dt><dd>Fotografo di moda e ritoccatore</dd></div>
+          <div><dt>Cerco</dt><dd>Un ruolo in un team di prodotto</dd></div>
         </dl>
       </div>
       <div class="about__text">
@@ -851,7 +851,7 @@ def chi_sono():
 
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-120px", "56vw", "560px", .32), ("blue", "50%", "1800px", "50vw", "600px", .16)]
-    return layout("chi-sono/", 1, "Chi sono", "Chi è Sebastiano Bosi, UX/UI Designer a Milano: percorso dalla fotografia al design, esperienza, formazione e competenze.", body, glows)
+    return layout("chi-sono/", 1, "Chi sono", "Chi è Sebastiano Bosi, UX/UI Designer a Milano: percorso, esperienza, formazione e competenze.", body, glows)
 
 def contatti():
     body = f"""
