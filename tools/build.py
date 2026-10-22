@@ -126,7 +126,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
     <div class="footer">
       <div class="footer__invite">
         <h2>Lavoriamo insieme.</h2>
-        <p class="footer__lead">Hai una posizione aperta o un progetto? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
+        <p class="footer__lead">Hai un progetto o una domanda sul mio lavoro? Scrivimi: di solito rispondo entro due giorni lavorativi.</p>
         <a class="btn btn--primary" href="{r}contatti/">Scrivimi {icon("arrow-up-right", 18)}</a>
       </div>
       <nav class="footer__links" aria-label="Contatti">
@@ -341,7 +341,7 @@ def home():
         <dl class="facts">
           <div><dt>Ruolo</dt><dd>UX/UI Designer</dd></div>
           <div><dt>Base</dt><dd>Milano</dd></div>
-          <div><dt>Cerco</dt><dd>Un ruolo in un team di prodotto</dd></div>
+          <div><dt>Mi occupo di</dt><dd>App, web app e design system</dd></div>
         </dl>
       </div>
       <div class="about__text">
@@ -816,7 +816,6 @@ def chi_sono():
     <div class="stack intro" style="--gap:clamp(20px,2vw,28px)">
       <h1 id="titolo" class="display" style="max-width:10ch">Ciao, sono Sebastiano.</h1>
       <p class="lead" style="max-width:720px">{BIO}</p>
-      <p class="lead" style="max-width:720px">Cerco un ruolo da UX/UI Designer in un team di prodotto, in startup e scale-up italiane, dove portare ricerca, interfacce e design system dalla prima idea allo sviluppo.</p>
       <div class="actions actions--stack-mobile">
         <a class="btn btn--primary" href="../{CONFIG['cv']}" download>Scarica il CV</a>
         <a class="btn btn--secondary" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
@@ -860,7 +859,7 @@ def contatti():
     <section class="stack intro" style="--gap:clamp(20px,2vw,28px)" aria-labelledby="titolo">
       <div class="about__portrait"><img src="../assets/img/ritratto.webp" alt="Ritratto di Sebastiano Bosi" width="960" height="1200"></div>
       <h1 id="titolo" class="display">Scrivimi.</h1>
-      <p class="lead">Che si tratti di un progetto, di una posizione aperta o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi. Sono a Milano.</p>
+      <p class="lead">Che si tratti di un progetto o di una domanda sul mio lavoro, rispondo volentieri. Di solito entro due giorni lavorativi. Sono a Milano.</p>
     </section>
 
     <section aria-label="Contatti diretti">
@@ -881,7 +880,7 @@ def contatti():
   </div>
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .42), ("lavender", "55%", "-120px", "56vw", "560px", .3), ("warm", "62%", "500px", "30vw", "320px", .18)]
-    return layout("contatti/", 1, "Contatti", "Contatta Sebastiano Bosi per un progetto o una posizione aperta: email, LinkedIn e curriculum.", body, glows)
+    return layout("contatti/", 1, "Contatti", "Contatta Sebastiano Bosi per un progetto o una collaborazione: email, LinkedIn e curriculum.", body, glows)
 
 def not_found():
     # La 404 di GitHub Pages viene servita a qualsiasi profondità: link assoluti alla radice
@@ -989,7 +988,7 @@ def cv_page():
 def llms_txt():
     site = CONFIG["site_url"]
     righe = [f"# {CONFIG['name']} — UX/UI Designer", "",
-             f"> Portfolio di {CONFIG['name']}, UX/UI Designer a Milano (Italia). In Collecto app da luglio 2025 (stage, poi tempo pieno da gennaio 2026), tra UX/UI design, product design, comunicazione visiva e marketing automation con CleverTap. Si occupa di discovery, user research, user flow, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.", "",
+             f"> Portfolio di {CONFIG['name']}, UX/UI Designer a Milano (Italia). In Collecto app da luglio 2025 (stage, poi tempo pieno da gennaio 2026), tra UX/UI design, product design, comunicazione visiva e marketing automation con CleverTap. Si occupa di discovery, user research, user flow, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma.", "",
              "## Profilo", "", BIO, "",
              "## Esperienza", ""]
     righe += [f"- {a}, {b} ({c or 'freelance'}): {DETTAGLI.get(a, '')}".rstrip(": ") for a, b, c in ESPERIENZA]
