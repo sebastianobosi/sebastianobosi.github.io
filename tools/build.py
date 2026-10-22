@@ -298,38 +298,30 @@ def timeline(items):
 # ---------------------------------------------------------------------------
 # Pagine
 # ---------------------------------------------------------------------------
-FRAMES = [
-    ("assets/img/uci-posti.webp", "50% 38%", "UCI Cinemas: la scelta dei posti in sala", "lavori/uci-cinemas/", "UCI Cinemas · la scelta dei posti"),
-    ("assets/img/iris-proposte.webp", "50% 40%", "UCI Cinemas: Iris propone i film della serata", "lavori/uci-cinemas/", "UCI Cinemas · Iris propone il film"),
-    ("assets/img/jethr-m-stipendio.webp", "50% 22%", "Jet HR: lo stipendio del mese con le differenze spiegate", "lavori/jet-hr/", "Jet HR · lo stipendio, spiegato"),
-    ("assets/img/jethr-m-tempo.webp", "50% 20%", "Jet HR: ferie e permessi in giorni", "lavori/jet-hr/", "Jet HR · ferie e permessi in giorni"),
-    ("assets/img/idealista-r4.webp", "50% 45%", "idealista: la mappa con i prezzi nei pin quadrati", "lavori/idealista/", "idealista · i prezzi sulla mappa"),
-    ("assets/img/idealista-a1.webp", "50% 30%", "idealista: la scheda annuncio con il costo mensile totale", "lavori/idealista/", "idealista · quanto spendi davvero"),
+HERO_SCREENS = [
+    ("lavori/uci-cinemas/", "UCI Cinemas", "assets/img/uci-posti.webp", "UCI Cinemas: la scelta dei posti in sala"),
+    ("lavori/jet-hr/", "Jet HR", "assets/img/jethr-m-stipendio.webp", "Jet HR: lo stipendio del mese con le differenze spiegate"),
+    ("lavori/idealista/", "idealista", "assets/img/idealista-a1.webp", "idealista: la scheda annuncio con il costo mensile totale"),
 ]
 
 def home():
     r = ""
-    src, pos, alt, href, cap = FRAMES[0]
-    sheet = "".join(
-        f'<button type="button" aria-pressed="{"true" if i == 0 else "false"}" data-frame="{f[0]}" data-pos="{f[1]}" data-alt="{html.escape(f[2])}" data-href="{f[3]}" data-caption="{html.escape(f[4])}">'
-        f'<img src="{f[0]}" alt="" style="object-position:{f[1]}" loading="lazy" width="56" height="56"><span class="visually-hidden">{html.escape(f[4])}</span></button>'
-        for i, f in enumerate(FRAMES))
+    screens = "".join(
+        f'<li><a href="{h}"><span class="phone"><span class="phone__screen"><img src="{src}" alt="{html.escape(alt)}" width="390" height="844"></span></span>'
+        f'<span class="hero__screen-name">{t}</span></a></li>'
+        for h, t, src, alt in HERO_SCREENS)
     body = f"""
 <div class="wrap">
   <section class="hero" aria-labelledby="titolo">
-    <h1 id="titolo" class="hero__title"><span>Sebastiano</span> <span>Bosi</span></h1>
-    <div class="hero__body">
-      <div class="hero__copy">
-        <p class="hero__lead">UX/UI designer a Milano, in Collecto. Vengo dalla fotografia di moda: oggi porto lo stesso occhio nelle interfacce, dalla ricerca al design system.</p>
-        <div class="contact-sheet" role="group" aria-label="Scegli una schermata dai progetti">{sheet}</div>
-        <p class="hero__caption" aria-live="polite" data-frame-caption><a href="{href}">{cap}</a></p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
-          <p class="hero__where">Cerco un ruolo in un team di prodotto.</p>
-        </div>
+    <div class="hero__copy">
+      <h1 id="titolo" class="hero__title">UX/UI designer a Milano</h1>
+      <p class="hero__lead">Sono Sebastiano Bosi e lavoro in Collecto. Vengo dalla fotografia di moda: oggi porto lo stesso occhio nelle interfacce, dalla ricerca al design system.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
+        <a class="btn btn--secondary" href="{CONFIG['cv']}" download>Scarica il CV</a>
       </div>
-      <div class="hero__phone"><div class="phone"><div class="phone__screen"><img src="{src}" alt="{html.escape(alt)}" width="390" height="844" data-frame-img></div></div></div>
     </div>
+    <ul class="hero__screens">{screens}</ul>
   </section>
 
   <section class="section" id="lavori" aria-labelledby="lavori-titolo">

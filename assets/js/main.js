@@ -35,33 +35,6 @@
   menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', shut));
 })();
 
-/* ---------- Provino: il fotogramma scelto va nel telefono ---------- */
-(() => {
-  const sheet = document.querySelector('.contact-sheet');
-  const img = document.querySelector('[data-frame-img]');
-  const caption = document.querySelector('[data-frame-caption]');
-  if (!sheet || !img || !caption) return;
-  sheet.addEventListener('click', (e) => {
-    const b = e.target.closest('button[data-frame]');
-    if (!b || b.getAttribute('aria-pressed') === 'true') return;
-    sheet.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    const next = new Image();
-    next.src = b.dataset.frame;
-    const swap = () => {
-      img.src = b.dataset.frame;
-      img.alt = b.dataset.alt;
-      img.classList.remove('is-swapping');
-    };
-    img.classList.add('is-swapping');
-    setTimeout(() => (next.complete ? swap() : next.addEventListener('load', swap, { once: true })), 200);
-    caption.innerHTML = '';
-    const a = document.createElement('a');
-    a.href = b.dataset.href;
-    a.textContent = b.dataset.caption;
-    caption.appendChild(a);
-  });
-})();
-
 /* ---------- Entrata delle sezioni: titolo, poi testo, poi immagini ---------- */
 (() => {
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;

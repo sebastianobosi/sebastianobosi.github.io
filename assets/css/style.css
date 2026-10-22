@@ -182,48 +182,27 @@ button.chip:hover { background: var(--surface-2); }
 .menu .actions .btn { width: 100%; }
 
 /* --------------------------------------------------------------------------
-   Home · primo schermo: il nome intero, la schermata scelta dal provino in un telefono
+   Home · primo schermo: chi sei a sinistra, tre schermate vere a destra
    -------------------------------------------------------------------------- */
-.hero {
-  --name: calc((min(100vw, var(--content) + 2 * var(--gutter)) - 2 * var(--gutter)) / 4.95);
-  display: grid; gap: clamp(28px, 4vh, 48px); padding-top: clamp(16px, 4vh, 48px);
-}
-@media (min-width: 900px) { .hero { --name: calc((min(100vw, var(--content) + 2 * var(--gutter)) - 2 * var(--gutter)) / 7.05); } }
-.hero__title { font-size: var(--name); line-height: .86; letter-spacing: -0.05em; white-space: nowrap; }
-.hero__title span { display: block; width: max-content; }
-@media (min-width: 900px) { .hero__title span { display: inline; } }
+.hero { display: grid; gap: 48px; padding-top: clamp(32px, 7vh, 96px); align-items: center; }
+.hero__copy { display: grid; gap: 24px; justify-items: start; }
+.hero__title { font-size: clamp(2.75rem, 1.4rem + 4.2vw, 4.75rem); line-height: .98; letter-spacing: -0.04em; max-width: 14ch; }
+.hero__lead { font-size: var(--fs-lead); line-height: 1.5; max-width: 42ch; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+@media (max-width: 599px) { .hero__actions { width: 100%; flex-direction: column; } .hero__actions .btn { width: 100%; } }
 
-.hero__body { display: grid; gap: 40px; }
-.hero__copy { display: grid; gap: 24px; justify-items: start; align-content: start; }
-.hero__lead { font-size: var(--fs-lead); line-height: 1.45; max-width: 44ch; }
-.hero__caption { color: var(--muted); min-height: 44px; display: flex; align-items: center; }
-.hero__caption a { color: var(--ink); text-underline-offset: 5px; }
-.hero__caption a:hover { color: var(--accent); }
-.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 8px; }
-.hero__where { color: var(--muted); }
-
-.hero__phone { justify-self: center; width: min(62vw, 260px); }
-.hero__phone .phone { position: relative; width: 100%; }
-.hero__phone .phone__screen img { transition: opacity .3s ease; }
-.hero__phone .phone__screen img.is-swapping { opacity: 0; }
-@media (min-width: 900px) {
-  .hero__body { grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: 64px; }
-  .hero__phone { width: clamp(200px, 17vw, 250px); justify-self: end; }
+.hero__screens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.6vw, 24px); align-items: start; }
+.hero__screens li:nth-child(2) { margin-top: clamp(24px, 4vw, 56px); }
+.hero__screens a { display: grid; gap: 14px; text-decoration: none; }
+.hero__screens .phone { position: relative; display: block; width: 100%; transition: transform .35s var(--ease); }
+.hero__screens .phone__screen { display: block; }
+.hero__screens a:hover .phone { transform: translateY(-6px); }
+.hero__screen-name { font-weight: 600; font-size: var(--fs-body); display: inline-flex; min-height: 44px; align-items: center; }
+.hero__screens a:hover .hero__screen-name { color: var(--accent); }
+@media (min-width: 1000px) {
+  .hero { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: clamp(40px, 5vw, 96px); min-height: min(calc(100svh - 72px), 900px); padding-bottom: 32px; }
 }
-@media (max-width: 599px) { .hero__actions .btn { width: 100%; } }
-
-/* Il provino: sei fotogrammi, uno in primo piano */
-.contact-sheet { display: none; gap: 8px; flex-wrap: wrap; }
-.js .contact-sheet { display: flex; }
-.contact-sheet button {
-  width: 56px; height: 56px; padding: 0; border: 0; cursor: pointer; background: var(--surface);
-  opacity: .5; transition: opacity .25s ease, transform .25s var(--ease);
-}
-.contact-sheet button img { width: 100%; height: 100%; object-fit: cover; }
-.contact-sheet button:hover { opacity: .9; transform: translateY(-3px); }
-.contact-sheet button[aria-pressed="true"] { opacity: 1; outline: 2px solid var(--ink); outline-offset: 3px; }
-.contact-sheet button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; opacity: 1; }
-@media (max-width: 599px) { .contact-sheet button { width: 48px; height: 48px; } }
+@media (max-width: 599px) { .hero__screen-name { font-size: var(--fs-small); } }
 
 /* --------------------------------------------------------------------------
    Lavori: una grande immagine che esce dal bordo, accanto un piccolo gruppo
@@ -348,13 +327,13 @@ button.chip:hover { background: var(--surface-2); }
   .intro > *:nth-child(2) { animation-delay: .07s; }
   .intro > *:nth-child(3) { animation-delay: .14s; }
   .intro > *:nth-child(4) { animation-delay: .21s; }
-  .hero__title { animation: rise .9s var(--ease) both; }
   .hero__copy > * { animation: rise .8s var(--ease) both; }
-  .hero__copy > *:nth-child(1) { animation-delay: .12s; }
-  .hero__copy > *:nth-child(2) { animation-delay: .2s; }
-  .hero__copy > *:nth-child(3) { animation-delay: .28s; }
-  .hero__copy > *:nth-child(4) { animation-delay: .36s; }
-  .hero__phone { animation: rise 1s var(--ease) .3s both; }
+  .hero__copy > *:nth-child(2) { animation-delay: .08s; }
+  .hero__copy > *:nth-child(3) { animation-delay: .16s; }
+  .hero__screens li { animation: rise 1s var(--ease) both; }
+  .hero__screens li:nth-child(1) { animation-delay: .2s; }
+  .hero__screens li:nth-child(2) { animation-delay: .3s; }
+  .hero__screens li:nth-child(3) { animation-delay: .4s; }
   .phone-row .phone { animation: rise 1s var(--ease) both; }
   .phone-row .phone:nth-child(2) { animation-delay: .08s; } .phone-row .phone:nth-child(3) { animation-delay: .16s; }
   .phone-row .phone:nth-child(4) { animation-delay: .24s; } .phone-row .phone:nth-child(5) { animation-delay: .32s; }
