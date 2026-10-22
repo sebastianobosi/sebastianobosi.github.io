@@ -50,7 +50,7 @@ def main():
         s.append(p(f"{a} | {b} | {c}", voce))
     s += [p("Competenze", h2),
           p("Hard skill: " + ", ".join(B.HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2", "Architettura dell’informazione", "User flow", "Brand identity", "Motion design", "Newsletter e landing page", "Customer journey", "Marketing automation"])),
-          p("Strumenti: " + ", ".join(B.STRUMENTI + ["Figma Sites"])),
+          p("Strumenti: " + ", ".join(B.STRUMENTI)),
           p("Soft skill: " + ", ".join(B.SOFT_SKILLS)),
           p("Lingue: " + ", ".join(f"{a} ({b.lower()})" for a, b, _ in B.LINGUE)),
           Spacer(1, 10),

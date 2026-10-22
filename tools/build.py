@@ -860,7 +860,7 @@ def chi_sono():
     <h2 id="skill" class="h3">Competenze e strumenti</h2>
     <div class="grid grid--2" style="gap:32px;align-items:start">
       <div class="stack" style="--gap:12px"><h3 class="h4">Hard skill</h3>{chips(HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2"])}</div>
-      <div class="stack" style="--gap:12px"><h3 class="h4">Strumenti</h3>{chips(STRUMENTI + ["Figma Sites"])}</div>
+      <div class="stack" style="--gap:12px"><h3 class="h4">Strumenti</h3>{chips(STRUMENTI)}</div>
       <div class="stack" style="--gap:12px"><h3 class="h4">Soft skill</h3>{chips(SOFT_SKILLS)}</div>
       <div class="stack" style="--gap:12px"><h3 class="h4">Lingue</h3>{timeline(LINGUE)}</div>
     </div>
@@ -1005,7 +1005,7 @@ def cv_page():
     <section class="section stack" style="--gap:12px" aria-labelledby="formazione"><h2 id="formazione" class="h3">Formazione</h2>{esp(FORMAZIONE)}</section>
     <section class="section stack" style="--gap:16px" aria-labelledby="competenze"><h2 id="competenze" class="h3">Competenze</h2>
       <p><strong>Hard skill:</strong> {", ".join(HARD_SKILLS + ["Design system", "Accessibilità WCAG 2.2", "Architettura dell’informazione", "User flow", "Brand identity", "Motion design", "Newsletter e landing page", "Customer journey", "Marketing automation"])}</p>
-      <p><strong>Strumenti:</strong> {", ".join(STRUMENTI + ["Figma Sites"])}</p>
+      <p><strong>Strumenti:</strong> {", ".join(STRUMENTI)}</p>
       <p><strong>Soft skill:</strong> {", ".join(SOFT_SKILLS)}</p>
       <p><strong>Lingue:</strong> {", ".join(f"{a} ({b.lower()})" for a, b, _ in LINGUE)}</p>
     </section>
