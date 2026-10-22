@@ -1,16 +1,16 @@
 # Sebastiano Bosi — UX/UI Designer
 
-> Portfolio di Sebastiano Bosi, UX/UI Designer a Milano (Italia). In Collecto app da luglio 2025 (stage, poi tempo pieno da gennaio 2026), tra UX/UI design, product design, comunicazione visiva e marketing automation con CleverTap. Si occupa di discovery, user research, user flow, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma. Cerca un ruolo da UX/UI Designer in startup e scale-up italiane.
+> Portfolio di Sebastiano Bosi, UX/UI Designer a Milano (Italia). In Collecto app da luglio 2025 (stage, poi tempo pieno da gennaio 2026), tra UX/UI design, product design, comunicazione visiva e marketing automation con CleverTap. Si occupa di discovery, user research, user flow, wireframe, prototipi, design system e accessibilità WCAG 2.2, in Figma.
 
 ## Profilo
 
-Dalla fotografia allo UX/UI design: un percorso che mi ha portato a trasformare la sensibilità visiva in progettazione di esperienze digitali. In Collecto ho affinato questo approccio, contribuendo a creare interfacce e dinamiche di prodotto capaci di coinvolgere gli utenti e generare valore concreto.
+Progetto esperienze digitali chiare, dalla ricerca al design system. Parto dal problema giusto, disegno flussi completi con tutti i loro stati e li trasformo in componenti accessibili, documentati e pronti per lo sviluppo.
 
 ## Esperienza
 
 - UX/UI Designer, Collecto app · Milano · tempo pieno (gen 2026 – oggi): Progetto e miglioro le esperienze digitali di Collecto in un ruolo trasversale tra design, prodotto e marketing. UX/UI e product design: interfacce, user flow e funzionalità dell’app, design system e identità visiva. Digital design: newsletter, landing page, template e componenti visivi per i canali di comunicazione. CRM e marketing automation: customer journey e automazioni multicanale con CleverTap, email e notifiche push per onboarding, engagement, retention e riattivazione degli utenti.
 - UX/UI Designer, stage, Collecto app · Milano (lug 2025 – gen 2026): Stage in UX/UI design, proseguito con l’assunzione a tempo pieno.
-- Fashion Photographer, Freelance · Milano (freelance): Servizi fotografici di moda, dalla direzione visiva alla post-produzione: la base della mia sensibilità per immagine, luce e dettaglio.
+- Fashion Photographer, Freelance · Milano (freelance): Servizi fotografici di moda, dalla direzione visiva alla post-produzione.
 - Photo Retoucher & Video Editor, PixelModa · Milano (feb 2023 – lug 2023): Fotoritocco e montaggio video per contenuti moda, con attenzione alla precisione e alla coerenza visiva.
 
 ## Formazione
