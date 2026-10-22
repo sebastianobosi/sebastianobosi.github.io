@@ -245,7 +245,7 @@ def home():
 <div class="wrap">
   <section class="hero" aria-labelledby="titolo">
     <div class="hero__text intro">
-      <p class="chip chip--status">UX/UI Designer a Milano · Aperto a nuove opportunità</p>
+      <p class="chip chip--status">UX/UI Designer a Milano</p>
       <h1 id="titolo" class="display hero__title">Interfacce chiare per prodotti complessi.</h1>
       <p class="lead">Sono Sebastiano Bosi, UX/UI Designer in Collecto. Ricerca, UI e design system: porto i prodotti dal problema giusto a componenti accessibili, pronti per lo sviluppo.</p>
       <div class="actions actions--stack-mobile">
