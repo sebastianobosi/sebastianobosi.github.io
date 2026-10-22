@@ -80,6 +80,9 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
 <meta property="og:image" content="{CONFIG['site_url']}/assets/img/og.png">
 <meta property="og:locale" content="it_IT">
 <meta name="author" content="{CONFIG['name']}">
+<meta name="copyright" content="© 2026 {CONFIG['name']}. Tutti i diritti riservati.">
+<meta name="tdm-reservation" content="1">
+<meta name="tdm-policy" content="{CONFIG['site_url']}/note-legali/">
 <meta name="theme-color" content="#07080f">
 {structured_data(page, title, description)}
 <link rel="icon" href="{r}assets/img/favicon.svg" type="image/svg+xml">
@@ -123,12 +126,13 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer">
-      <p class="muted">© 2026 {CONFIG['name']}</p>
+      <p class="muted">© 2026 {CONFIG['name']}. Tutti i diritti riservati.</p>
       <nav aria-label="Contatti"><ul>
         <li><a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a></li>
         <li><a href="mailto:{CONFIG['email']}">Email</a></li>
         <li><a href="{r}{CONFIG['cv']}" download>CV</a></li>
         <li><a href="{r}cv/">CV in testo</a></li>
+        <li><a href="{r}note-legali/">Note legali</a></li>
       </ul></nav>
       <a href="#contenuto">Torna su {icon("arrow-up", 16)}</a>
     </div>
@@ -402,7 +406,7 @@ def uci():
     <h2 id="progetto" class="h3">Il progetto</h2>
     <div class="stack">
       <p class="lead lead--primary">Ho riprogettato da zero l’app UCI Cinemas come progetto personale, partendo da una brand identity nuova. L’obiettivo: rendere più semplice e veloce l’acquisto del biglietto e sostituire l’acquisto rapido con Iris, un’assistente AI che trova film, orari e posti.</p>
-      <aside class="callout glass"><p class="callout__label">Nota</p><p>Progetto non commissionato da UCI. Prezzi, titoli dei film e alcuni dati sono esempi plausibili, da verificare.</p></aside>
+      <aside class="callout glass"><p class="callout__label">Nota</p><p>Progetto non commissionato da UCI. Prezzi, titoli dei film e alcuni dati sono esempi plausibili, da verificare. Concept, testi, schermate e video sono opera originale di Sebastiano Bosi e sono protetti dal diritto d’autore (<a href="../../note-legali/">note legali</a>).</p></aside>
     </div>
   </section>
 
@@ -537,7 +541,7 @@ def jethr():
     <h2 id="progetto" class="h3">Il progetto</h2>
     <div class="stack">
       <p class="lead lead--primary">Jet HR gestisce le paghe di molte piccole aziende italiane. L’area dei dipendenti è dove si guarda la busta paga, si chiedono le ferie, si caricano gli scontrini e si scaricano i documenti. Oggi l’app mobile è la versione desktop rimpicciolita, e la busta paga parla la lingua del consulente del lavoro. Ho riprogettato entrambe partendo da una domanda: cosa vuole sapere davvero un dipendente quando apre l’app?</p>
-      <aside class="callout glass"><p class="callout__label">Nota</p><p>Concept personale, non commissionato né approvato da Jet HR. Persone, aziende e importi sono fittizi. I vincoli di legge vengono da una ricerca su fonti pubbliche, usata solo a scopo progettuale: non sono consulenza legale o fiscale.</p></aside>
+      <aside class="callout glass"><p class="callout__label">Nota</p><p>Concept personale, non commissionato né approvato da Jet HR. Persone, aziende e importi sono fittizi. I vincoli di legge vengono da una ricerca su fonti pubbliche, usata solo a scopo progettuale: non sono consulenza legale o fiscale. Concept, testi, schermate e video sono opera originale di Sebastiano Bosi e sono protetti dal diritto d’autore (<a href="../../note-legali/">note legali</a>).</p></aside>
     </div>
   </section>
 
@@ -739,7 +743,7 @@ def idealista():
     <h2 id="progetto" class="h3">Il progetto</h2>
     <div class="stack">
       <p class="lead lead--primary">Ho ripensato idealista partendo dal marchio: il logo a griglia di pixel diventa un carattere vero, e il pixel quadrato resta come segno di tutto il sistema. Da lì ho riprogettato l’app partendo dal sito attuale, con un obiettivo: far capire subito quanto costa davvero una casa e di chi fidarsi.</p>
-      <aside class="callout glass"><p class="callout__label">Nota</p><p>Concept non ufficiale, non commissionato da idealista. Prezzi, indirizzi e annunci sono esempi; le foto della fotografia sono generate con AI per illustrare il trattamento.</p></aside>
+      <aside class="callout glass"><p class="callout__label">Nota</p><p>Concept non ufficiale, non commissionato da idealista. Prezzi, indirizzi e annunci sono esempi; le foto della fotografia sono generate con AI per illustrare il trattamento. Concept, testi, schermate e video sono opera originale di Sebastiano Bosi e sono protetti dal diritto d’autore (<a href="../../note-legali/">note legali</a>).</p></aside>
     </div>
   </section>
 
@@ -1033,13 +1037,47 @@ def llms_txt():
               f"- [CV solo testo, PDF]({site}/{CONFIG['cv_ats']}): versione leggibile dagli ATS", f"- [Contatti]({site}/contatti/)", ""]
     return "\n".join(righe)
 
+def note_legali():
+    body = f"""
+<div class="wrap">
+  <article class="cv legal" style="padding-top:clamp(64px,8vw,120px)" aria-labelledby="titolo">
+    <header class="stack" style="--gap:16px">
+      <h1 id="titolo" class="display">Note legali</h1>
+      <p class="lead">I contenuti di questo sito sono opera originale di {CONFIG['name']}. Puoi guardarli, condividerne il link e citarli indicando l’autore. Per tutto il resto serve il mio permesso scritto.</p>
+    </header>
+    <section class="section stack" style="--gap:12px" aria-labelledby="dir">
+      <h2 id="dir" class="h3">Diritto d’autore</h2>
+      <p>Testi, case study, tavole, schermate, illustrazioni, icone, loghi riprogettati, fotografie, video e codice del sito sono protetti dalla legge italiana sul diritto d’autore (Legge 22 aprile 1941, n. 633) e dalle norme europee e internazionali applicabili. Il diritto nasce con la creazione dell’opera e non richiede registrazione.</p>
+      <p>Sono vietati, senza autorizzazione scritta, la riproduzione anche parziale, la modifica, la distribuzione e l’uso commerciale dei contenuti, compreso il loro utilizzo come base per prodotti, servizi, campagne o progetti di terzi. Resta sempre riconosciuto il diritto morale dell’autore a essere indicato come tale.</p>
+    </section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="tdm">
+      <h2 id="tdm" class="h3">Estrazione di testo e dati</h2>
+      <p>L’autore si riserva espressamente l’estrazione di testo e di dati (text and data mining) dai contenuti del sito, ai sensi dell’art. 70-quater della Legge 633/1941 e dell’art. 4 della Direttiva (UE) 2019/790. Questo include l’uso dei contenuti per addestrare sistemi di intelligenza artificiale. La riserva è indicata anche in forma leggibile dalle macchine. La consultazione delle pagine per valutare una candidatura resta naturalmente consentita.</p>
+    </section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="marchi">
+      <h2 id="marchi" class="h3">Marchi di terzi</h2>
+      <p>I case study su UCI Cinemas, Jet HR e idealista sono concept personali, non commissionati né approvati dalle rispettive aziende. Nomi e marchi appartengono ai legittimi titolari e sono citati solo per identificare i prodotti di riferimento. La tutela dell’autore riguarda il lavoro originale: ricerca, flussi, interfacce, sistemi grafici, testi e video.</p>
+    </section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="sel">
+      <h2 id="sel" class="h3">Selezioni e prove di lavoro</h2>
+      <p>I materiali condivisi durante una selezione, comprese eventuali prove o esercitazioni, restano di proprietà dell’autore e possono essere usati solo per valutare la candidatura, salvo diverso accordo scritto.</p>
+    </section>
+    <section class="section stack" style="--gap:12px" aria-labelledby="perm">
+      <h2 id="perm" class="h3">Richieste di utilizzo</h2>
+      <p>Per usare un contenuto scrivi a <a href="mailto:{CONFIG['email']}">{CONFIG['email']}</a>.</p>
+    </section>
+  </article>
+</div>"""
+    glows = [("blue", "-14%", "-240px", "62vw", "620px", .3), ("lavender", "55%", "-120px", "56vw", "560px", .2)]
+    return layout("note-legali/", 1, "Note legali", "Note legali del portfolio di Sebastiano Bosi: diritto d’autore, riserva sull’estrazione di testo e dati, marchi di terzi.", body, glows)
+
 FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#07080f"/><circle cx="20" cy="18" r="22" fill="#1e4fd8" opacity=".55"/><circle cx="48" cy="50" r="20" fill="#9d7bea" opacity=".45"/><text x="32" y="41" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="24" fill="#f2f3f7">SB</text></svg>"""
 
 def main(out):
     src = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     os.makedirs(out, exist_ok=True)
     pages = {"index.html": home(), "lavori/index.html": lavori(), "lavori/uci-cinemas/index.html": uci(), "lavori/jet-hr/index.html": jethr(), "lavori/idealista/index.html": idealista(),
-             "chi-sono/index.html": chi_sono(), "cv/index.html": cv_page(), "contatti/index.html": contatti(), "404.html": not_found()}
+             "chi-sono/index.html": chi_sono(), "cv/index.html": cv_page(), "contatti/index.html": contatti(), "note-legali/index.html": note_legali(), "404.html": not_found()}
     for path, content in pages.items():
         p = os.path.join(out, path); os.makedirs(os.path.dirname(p), exist_ok=True)
         open(p, "w", encoding="utf-8").write(content)
@@ -1049,7 +1087,7 @@ def main(out):
     os.makedirs(os.path.join(out, "assets/img"), exist_ok=True)
     open(os.path.join(out, "assets/img/favicon.svg"), "w").write(FAVICON)
     open(os.path.join(out, ".nojekyll"), "w").write("")
-    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "lavori/idealista/", "chi-sono/", "cv/", "contatti/"]
+    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "lavori/idealista/", "chi-sono/", "cv/", "contatti/", "note-legali/"]
     open(os.path.join(out, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{CONFIG['site_url']}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")

@@ -481,3 +481,4 @@ button.chip { cursor: pointer; min-height: 44px; }
   body { background: #fff; color: #000; }
   .cv-item { border: 1px solid #ccc; break-inside: avoid; }
 }
+.legal p { max-width: 760px; }
