@@ -35,67 +35,6 @@
   menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', shut));
 })();
 
-/* ---------- Filtri della pagina Lavori ---------- */
-(() => {
-  const bar = document.querySelector('[data-filters]');
-  if (!bar) return;
-  const cards = document.querySelectorAll('[data-tags]');
-  const status = document.querySelector('[data-filter-status]');
-  bar.addEventListener('click', (e) => {
-    const b = e.target.closest('button[data-filter]');
-    if (!b) return;
-    bar.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    const f = b.dataset.filter;
-    let n = 0;
-    cards.forEach((c) => {
-      const show = f === 'tutti' || c.dataset.tags.split(' ').includes(f);
-      c.hidden = !show;
-      if (show) n++;
-    });
-    if (status) status.textContent = n === 1 ? '1 progetto' : `${n} progetti`;
-  });
-})();
-
-/* ---------- Provino: il fotogramma scelto va sotto il nome ---------- */
-(() => {
-  const sheet = document.querySelector('.contact-sheet');
-  const img = document.querySelector('[data-frame-img]');
-  const caption = document.querySelector('[data-frame-caption]');
-  if (!sheet || !img || !caption) return;
-  sheet.addEventListener('click', (e) => {
-    const b = e.target.closest('button[data-frame]');
-    if (!b || b.getAttribute('aria-pressed') === 'true') return;
-    sheet.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    const next = new Image();
-    next.src = b.dataset.frame;
-    const swap = () => {
-      img.src = b.dataset.frame;
-      img.alt = b.dataset.alt;
-      img.style.objectPosition = b.dataset.pos;
-      img.classList.remove('is-swapping');
-    };
-    img.classList.add('is-swapping');
-    setTimeout(() => (next.complete ? swap() : next.addEventListener('load', swap, { once: true })), 200);
-    caption.innerHTML = '';
-    const a = document.createElement('a');
-    a.href = b.dataset.href;
-    a.textContent = b.dataset.caption;
-    caption.appendChild(a);
-  });
-})();
-
-/* ---------- Ferma il nome che scorre (WCAG 2.2.2) ---------- */
-(() => {
-  const hero = document.querySelector('[data-hero]');
-  const btn = document.querySelector('[data-motion-toggle]');
-  if (!hero || !btn) return;
-  btn.addEventListener('click', () => {
-    const paused = hero.classList.toggle('is-paused');
-    btn.setAttribute('aria-pressed', String(paused));
-    btn.textContent = paused ? 'Riprendi il movimento' : 'Ferma il movimento';
-  });
-})();
-
 /* ---------- Entrata delle sezioni: titolo, poi testo, poi immagini ---------- */
 (() => {
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
