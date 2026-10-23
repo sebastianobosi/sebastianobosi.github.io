@@ -6,6 +6,9 @@ Le pagine usano link relativi, quindi funzionano su GitHub Pages, in locale e in
 Per cambiare email, LinkedIn o CV, modifica CONFIG qui sotto e rigenera.
 """
 import sys, os, shutil, html, hashlib
+import i18n
+
+LANG = "it"   # cambia durante la build: "it" per le pagine alla radice, "en" per quelle in en/
 
 CONFIG = {
     "site_url": "https://sebastianobosi.github.io",
@@ -60,9 +63,22 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
         for label, p in NAV + [("Contatti", "contatti/")]
     )
     full_title = f"{title} — {CONFIG['name']}" if title != CONFIG["name"] else f"{CONFIG['name']} — UX/UI Designer a Milano"
-    canonical = CONFIG["site_url"] + "/" + ("" if page == "" else page)
+    site = CONFIG["site_url"]
+    it_url, en_url = site + "/" + page, site + "/en/" + page
+    canonical = en_url if LANG == "en" else it_url
+    if page == "404":
+        alternates, switch, menu_switch = "", "", ""
+    else:
+        alternates = (f'<link rel="alternate" hreflang="it" href="{it_url}">\n<link rel="alternate" hreflang="en" href="{en_url}">\n'
+                      f'<link rel="alternate" hreflang="x-default" href="{it_url}">\n')
+        if LANG == "en":
+            other = ("../" * (depth + 1)) + page
+            switch = f'<a class="nav__lang" href="{other}" hreflang="it" lang="it" aria-label="Leggi in italiano">IT</a>'
+        else:
+            switch = f'<a class="nav__lang" href="{r}en/{page}" hreflang="en" lang="en" aria-label="Read in English">EN</a>'
+        menu_switch = switch.replace('class="nav__lang"', 'class="menu__lang"')
     return f"""<!doctype html>
-<html lang="it">
+<html lang="{LANG}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,7 +90,8 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{CONFIG['site_url']}/assets/img/og.png">
-<meta property="og:locale" content="it_IT">
+<meta property="og:locale" content="{'en_GB' if LANG == 'en' else 'it_IT'}">
+{alternates}
 <meta name="author" content="{CONFIG['name']}">
 <meta name="copyright" content="© 2026 {CONFIG['name']}. Tutti i diritti riservati.">
 <meta name="tdm-reservation" content="1">
@@ -99,6 +116,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
       <div class="nav__right">
         <ul class="nav__links">{links}</ul>
         <a class="nav__cta" href="{r}contatti/">Contattami</a>
+        {switch}
         <button class="nav__menu-btn" type="button" data-menu-open aria-expanded="false" aria-controls="menu">Menu {icon("menu")}</button>
       </div>
     </nav>
@@ -110,6 +128,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
     <a class="nav__logo" href="{r or './'}">{CONFIG['name']}</a>
     <button class="nav__menu-btn" type="button" data-menu-close>Chiudi {icon("close")}</button>
   </div>
+  {menu_switch}
   <ul class="menu__list">{menu_links}</ul>
   <div class="actions">
     <a class="btn btn--primary" href="{r}contatti/">Contattami</a>
@@ -929,7 +948,7 @@ def structured_data(page, title, description):
     if page == "404":
         return ""
     site = CONFIG["site_url"]
-    url = site + "/" + page
+    url = site + ("/en/" if LANG == "en" else "/") + page
     graph = [person_ld(), {"@type": "WebSite", "@id": site + "/#sito", "url": site + "/", "name": CONFIG["name"] + " — Portfolio",
                            "inLanguage": "it-IT", "author": {"@id": site + "/#persona"}}]
     proj = next((p for p in PROJECTS if p["slug"] == page), None)
@@ -1038,27 +1057,49 @@ def note_legali():
 
 FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#07080f"/><circle cx="20" cy="18" r="22" fill="#1e4fd8" opacity=".55"/><circle cx="48" cy="50" r="20" fill="#9d7bea" opacity=".45"/><text x="32" y="41" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="24" fill="#f2f3f7">SB</text></svg>"""
 
+PAGES = [("index.html", ""), ("lavori/index.html", "lavori/"), ("lavori/uci-cinemas/index.html", "lavori/uci-cinemas/"),
+         ("lavori/jet-hr/index.html", "lavori/jet-hr/"), ("lavori/idealista/index.html", "lavori/idealista/"),
+         ("chi-sono/index.html", "chi-sono/"), ("cv/index.html", "cv/"), ("contatti/index.html", "contatti/"),
+         ("note-legali/index.html", "note-legali/")]
+BUILDERS = {"index.html": lambda: home(), "lavori/index.html": lambda: lavori(), "lavori/uci-cinemas/index.html": lambda: uci(),
+            "lavori/jet-hr/index.html": lambda: jethr(), "lavori/idealista/index.html": lambda: idealista(),
+            "chi-sono/index.html": lambda: chi_sono(), "cv/index.html": lambda: cv_page(), "contatti/index.html": lambda: contatti(),
+            "note-legali/index.html": lambda: note_legali()}
+
 def main(out):
+    global LANG
     src = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     os.makedirs(out, exist_ok=True)
-    pages = {"index.html": home(), "lavori/index.html": lavori(), "lavori/uci-cinemas/index.html": uci(), "lavori/jet-hr/index.html": jethr(), "lavori/idealista/index.html": idealista(),
-             "chi-sono/index.html": chi_sono(), "cv/index.html": cv_page(), "contatti/index.html": contatti(), "note-legali/index.html": note_legali(), "404.html": not_found()}
-    for path, content in pages.items():
+    def write(path, content):
         p = os.path.join(out, path); os.makedirs(os.path.dirname(p), exist_ok=True)
         open(p, "w", encoding="utf-8").write(content)
+    # italiano, alla radice
+    LANG = "it"
+    for path, _ in PAGES:
+        write(path, BUILDERS[path]())
+    write("404.html", not_found())
+    # inglese, in en/: stesse pagine, testi dal dizionario tools/i18n/en.json
+    LANG = "en"
+    tr = i18n.Translator()
+    for path, _ in PAGES:
+        write("en/" + path, i18n.relocate(tr.page(BUILDERS[path]())))
+    LANG = "it"
+    missing = tr.save_missing()
     if os.path.abspath(out) != src:
         for d in ("assets/css", "assets/js"):
             shutil.copytree(os.path.join(src, d), os.path.join(out, d), dirs_exist_ok=True)
     os.makedirs(os.path.join(out, "assets/img"), exist_ok=True)
     open(os.path.join(out, "assets/img/favicon.svg"), "w").write(FAVICON)
     open(os.path.join(out, ".nojekyll"), "w").write("")
-    urls = ["", "lavori/", "lavori/uci-cinemas/", "lavori/jet-hr/", "lavori/idealista/", "chi-sono/", "cv/", "contatti/", "note-legali/"]
+    urls = [u for _, u in PAGES]
     open(os.path.join(out, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-        "".join(f"  <url><loc>{CONFIG['site_url']}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
+        "".join(f"  <url><loc>{CONFIG['site_url']}/{u}</loc></url>\n  <url><loc>{CONFIG['site_url']}/en/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     open(os.path.join(out, "llms.txt"), "w", encoding="utf-8").write(llms_txt())
     open(os.path.join(out, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {CONFIG['site_url']}/sitemap.xml\n")
-    print("Pagine generate:", ", ".join(pages))
+    print("Pagine generate:", len(PAGES), "in italiano, 1 pagina 404,", len(PAGES), "in inglese (en/)")
+    if missing:
+        print(f"Attenzione: {missing} testi senza traduzione inglese, elencati in tools/i18n/en.missing.json")
 
 if __name__ == "__main__":
     main(sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

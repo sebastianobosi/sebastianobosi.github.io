@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://sebastianobosi.github.io/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/</loc></url>
   <url><loc>https://sebastianobosi.github.io/lavori/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/lavori/</loc></url>
   <url><loc>https://sebastianobosi.github.io/lavori/uci-cinemas/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/lavori/uci-cinemas/</loc></url>
   <url><loc>https://sebastianobosi.github.io/lavori/jet-hr/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/lavori/jet-hr/</loc></url>
   <url><loc>https://sebastianobosi.github.io/lavori/idealista/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/lavori/idealista/</loc></url>
   <url><loc>https://sebastianobosi.github.io/chi-sono/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/chi-sono/</loc></url>
   <url><loc>https://sebastianobosi.github.io/cv/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/cv/</loc></url>
   <url><loc>https://sebastianobosi.github.io/contatti/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/contatti/</loc></url>
   <url><loc>https://sebastianobosi.github.io/note-legali/</loc></url>
+  <url><loc>https://sebastianobosi.github.io/en/note-legali/</loc></url>
 </urlset>

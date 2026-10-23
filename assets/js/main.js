@@ -78,6 +78,7 @@
 
 /* ---------- Copia indirizzo email ---------- */
 (() => {
+  const en = document.documentElement.lang === 'en';
   const status = document.querySelector('[data-copy-status]');
   document.querySelectorAll('[data-copy]').forEach((btn) => {
     btn.addEventListener('click', async () => {
@@ -90,8 +91,8 @@
         const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
       }
       const label = btn.textContent;
-      btn.textContent = ok ? 'Copiato' : 'Selezionato';
-      if (status) status.textContent = ok ? 'Indirizzo email copiato' : 'Indirizzo selezionato: premi Cmd o Ctrl + C per copiarlo';
+      btn.textContent = ok ? (en ? 'Copied' : 'Copiato') : (en ? 'Selected' : 'Selezionato');
+      if (status) status.textContent = ok ? (en ? 'Email address copied' : 'Indirizzo email copiato') : (en ? 'Address selected: press Cmd or Ctrl + C to copy it' : 'Indirizzo selezionato: premi Cmd o Ctrl + C per copiarlo');
       setTimeout(() => { btn.textContent = label; }, 2000);
     });
   });
