@@ -7,12 +7,13 @@ Sito pubblicato su **https://sebastianobosi.github.io** con GitHub Pages. HTML, 
 | Cosa | Dove |
 |---|---|
 | Colori, caratteri, spaziature | `assets/css/style.css`, blocco `:root` in cima (sono i token del file Figma «Notturno») |
+| Traduzioni inglesi | `tools/i18n/en.json` (vedi «Versione inglese» più sotto) |
 | Testi delle pagine | `tools/build.py`, nelle funzioni `home()`, `lavori()`, `uci()`, `jethr()`, `chi_sono()`, `contatti()` |
-| Fotogrammi del provino in home (schermata, inquadratura, didascalia, link) | `tools/build.py`, lista `FRAMES` |
+| Le tre schermate del primo schermo in home | `tools/build.py`, lista `HERO_SCREENS` |
 | Progetti in home e in Lavori (copertina, dettaglio, video, testi) | `tools/build.py`, lista `PROJECTS` |
 | Le quattro voci di «Come lavoro» | `tools/build.py`, lista `METODO` |
 | Email, LinkedIn, CV | `tools/build.py`, blocco `CONFIG` in cima |
-| Menu, filtri, provino, pausa del nome che scorre, entrate allo scorrimento, copia dell’email | `assets/js/main.js` |
+| Menu, entrate allo scorrimento, video in loop, copia dell’email | `assets/js/main.js` |
 
 Dopo aver modificato `tools/build.py`, rigenera le pagine:
 
@@ -21,6 +22,17 @@ python3 tools/build.py
 ```
 
 Un piccolo testo puoi cambiarlo anche direttamente nel file `.html` della pagina, ma alla prossima rigenerazione verrebbe sovrascritto: meglio cambiarlo in `tools/build.py`.
+
+## Versione inglese
+
+Le pagine inglesi stanno in `en/` (per esempio `en/lavori/uci-cinemas/`) e nascono dalle stesse funzioni delle pagine italiane: `tools/build.py` genera l’HTML italiano, poi `tools/i18n.py` sostituisce ogni testo con la sua traduzione presa da `tools/i18n/en.json` (italiano → inglese). Il selettore IT/EN in alto porta alla stessa pagina nell’altra lingua.
+
+Quando cambi o aggiungi un testo italiano:
+1. rigenera con `python3 tools/build.py`;
+2. se un testo non ha ancora la traduzione, la build lo segnala e lo elenca in `tools/i18n/en.missing.json`;
+3. copia le righe in `tools/i18n/en.json` con la traduzione al posto di `""` e rigenera.
+
+Un testo senza traduzione resta in italiano anche nella pagina inglese, quindi non si rompe nulla. Le schermate delle app restano in italiano. I PDF del CV sono gli stessi per le due lingue.
 
 ## Immagini e video
 

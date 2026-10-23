@@ -37,7 +37,7 @@
   /* Spazi */
   --gutter: clamp(16px, 2.2vw, 32px);
   --content: 1376px;
-  --section: clamp(96px, 9vw, 160px);
+  --section: clamp(88px, 8vw, 136px);
   --r-device: clamp(26px, 3.2vw, 44px);
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
@@ -573,3 +573,13 @@ button.chip:hover { background: var(--surface-2); }
 .path { gap: 96px 64px !important; align-items: start; }
 .cv p, .legal p { max-width: 70ch; }
 .contacts .label-s { order: 2; }
+
+/* Selettore della lingua */
+.nav__lang, .menu__lang {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0 10px;
+  font-size: var(--fs-small); font-weight: 600; letter-spacing: .02em; text-decoration: none;
+  color: var(--ink); background: var(--surface-2); transition: background-color .2s ease, color .2s ease;
+}
+.nav__lang:hover, .menu__lang:hover { background: var(--paper); color: var(--on-paper); }
+.menu__lang { align-self: flex-start; margin-top: 16px; }
+@media (max-width: 899px) { .nav__right { gap: 16px; } }
