@@ -334,7 +334,7 @@ def home():
   <section class="hero" aria-labelledby="titolo">
     <div class="hero__copy">
       <h1 id="titolo" class="hero__title">UX/UI designer a Milano</h1>
-      <p class="hero__lead">Sono Sebastiano Bosi. Progetto app e web app chiare, dalla ricerca al design system, fino a componenti accessibili pronti per lo sviluppo.</p>
+      <p class="hero__lead">Ciao, sono Sebastiano. Trasformo problemi complicati in app che sembrano ovvie: li studio, li disegno e li consegno in componenti accessibili, pronti per lo sviluppo.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
         <a class="btn btn--secondary" href="{CONFIG['cv']}" download>Scarica il CV</a>
