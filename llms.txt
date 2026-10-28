@@ -41,6 +41,6 @@ Prima di disegnare voglio capire dove le persone si bloccano. Le ascolto, metto 
 ## Pagine
 
 - [Chi sono](https://sebastianobosi.github.io/chi-sono/): percorso, metodo, competenze
-- [CV in testo](https://sebastianobosi.github.io/cv/): curriculum completo in HTML
-- [CV solo testo, PDF](https://sebastianobosi.github.io/assets/sebastiano-bosi-cv-ats.pdf): versione leggibile dagli ATS
+- [CV](https://sebastianobosi.github.io/cv/): curriculum completo in HTML
+- [CV in PDF](https://sebastianobosi.github.io/assets/sebastiano-bosi-cv-ats.pdf): versione solo testo, leggibile dagli ATS
 - [Contatti](https://sebastianobosi.github.io/contatti/)

@@ -15,8 +15,7 @@ CONFIG = {
     "name": "Sebastiano Bosi",
     "email": "sebastianobosi@icloud.com",
     "linkedin": "https://www.linkedin.com/in/sebastiano-bosi-24674016a",
-    "cv": "assets/sebastiano-bosi-cv.pdf",
-    "cv_ats": "assets/sebastiano-bosi-cv-ats.pdf",            # generato da tools/cv_ats.py
+    "cv_ats": "assets/sebastiano-bosi-cv-ats.pdf",            # CV solo testo, generato da tools/cv_ats.py
 }
 
 ICONS = {
@@ -132,7 +131,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
   <ul class="menu__list">{menu_links}</ul>
   <div class="actions">
     <a class="btn btn--primary" href="{r}contatti/">Contattami</a>
-    <a class="btn btn--secondary" href="{r}{CONFIG['cv']}" download>Scarica il CV</a>
+    <a class="btn btn--secondary" href="{r}cv/">CV</a>
   </div>
 </div>
 
@@ -151,8 +150,7 @@ def layout(page, depth, title, description, body, glows, extra_head=""):
       <nav class="footer__links" aria-label="Contatti">
         <a href="mailto:{CONFIG['email']}">{CONFIG['email']}</a>
         <a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
-        <a href="{r}{CONFIG['cv']}" download>Curriculum (PDF)</a>
-        <a href="{r}cv/">Curriculum in testo</a>
+        <a href="{r}cv/">CV</a>
       </nav>
       <div class="footer__legal">
         <p>© 2026 {CONFIG['name']}. Tutti i diritti riservati.</p>
@@ -337,7 +335,7 @@ def home():
       <p class="hero__lead">Ciao, sono Sebastiano. Progetto app e web app: studio come le usano le persone, disegno ogni schermata e la preparo perché gli sviluppatori possano costruirla così com’è.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
-        <a class="btn btn--secondary" href="{CONFIG['cv']}" download>Scarica il CV</a>
+        <a class="btn btn--secondary" href="cv/">CV</a>
       </div>
     </div>
     <ul class="hero__screens">{screens}</ul>
@@ -366,7 +364,7 @@ def home():
       <div class="about__text">
         <p class="about__para">{BIO}</p>
         <div class="actions actions--stack-mobile">
-          <a class="btn btn--primary" href="{CONFIG['cv']}" download>Scarica il CV</a>
+          <a class="btn btn--primary" href="cv/">CV</a>
           <a class="btn btn--secondary" href="chi-sono/">Più su di me</a>
         </div>
       </div>
@@ -836,7 +834,7 @@ def chi_sono():
       <h1 id="titolo" class="display" style="max-width:10ch">Ciao, sono Sebastiano.</h1>
       <p class="lead" style="max-width:720px">{BIO}</p>
       <div class="actions actions--stack-mobile">
-        <a class="btn btn--primary" href="../{CONFIG['cv']}" download>Scarica il CV</a>
+        <a class="btn btn--primary" href="../cv/">CV</a>
         <a class="btn btn--secondary" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a>
       </div>
     </div>
@@ -854,7 +852,7 @@ def chi_sono():
 
   <section class="section grid grid--2 path" aria-label="Percorso">
     <div class="stack" style="--gap:12px"><h2 class="h3">Esperienza</h2>{timeline(ESPERIENZA)}</div>
-    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2>{timeline(FORMAZIONE)}<p><a class="link" href="../cv/">Leggi il CV completo in testo{icon("arrow-up-right", 18)}</a></p></div>
+    <div class="stack" style="--gap:12px"><h2 class="h3">Formazione</h2>{timeline(FORMAZIONE)}<p><a class="link" href="../cv/">Leggi il CV{icon("arrow-up-right", 18)}</a></p></div>
   </section>
 
   <section class="section stack" aria-labelledby="skill">
@@ -891,7 +889,7 @@ def contatti():
           <span class="contact__text"><a class="contact__value" href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">LinkedIn</a><span class="label-s">Il mio profilo e il percorso</span></span>
         </li>
         <li class="contact glass">
-          <span class="contact__text"><a class="contact__value" href="../{CONFIG['cv']}" download>Curriculum</a><span class="label-s">Scarica il PDF</span></span>
+          <span class="contact__text"><a class="contact__value" href="../cv/">CV</a><span class="label-s">Esperienza, formazione e competenze</span></span>
         </li>
       </ul>
       <p class="visually-hidden" aria-live="polite" data-copy-status></p>
@@ -985,8 +983,7 @@ def cv_page():
       <p class="h4">Curriculum vitae · UX/UI Designer · Milano, Italia</p>
       <p class="muted">Email: <a href="mailto:{CONFIG['email']}">{CONFIG['email']}</a> · LinkedIn: <a href="{CONFIG['linkedin']}" rel="me noopener" target="_blank">sebastiano-bosi</a> · Portfolio: <a href="{r}">sebastianobosi.github.io</a></p>
       <div class="actions actions--stack-mobile">
-        <a class="btn btn--primary" href="{r}{CONFIG['cv']}" download>Scarica il CV grafico</a>
-        <a class="btn btn--secondary" href="{r}{CONFIG['cv_ats']}" download>Scarica il CV solo testo (ATS)</a>
+        <a class="btn btn--primary" href="{r}{CONFIG['cv_ats']}" download>Scarica il PDF</a>
       </div>
     </header>
     <section class="section stack" style="--gap:12px" aria-labelledby="profilo"><h2 id="profilo" class="h3">Profilo</h2><p class="lead">{BIO}</p></section>
@@ -1002,7 +999,7 @@ def cv_page():
   </article>
 </div>"""
     glows = [("blue", "-14%", "-240px", "62vw", "620px", .36), ("lavender", "55%", "-120px", "56vw", "560px", .26)]
-    return layout("cv/", 1, "Curriculum", "Curriculum di Sebastiano Bosi, UX/UI Designer a Milano: esperienza in Collecto tra UX/UI, product design e marketing automation, Master UX/UI Design Start2Impact, competenze, strumenti e case study.", body, glows)
+    return layout("cv/", 1, "CV", "CV di Sebastiano Bosi, UX/UI Designer a Milano: esperienza in Collecto tra UX/UI, product design e marketing automation, Master UX/UI Design Start2Impact, competenze, strumenti e case study.", body, glows)
 
 def llms_txt():
     site = CONFIG["site_url"]
@@ -1017,8 +1014,8 @@ def llms_txt():
               "- Lingue: " + ", ".join(f"{a} ({b.lower()})" for a, b, _ in LINGUE), ""]
     righe += ["## Contatti", "", f"- Email: {CONFIG['email']}", f"- LinkedIn: {CONFIG['linkedin']}", ""]
     righe += ["## Case study", ""] + [f"- [{p['title']}]({site}/{p['slug']}): {PROGETTI_TESTO[p['slug']]}" for p in PROJECTS]
-    righe += ["", "## Pagine", "", f"- [Chi sono]({site}/chi-sono/): percorso, metodo, competenze", f"- [CV in testo]({site}/cv/): curriculum completo in HTML",
-              f"- [CV solo testo, PDF]({site}/{CONFIG['cv_ats']}): versione leggibile dagli ATS", f"- [Contatti]({site}/contatti/)", ""]
+    righe += ["", "## Pagine", "", f"- [Chi sono]({site}/chi-sono/): percorso, metodo, competenze", f"- [CV]({site}/cv/): curriculum completo in HTML",
+              f"- [CV in PDF]({site}/{CONFIG['cv_ats']}): versione solo testo, leggibile dagli ATS", f"- [Contatti]({site}/contatti/)", ""]
     return "\n".join(righe)
 
 def note_legali():

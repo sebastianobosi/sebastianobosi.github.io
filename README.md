@@ -12,7 +12,7 @@ Sito pubblicato su **https://sebastianobosi.github.io** con GitHub Pages. HTML, 
 | Le tre schermate del primo schermo in home | `tools/build.py`, lista `HERO_SCREENS` |
 | Progetti in home e in Lavori (copertina, dettaglio, video, testi) | `tools/build.py`, lista `PROJECTS` |
 | Le quattro voci di «Come lavoro» | `tools/build.py`, lista `METODO` |
-| Email, LinkedIn, CV | `tools/build.py`, blocco `CONFIG` in cima |
+| Email, LinkedIn, percorso del PDF del CV | `tools/build.py`, blocco `CONFIG` in cima |
 | Menu, entrate allo scorrimento, video in loop, copia dell’email | `assets/js/main.js` |
 
 Dopo aver modificato `tools/build.py`, rigenera le pagine:
@@ -48,7 +48,7 @@ Il case study idealista usa le immagini `idealista-*.webp` (stesse dimensioni), 
 
 Il case study Jet HR usa le immagini `jethr-*.webp` (schermate esportate da Figma a 2x e ridotte: telefoni 780 px, desktop 1800 px, copertina 1600 px).
 
-Ritratto: `ritratto.webp` (4:5, pagina Chi sono) e `ritratto-avatar.webp` (tondo in home). CV: `assets/sebastiano-bosi-cv.pdf`; per aggiornarlo carica un nuovo PDF con lo stesso nome.
+Ritratto: `ritratto.webp` (4:5, pagina Chi sono) e `ritratto-avatar.webp` (tondo in home).
 
 Bio, esperienza, formazione, competenze e lingue (presi dal CV) stanno in `tools/build.py`, nelle liste `BIO`, `ESPERIENZA`, `FORMAZIONE`, `HARD_SKILLS`, `STRUMENTI`, `SOFT_SKILLS`, `LINGUE`.
 
@@ -60,7 +60,7 @@ Il sito è pensato anche per i software di selezione (ATS) e gli agenti AI che l
 - ogni pagina ha dati strutturati schema.org (`Person`, `ProfilePage`, `CreativeWork`) generati da `structured_data()` in `tools/build.py`;
 - `cv/` è il curriculum in HTML semplice, a una colonna;
 - `llms.txt` riassume profilo, esperienza, competenze e case study in Markdown per gli agenti AI;
-- `assets/sebastiano-bosi-cv-ats.pdf` è il CV solo testo da caricare nei portali di lavoro. Si rigenera con `python3 tools/cv_ats.py` (serve `pip install reportlab`).
+- `assets/sebastiano-bosi-cv-ats.pdf` è l’unico CV in PDF del sito (solo testo, adatto anche ai portali di lavoro), scaricabile dalla pagina CV. Si rigenera con `python3 tools/cv_ats.py` (serve `pip install reportlab`).
 
 Tutti questi file prendono i dati dalle liste in cima a `tools/build.py`: aggiorna lì e rigenera entrambi gli script.
 
