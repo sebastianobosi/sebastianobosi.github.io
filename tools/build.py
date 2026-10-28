@@ -227,19 +227,19 @@ def next_block(p, r):
   </section>"""
 
 METODO = [
-    ("Ricerca", "Interviste, mappe delle assunzioni e test, per partire dal problema giusto."),
-    ("Interfacce", "Flussi completi, con stati di errore, vuoti e offline, prototipati prima dello sviluppo."),
-    ("Design system", "Token, componenti e regole, con un changelog che allinea design e codice."),
-    ("Accessibilità", "Contrasti, aree di tocco e screen reader, verificati dal primo componente."),
+    ("Ricerca", "Parlo con chi usa il prodotto e verifico le mie ipotesi con piccoli test, prima di aprire Figma."),
+    ("Interfacce", "Disegno anche i casi meno belli: cosa succede se manca la rete, se una lista è vuota, se qualcosa va storto."),
+    ("Design system", "Ogni componente ha un nome, poche regole e un registro delle modifiche, così design e codice restano uguali."),
+    ("Accessibilità", "Mentre disegno controllo che i testi si leggano bene, che i pulsanti si tocchino facilmente e che tutto funzioni anche con lo screen reader."),
 ]
 
 def method_html(heading_id="metodo-titolo"):
     items = "".join(f'<li><span class="poster__word">{w}</span><span class="poster__fact">{f}</span></li>' for w, f in METODO)
-    return f"""<div class="method-head"><h2 id="{heading_id}" class="h2">Come lavoro</h2><p class="lead">Dal problema al componente, in quattro passaggi che porto in ogni progetto.</p></div>
+    return f"""<div class="method-head"><h2 id="{heading_id}" class="h2">Come lavoro</h2><p class="lead">Quattro cose che faccio in ogni progetto.</p></div>
     <ul class="poster">{items}</ul>"""
 
-BIO_BREVE = "UX/UI designer a Milano: ricerca, interfacce e design system, dal problema giusto a componenti accessibili pronti per lo sviluppo."
-BIO = "Progetto esperienze digitali chiare, dalla ricerca al design system. Parto dal problema giusto, disegno flussi completi con tutti i loro stati e li trasformo in componenti accessibili, documentati e pronti per lo sviluppo."
+BIO_BREVE = "UX/UI designer a Milano: app, web app e design system."
+BIO = "Prima di disegnare voglio capire dove le persone si bloccano. Le ascolto, metto per iscritto i dubbi e li verifico con un test. Poi disegno le schermate, comprese quelle che si dimenticano spesso, come gli errori o le pagine vuote, e le raccolgo in un design system che gli sviluppatori possono usare senza interpretazioni."
 ESPERIENZA = [
     ("UX/UI Designer", "Collecto app · Milano · tempo pieno", "gen 2026 – oggi"),
     ("UX/UI Designer, stage", "Collecto app · Milano", "lug 2025 – gen 2026"),
@@ -334,7 +334,7 @@ def home():
   <section class="hero" aria-labelledby="titolo">
     <div class="hero__copy">
       <h1 id="titolo" class="hero__title">UX/UI designer a Milano</h1>
-      <p class="hero__lead">Ciao, sono Sebastiano. Trasformo problemi complicati in app che sembrano ovvie: li studio, li disegno e li consegno in componenti accessibili, pronti per lo sviluppo.</p>
+      <p class="hero__lead">Ciao, sono Sebastiano. Progetto app e web app: studio come le usano le persone, disegno ogni schermata e la preparo perché gli sviluppatori possano costruirla così com’è.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#lavori">Guarda i lavori {icon("arrow-up-right", 18)}</a>
         <a class="btn btn--secondary" href="{CONFIG['cv']}" download>Scarica il CV</a>

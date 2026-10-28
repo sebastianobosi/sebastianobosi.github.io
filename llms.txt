@@ -4,7 +4,7 @@
 
 ## Profilo
 
-Progetto esperienze digitali chiare, dalla ricerca al design system. Parto dal problema giusto, disegno flussi completi con tutti i loro stati e li trasformo in componenti accessibili, documentati e pronti per lo sviluppo.
+Prima di disegnare voglio capire dove le persone si bloccano. Le ascolto, metto per iscritto i dubbi e li verifico con un test. Poi disegno le schermate, comprese quelle che si dimenticano spesso, come gli errori o le pagine vuote, e le raccolgo in un design system che gli sviluppatori possono usare senza interpretazioni.
 
 ## Esperienza
 
